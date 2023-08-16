@@ -1,36 +1,33 @@
-# AstroNvim User Configuration Example
+**个人配置**
 
-A user configuration template for [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+### 使用方式
 
-## 🛠️ Installation
-
-#### Make a backup of your current nvim and shared folder
+1. 克隆主仓库配置文件
 
 ```shell
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
+git clone https://github.com/AstroNvim/AstroNvim.git
 ```
 
-#### Clone AstroNvim
+2. 克隆此目录到`./lua/user`下
 
 ```shell
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone https://github.com/MOldtime/vim.git
 ```
 
-#### Create a new user repository from this template
+### 键盘备注
 
-Press the "Use this template" button above to create a new repository to store your user configuration.
+`正常来说，使用 <leader>加对应的键可以有提示，详情请查看对应的项目目录`
 
-You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
+#### 文件树
 
-#### Clone the repository
+| 功能介绍       | 快捷键     |
+| -------------- | ---------- |
+| 打开文件树     | `Ctrl + e` |
+| 定位文件树     | `Ctrl + e` |
+| 设置当前根目录 | `.`        |
+| 新建文件       | `a`        |
+| 新建文件夹     | `A`        |
 
-```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim/lua/user
-```
+---
 
-#### Start Neovim
-
-```shell
-nvim
-```
+#### 标签
