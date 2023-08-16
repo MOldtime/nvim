@@ -34,3 +34,15 @@ git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim/lua/us
 ```shell
 nvim
 ```
+
+键盘指南：
+文件树（资源管理器）：
+|功能|快捷键
+|---|---|
+打开(关闭)资源管理器|`<leader>e`
+光标移动到资源管理器|`<leader>o`
+设置当前目录为主目录|`.`
+显示隐藏目录|`H`
+搜索文件|`f`
+文件搜索后上下移动|`<Ctrl>j(k)`
+模糊搜索|`/`
