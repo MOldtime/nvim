@@ -84,4 +84,8 @@ return {
     -- 判断是不是指定idea
     require "user.config.check"
   end,
+  plugins = {
+    { "mfussenegger/nvim-dap", enabled = false },
+    "AstroNvim/astrocommunity",
+  },
 }
