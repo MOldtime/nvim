@@ -19,22 +19,67 @@ return {
     -- },
 
     -- mappings seen under group name "Buffer"
-    ["<leader>bD"] = {
-      function()
-        require("astronvim.utils.status").heirline.buffer_picker(
-          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-        )
-      end,
-      desc = "Pick to close",
-    },
-    -- tables with the `name` key will be registered with which-key if it's installed
-    -- this is useful for naming menus
-    ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<leader>;p"] = {
+      '"*p',
+      desc = "从系统粘贴",
+    },
+    ["<tab>"] = {
+      "v>",
+      desc = "缩进",
+    },
+    ["<s-tab>"] = {
+      "v<",
+      desc = "缩进",
+    },
+    ["C-L"] = {
+      ":bnext<CR>",
+      desc = "向右切换标签",
+    },
+    ["<C-H>"] = {
+      ":bprevious<CR>",
+      desc = "向左切换标签",
+    },
+  },
+  v = {
+    ["J"] = {
+      ":m '>+1<CR>gv=gv",
+      "选择当前向下移动",
+    },
+    ["K"] = {
+      ":m '>-2<CR>gv=gv",
+      "选择当前向上移动",
+    },
+    ["<C-y>"] = {
+      '"+y',
+      desc = "复制文字到系统",
+    },
+    ["H"] = {
+      "^",
+      desc = "移动到行首",
+    },
+    ["L"] = {
+      "$",
+      desc = "快捷移动到行尾",
+    },
+    ["<tab>"] = {
+      ">gv",
+      desc = "缩进",
+    },
+    ["<s-tab>"] = {
+      "<gv",
+      desc = "缩进",
+    },
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+  },
+  i = {
+    ["fj"] = {
+      "<Esc>",
+      desc = "一眼便知",
+    },
   },
 }
