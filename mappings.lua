@@ -9,14 +9,14 @@ return {
     -- second key is the lefthand side of the map
 
     -- navigate buffer tabs with `H` and `L`
-    -- L = {
-    --   function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-    --   desc = "Next buffer",
-    -- },
-    -- H = {
-    --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-    --   desc = "Previous buffer",
-    -- },
+    ["<C-L>"] = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+    ["<C-H>"] = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
 
     -- mappings seen under group name "Buffer"
     -- quick save
@@ -33,14 +33,14 @@ return {
       "v<",
       desc = "缩进",
     },
-    ["<C-L>"] = {
-      ":bnext<CR>",
-      desc = "向右切换标签",
-    },
-    ["<C-H>"] = {
-      ":bprevious<CR>",
-      desc = "向左切换标签",
-    },
+    -- ["<C-L>"] = {
+    --   ":bnext<CR>",
+    --   desc = "向右切换标签",
+    -- },
+    -- ["<C-H>"] = {
+    --   ":bprevious<CR>",
+    --   desc = "向左切换标签",
+    -- },
   },
   v = {
     ["J"] = {
