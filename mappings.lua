@@ -7,6 +7,14 @@ return {
   -- first key is the mode
   n = {
     -- second key is the lefthand side of the map
+    ["<leader>c"] = {
+      function()
+        local bufs = vim.fn.getbufinfo { buflisted = true }
+        require("astronvim.utils.buffer").close(0)
+        if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+      end,
+      desc = "Close buffer",
+    },
 
     -- navigate buffer tabs with `H` and `L`
     ["<C-L>"] = {
@@ -33,14 +41,6 @@ return {
       "v<",
       desc = "缩进",
     },
-    -- ["<C-L>"] = {
-    --   ":bnext<CR>",
-    --   desc = "向右切换标签",
-    -- },
-    -- ["<C-H>"] = {
-    --   ":bprevious<CR>",
-    --   desc = "向左切换标签",
-    -- },
   },
   v = {
     ["J"] = {

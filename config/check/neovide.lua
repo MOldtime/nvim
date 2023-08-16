@@ -1,4 +1,5 @@
 local neovideconfig = vim.g
+vim.o.guifont = "CaskaydiaCove Nerd Font:h13"
 -- 没有空闲
 neovideconfig.neovide_no_idle = true
 -- 退出需要确认
@@ -22,6 +23,6 @@ neovideconfig.neovide_refresh_rate = 165
 -- 空闲刷新率
 neovideconfig.neovide_refresh_rate_idle = 60
 -- 透明背景
-neovideconfig.neovide_transparency = 0.9
-neovideconfig.transparency = 0.8
+neovideconfig.neovide_transparency = 0.95
+neovideconfig.transparency = 0.9
 neovideconfig.neovide_padding_top = 0
