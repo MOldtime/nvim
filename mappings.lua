@@ -7,25 +7,25 @@ return {
   -- first key is the mode
   n = {
     -- second key is the lefthand side of the map
-    ["<leader>c"] = {
-      function()
-        local bufs = vim.fn.getbufinfo { buflisted = true }
-        require("astronvim.utils.buffer").close(0)
-        if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
-      end,
-      desc = "Close buffer",
-    },
+    -- ["<leader>c"] = {
+    --   function()
+    --     local bufs = vim.fn.getbufinfo { buflisted = true }
+    --     require("astronvim.utils.buffer").close(0)
+    --     if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+    --   end,
+    --   desc = "Close buffer",
+    -- },
 
     -- navigate buffer tabs with `H` and `L`
-    ["<C-L>"] = {
-      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-      desc = "Next buffer",
-    },
-    ["<C-H>"] = {
-      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-      desc = "Previous buffer",
-    },
-
+    -- ["<C-L>"] = {
+    --   function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+    --   desc = "Next buffer",
+    -- },
+    -- ["<C-H>"] = {
+    --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+    --   desc = "Previous buffer",
+    -- },
+    --
     -- mappings seen under group name "Buffer"
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
@@ -41,6 +41,14 @@ return {
       "v<",
       desc = "缩进",
     },
+    ["<A-h>"] = {
+      "^",
+      desc = "移动到行首",
+    },
+    ["<A-l>"] = {
+      "$",
+      desc = "移动到行尾",
+    }
   },
   v = {
     ["J"] = {
@@ -61,7 +69,7 @@ return {
     },
     ["L"] = {
       "$",
-      desc = "快捷移动到行尾",
+      desc = "移动到行尾",
     },
     ["<tab>"] = {
       ">gv",
@@ -77,9 +85,17 @@ return {
     -- ["<esc>"] = false,
   },
   i = {
-    ["fj"] = {
-      "<Esc>",
-      desc = "一眼便知",
-    },
+      ["fj"] = {
+        "<Esc>",
+        desc = "退出插入模式",
+      },
+      ["<A-h>"] = {
+        "<Esc>^i",
+        desc = "移动到行首",
+      },
+      ["<A-l>"] = {
+       "<Esc>$a",
+        desc = "移动到行尾",
+      },
   },
 }

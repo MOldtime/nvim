@@ -81,8 +81,7 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
-    -- 判断是不是指定idea
-    require "user.config.check"
+    require "user.config.global"
   end,
   plugins = {
     { "mfussenegger/nvim-dap", enabled = false },

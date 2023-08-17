@@ -14,6 +14,9 @@ git clone https://github.com/AstroNvim/AstroNvim.git
 git clone https://github.com/MOldtime/vim.git
 ```
 
+### 配置文件
+
+
 ### 键盘备注
 
 `正常来说，使用 <leader>加对应的键可以有提示，详情请查看对应的项目目录`
@@ -31,3 +34,4 @@ git clone https://github.com/MOldtime/vim.git
 ---
 
 #### 标签
+
