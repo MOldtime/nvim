@@ -83,8 +83,4 @@ return {
     -- }
     require "user.config.global"
   end,
-  plugins = {
-    { "mfussenegger/nvim-dap", enabled = false },
-    "AstroNvim/astrocommunity",
-  },
 }

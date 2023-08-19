@@ -6,6 +6,7 @@
 return {
   -- first key is the mode
   n = {
+    --[[   一些官方自带的功能
     -- second key is the lefthand side of the map
     -- ["<leader>c"] = {
     --   function()
@@ -29,9 +30,14 @@ return {
     -- mappings seen under group name "Buffer"
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    --]]
     ["<leader>;p"] = {
       '"*p',
       desc = "从系统粘贴",
+    },
+    ["<leader>;f"] = {
+      "<cmd>Format<cr>",
+      desc = "格式化代码",
     },
     ["<tab>"] = {
       "v>",
@@ -48,7 +54,7 @@ return {
     ["<A-l>"] = {
       "$",
       desc = "移动到行尾",
-    }
+    },
   },
   v = {
     ["J"] = {
@@ -85,17 +91,17 @@ return {
     -- ["<esc>"] = false,
   },
   i = {
-      ["fj"] = {
-        "<Esc>",
-        desc = "退出插入模式",
-      },
-      ["<A-h>"] = {
-        "<Esc>^i",
-        desc = "移动到行首",
-      },
-      ["<A-l>"] = {
-       "<Esc>$a",
-        desc = "移动到行尾",
-      },
+    ["fj"] = {
+      "<Esc>",
+      desc = "退出插入模式",
+    },
+    ["<A-h>"] = {
+      "<Esc>^i",
+      desc = "移动到行首",
+    },
+    ["<A-l>"] = {
+      "<Esc>$a",
+      desc = "移动到行尾",
+    },
   },
 }
