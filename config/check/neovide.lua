@@ -18,6 +18,15 @@ neovideconfig.neovide_input_macos_alt_is_meta = true
 -- neovideconfig.neovide_touch_drag_timeout = 0.17
 -- 开启轨道动画
 neovideconfig.neovide_cursor_vfx_mode = "railgun"
+-- 粒子透明度
+neovideconfig.neovide_cursor_vfx_opacity = 200.0
+-- 粒子寿命
+neovideconfig.neovide_cursor_vfx_particle_lifetime = 1.2
+-- 粒子密度
+neovideconfig.neovide_cursor_vfx_particle_density = 7.0
+-- 粒子速度
+neovideconfig.neovide_cursor_vfx_particle_speed = 10.0
+
 -- 设置刷新率
 neovideconfig.neovide_refresh_rate = 165
 -- 空闲刷新率
@@ -26,3 +35,7 @@ neovideconfig.neovide_refresh_rate_idle = 60
 neovideconfig.neovide_transparency = 0.95
 neovideconfig.transparency = 0.9
 neovideconfig.neovide_padding_top = 0
+-- 插入模式动画
+-- neovideconfig.neovide_cursor_animate_in_insert_mode = true
+-- 窗口模式 无法拖动位置
+-- neovideconfig.NEOVIDE_FRAME = "none"

@@ -89,12 +89,10 @@ return {
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    -- ["jj"] = true,
+    -- ["jk"] = false,
   },
   i = {
-    ["fj"] = {
-      "<Esc>",
-      desc = "退出插入模式",
-    },
     ["<A-h>"] = {
       "<Esc>^i",
       desc = "移动到行首",

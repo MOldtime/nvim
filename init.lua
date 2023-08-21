@@ -1,3 +1,4 @@
+-- local heirilne_obj = require "user.heirline.heirline"
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -82,5 +83,17 @@ return {
     --   },
     -- }
     require "user.config.global"
+    -- require "heirline"
+    -- require "user.plugins.dap"
   end,
+  -- icons = require "user.icons",
+  -- heirline = require "user.heirline.heirline",
+  -- plugins = {
+  --   require "user.config.heirline",
+  -- },
+  --
+  --
+  -- return {
+  -- add new user interface icon
+  -- }
 }

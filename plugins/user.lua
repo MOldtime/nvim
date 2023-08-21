@@ -1,4 +1,5 @@
 return {
+  "AstroNvim/astrocommunity",
   -- You can also add new plugins here as well:
   -- Add plugins, the lazy syntax
   -- "andweeb/presence.nvim",
@@ -23,17 +24,5 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-  { -- 多光标选择
-    "mg979/vim-visual-multi",
-    event = "BufEnter",
-  },
-  {
-    "ojroques/nvim-lspfuzzy",
-    event = "BufEnter",
-    dependencies = {
-      { "junegunn/fzf" },
-      { "junegunn/fzf.vim" }, -- to enable preview (optional)
-    },
-  },
-  { "mfussenegger/nvim-dap", enabled = true },
+  -- { "mfussenegger/nvim-dap", enabled = true },
 }
