@@ -31,13 +31,13 @@ git clone https://github.com/MOldtime/vim.git
 | 新建文件       | `a`        |
 | 新建文件夹     | `A`        |
 
----
+----
 
 #### LSP快捷键
 |功能介绍|快捷键|
 |----|----|
 跳转到定义|`gd`
-        跳转到声明|`gD`
+跳转到声明|`gD`
 查看引用|`gr` or `<leader>lr`
 跳转到上一个错误|`[d`
 跳转到下一个错误|`]d`
@@ -46,6 +46,7 @@ git clone https://github.com/MOldtime/vim.git
 类型定义|`gy`
 实现|`gI`
 ----
+
 #### Git
 |功能介绍|快捷键|
 |---|----|
