@@ -4,6 +4,3 @@ return {
   "setlocal list", -- 设置Tab可见
   "set listchars=tab:--", -- 设置标志
 }
-
---
---
