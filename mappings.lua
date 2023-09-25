@@ -39,6 +39,9 @@ return {
       "<cmd>Format<cr>",
       desc = "格式化代码",
     },
+    -- ['<leader>;q'] = {
+    --
+    -- },
     ["<tab>"] = {
       "v>",
       desc = "缩进",
