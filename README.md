@@ -30,6 +30,7 @@ git clone https://github.com/MOldtime/vim.git
 | 设置当前根目录 | `.`        |
 | 新建文件       | `a`        |
 | 新建文件夹     | `A`        |
+| 从文件管理器打开| `O`		  |
 
 ----
 
