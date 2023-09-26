@@ -17,7 +17,7 @@ git clone https://github.com/MOldtime/vim.git
 3. 可选
     - [lazygit](https://github.com/jesseduffield/lazygit) 
     Install: 
-    ```Bash
+    ```shell
     winget install -e --id=JesseDuffield.lazygit
     ```
 
