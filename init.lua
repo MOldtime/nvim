@@ -1,4 +1,3 @@
--- local heirilne_obj = require "user.heirline.heirline"
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -53,6 +52,60 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "ahk",
+    },
+    ["server-settings"] = {
+      -- config = {
+      ahk = {
+        -- autostart = true,
+        cmd = {
+          "node",
+          "C:/File_Data/Language Server Protocol/Autohotkey/server/dist/server.js",
+          -- "thqby.vscode-autohotkey2-lsp v2.1.8/server/dist/server.js",
+          "--stdio",
+        },
+        filetypes = { "autohotkey", "ahk" },
+        -- init_options = {
+        --   locale = "zh-cn",
+        --   AutoLibInclude = "Disabled",
+        --   CommentTags = "^;;\\s*(?<tag>.+)",
+        --   CompleteFunctionParens = false,
+        --   Diagnostics = {
+        --     ClassStaticMemberCheck = true,
+        --     ParamsCheck = true,
+        --   },
+        --   DisableV1Script = true,
+        --   FormatOptions = {
+        --     break_chained_methods = false,
+        --     ignore_comment = false,
+        --     indent_string = "\t",
+        --     keep_array_indentation = true,
+        --     max_preserve_newlines = 2,
+        --     one_true_brace = "1",
+        --     preserve_newlines = true,
+        --     space_before_conditional = true,
+        --     space_in_empty_paren = false,
+        --     space_in_other = true,
+        --     space_in_paren = false,
+        --     wrap_line_length = 0,
+        --   },
+        --   InterpreterPath = "C:/Program Files/Autohotkey/v2/AutoHotkey.exe",
+        --   SymbolFoldingFromOpenBrace = false,
+        -- },
+        -- single_file_support = true,
+        -- flags = { debounce_text_changes = 500 },
+        -- capabilities = function(client, bufnr)
+        --   lsp_signature.on_attach {
+        --     bind = true,
+        --     use_lspsaga = false,
+        --     floating_window = true,
+        --     fix_pos = true,
+        --     hint_enable = true,
+        --     hi_parameter = "Search",
+        --     handler_opts = { "double" },
+        --   }
+        -- end,
+      },
     },
   },
 
