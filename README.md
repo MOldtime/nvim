@@ -45,7 +45,7 @@ git clone https://github.com/MOldtime/vim.git
 |----|----|
 跳转到定义|`gd`
 跳转到声明|`gD`
-查看引用|`gr` or `<leader>lr`
+查看引用|`gr`
 跳转到上一个错误|`[d`
 跳转到下一个错误|`]d`
 悬停文档|`K`
