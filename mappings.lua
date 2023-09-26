@@ -6,31 +6,26 @@
 return {
   -- first key is the mode
   n = {
-    --[[   一些官方自带的功能
-    -- second key is the lefthand side of the map
-    -- ["<leader>c"] = {
-    --   function()
-    --     local bufs = vim.fn.getbufinfo { buflisted = true }
-    --     require("astronvim.utils.buffer").close(0)
-    --     if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
-    --   end,
-    --   desc = "Close buffer",
-    -- },
+    -- 些官方自带的功能
+    ["<leader>c"] = {
+      function()
+        local bufs = vim.fn.getbufinfo { buflisted = true }
+        require("astronvim.utils.buffer").close(0)
+        if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+      end,
+      desc = "Close buffer",
+    },
 
     -- navigate buffer tabs with `H` and `L`
-    -- ["<C-L>"] = {
-    --   function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-    --   desc = "Next buffer",
-    -- },
-    -- ["<C-H>"] = {
-    --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-    --   desc = "Previous buffer",
-    -- },
-    --
+    ["<C-L>"] = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+    ["<C-H>"] = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
     -- mappings seen under group name "Buffer"
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-    --]]
     ["<leader>;p"] = {
       '"*p',
       desc = "从系统粘贴",
@@ -39,9 +34,6 @@ return {
       "<cmd>Format<cr>",
       desc = "格式化代码",
     },
-    -- ['<leader>;q'] = {
-    --
-    -- },
     ["<tab>"] = {
       "v>",
       desc = "缩进",
@@ -72,11 +64,11 @@ return {
       '"+y',
       desc = "复制文字到系统",
     },
-    ["H"] = {
+    ["<A-h>"] = {
       "^",
       desc = "移动到行首",
     },
-    ["L"] = {
+    ["<A-l>"] = {
       "$",
       desc = "移动到行尾",
     },
@@ -89,12 +81,7 @@ return {
       desc = "缩进",
     },
   },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
-    -- ["jj"] = true,
-    -- ["jk"] = false,
-  },
+  t = {},
   i = {
     ["<A-h>"] = {
       "<Esc>^i",

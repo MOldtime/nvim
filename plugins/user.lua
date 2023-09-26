@@ -66,7 +66,7 @@ return {
             end,
           })
         end,
-        desc = "Flash 中文专用" 
+        desc = "Flash 中文专用"
       },
       },
   },
