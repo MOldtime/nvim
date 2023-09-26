@@ -59,5 +59,5 @@ git clone https://github.com/MOldtime/vim.git
 |功能介绍|快捷键|
 |---|----|
 查看差异|`<leader>gd`
-
+|lazygit|`<leader>gg`
 
