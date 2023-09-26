@@ -2,7 +2,7 @@
 
 ### 使用方式
 
-1. 克隆主仓库配置文件
+1. 克隆[主仓库](https://github.com/AstroNvim/AstroNvim) 配置文件
 
 ```shell
 git clone https://github.com/AstroNvim/AstroNvim.git
@@ -13,6 +13,13 @@ git clone https://github.com/AstroNvim/AstroNvim.git
 ```shell
 git clone https://github.com/MOldtime/vim.git
 ```
+
+3. 可选
+    - [lazygit](https://github.com/jesseduffield/lazygit) 
+    Install: 
+    ```Bash
+    winget install -e --id=JesseDuffield.lazygit
+    ```
 
 ### 配置文件
 
@@ -34,7 +41,7 @@ git clone https://github.com/MOldtime/vim.git
 
 ----
 
-#### LSP快捷键
+#### lsp快捷键
 |功能介绍|快捷键|
 |----|----|
 跳转到定义|`gd`
