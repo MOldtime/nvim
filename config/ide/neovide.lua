@@ -36,4 +36,4 @@ neovideconfig.neovide_refresh_rate_idle = 60
 -- 插入模式动画
 -- neovideconfig.neovide_cursor_animate_in_insert_mode = true
 -- 窗口模式 无法拖动位置
--- neovideconfig.NEOVIDE_FRAME = "none"
+neovideconfig.NEOVIDE_FRAME = "none"
