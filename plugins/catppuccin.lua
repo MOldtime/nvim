@@ -104,8 +104,8 @@ return {
         surface1 = "#3E4255", -- 其他颜色
         surface0 = "#1A1C2A", -- 行颜色
         base = "#1A1C2A", -- 代码编写区域背景
-        mantle = "#1A1C2A", -- tree树 背景
-        crust = "#1A1C2A", -- tree 与 代码编写分隔线
+        mantle = "#1A1C2A", -- tree树背景
+        crust = "#1A1C2A", -- tree与代码编写分隔线
       },
     },
   },
