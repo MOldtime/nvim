@@ -1,6 +1,2 @@
--- Set colorscheme to use
--- colorscheme = "catppuccin",
--- colorscheme = "astrotheme",
--- return "tokyonight"
 return "catppuccin"
--- return "rose-pine"
+-- return "github_dark"
