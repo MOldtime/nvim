@@ -37,8 +37,7 @@ g.neovide_cursor_trail_size = 0.5
 -- 设置刷新率
 g.neovide_refresh_rate = 165
 -- 空闲刷新率
-g.neovide_refresh_rate_idle = 60
+g.neovide_refresh_rate_idle = 30
 
 -- 透明背景
--- neovideconfig.neovide_transparency = 1.0
--- neovideconfig.transparency = 0.9
+g.neovide_transparency = 0.9
