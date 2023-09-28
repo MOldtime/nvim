@@ -17,9 +17,6 @@ return {
     },
   },
 
-  -- Set colorscheme to use
-  colorscheme = "astrodark",
-
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
@@ -56,6 +53,7 @@ return {
     --   },
     -- }
     require "user.config.global"
+    require "user.config.plugin_mappings" -- 插件设置
     -- require "heirline"
     -- require "user.plugins.dap"
   end,
