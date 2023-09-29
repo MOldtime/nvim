@@ -1,5 +1,9 @@
+-- local alpha = function() return string.format("%x", math.floor(255 * vim.g.transparency or 1.0)) end
+
 local g = vim.g
-vim.o.guifont = "CaskaydiaCove Nerd Font:h11"
+vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono:h11:sb:#e-antialias:#h-full"
+-- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h11:#e-antialias:#h-ful"
+-- vim.o.guifont = "NotoSansM Nerd Font:h11:#e-antialias:#h-ful"
 
 -- neovideconfig.neovide_theme = "dark"
 -- debug
@@ -31,8 +35,6 @@ g.neovide_hide_mouse_when_typing = true
 g.neovide_cursor_animation_length = 0.1
 -- 光标尾部
 g.neovide_cursor_trail_size = 0.5
--- 光标未聚焦的宽度
--- g.neovide_cursor_unfocused_outline_width = 0.01
 
 -- 设置刷新率
 g.neovide_refresh_rate = 165
