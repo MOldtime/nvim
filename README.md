@@ -54,9 +54,13 @@ git clone https://github.com/MOldtime/vim.git
 实现|`gI`
 ----
 
-#### Git
-|功能介绍|快捷键|
-|---|----|
-查看差异|`<leader>gd`
-|lazygit|`<leader>gg`
-
+#### lazygit
+|功能介绍|快捷键               |
+|--------|---------------------|
+|lazygit |`<leader>gg`         |
+|a       |添加 `add .`         |
+|A       |添加到到一次`commit` |
+|c       |提交 `commit`        |
+|p       |拉取 `pull`          |
+|P       |提交到远程仓库 `Push`|
+|r       |-- `Rebase`          |
