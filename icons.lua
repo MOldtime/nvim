@@ -3,7 +3,7 @@ return {
   ScrollText = "",
   GitBranch = "",
   GitAdd = "",
-  GitChange = "",
+  GitChange = " ",
   GitDelete = "",
   ActiveLSP = "",
   ActiveTS = "",

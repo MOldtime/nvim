@@ -1,7 +1,8 @@
 -- local alpha = function() return string.format("%x", math.floor(255 * vim.g.transparency or 1.0)) end
 
 local g = vim.g
-vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono:h11:sb:#e-antialias:#h-full"
+vim.o.guifont =
+  "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,NotoSansM_Nerd_Font_Mono:h11:b:#e-antialias:#h-full"
 -- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h11:#e-antialias:#h-ful"
 -- vim.o.guifont = "NotoSansM Nerd Font:h11:#e-antialias:#h-ful"
 
