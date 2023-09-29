@@ -63,11 +63,12 @@ git clone https://github.com/MOldtime/vim.git
 ----
 
 #### lazygit
-|功能介绍|快捷键               |
-|--------|---------------------|
-|lazygit |`<leader>gg`         |
-|a       |添加 `add .`         |
-|c       |提交 `commit`        |
-|p       |拉取 `pull`          |
-|P       |提交到远程仓库 `Push`|
-|r       |-- `Rebase`          |
+|功能介绍|快捷键                                 |
+|--------|---------------------------------------|
+|lazygit |`<leader>gg`                           |
+|a       |添加 `add .`                           |
+|A       |添加到到一次`commit`                   |
+|c       |提交 `commit`                          |
+|p       |拉取 `pull`                            |
+|P       |提交到远程仓库 `Push`                  |
+|r       |把当前分支的合并到目标分支之后 `Rebase`|
