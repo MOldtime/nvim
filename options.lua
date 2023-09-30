@@ -8,6 +8,12 @@ return {
     -- signcolumn = "auto", -- sets vim.opt.signcolumn to auto
     wrap = false, -- sets vim.opt.wrap
     clipboard = "",
+    expandtab = false,
+    list = true,
+    termguicolors = true, -- 开启真彩色
+    listchars = {
+      tab = "---",
+    },
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

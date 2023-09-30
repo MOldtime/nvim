@@ -6,6 +6,5 @@ if is_available "vim-visual-multi" then
   vim.g.VM_maps = {
     ["Add Cursor Up"] = "<C-k>",
     ["Add Cursor Down"] = "<C-j>",
-    -- ["$"] = "<A-l>",
   }
 end
