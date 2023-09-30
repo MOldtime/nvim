@@ -25,7 +25,7 @@ g.neovide_hide_mouse_when_typing = true
 -- neovideconfig.neovide_touch_drag_timeout = -1.17
 
 -- 开启轨道动画
--- neovideconfig.neovide_cursor_vfx_mode = "railgun"
+-- g.neovide_cursor_vfx_mode = "railgun"
 -- 粒子透明度
 -- neovideconfig.neovide_cursor_vfx_opacity = 99.0
 -- 粒子寿命
