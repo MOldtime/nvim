@@ -15,6 +15,17 @@ git clone https://github.com/MOldtime/vim.git
 ```
 
 3. 可选
+    - 字体下班，建议安装  
+        [Download](https://www.nerdfonts.com/font-downloads) 
+        > 复制下面的描述搜索定位到字体，建议两个都安装
+        1. JetBrainsMono Nerd Font
+        ```
+        JetBrains officially created font for developers
+        ```
+        2. Noto Nerd Font
+        ```
+        ``0` and `O` very similar, characters are either very curvy or straight lined` 
+        ```
     - [lazygit](https://github.com/jesseduffield/lazygit)   
     > <leader>gg git请求
     Install:   
