@@ -14,4 +14,4 @@ if is_available "telescope.nvim" then
   maps.v["<leader>fc"] = { function() require("telescope.builtin").grep_string() end, desc = "Find word under cursor" }
 end
 
-utils.set_mappings(astronvim.user_opts("mappings", maps))
+utils.set_mappings(astronvim.user_opts("mappings", maps)) -- 写入
