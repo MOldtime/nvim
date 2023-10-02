@@ -14,6 +14,7 @@ return {
       options = { try_as_border = false, indent_at_cursor = true },
     },
   },
+  { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   -- - {
   --   import = "astrocommunity.colorscheme.rose-pine",
   -- },
