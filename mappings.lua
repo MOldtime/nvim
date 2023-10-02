@@ -6,8 +6,8 @@
 return {
   -- first key is the mode
   n = {
-    ["<leader>;p"] = {
-      '"*p',
+    ["<A-p>"] = {
+      "<middlemouse>",
       desc = "从系统粘贴",
     },
     ["<leader>;f"] = {
@@ -44,6 +44,10 @@ return {
       '"+y',
       desc = "复制文字到系统",
     },
+    ["<A-p>"] = {
+      "<middlemouse>",
+      desc = "从系统粘贴",
+    },
     ["<A-h>"] = {
       "^",
       desc = "移动到行首",
@@ -51,14 +55,6 @@ return {
     ["<A-l>"] = {
       "$",
       desc = "移动到行尾",
-    },
-    ["<tab>"] = {
-      ">gv",
-      desc = "缩进",
-    },
-    ["<s-tab>"] = {
-      "<gv",
-      desc = "缩进",
     },
   },
   t = {},
@@ -71,13 +67,13 @@ return {
       "<Esc>$a",
       desc = "移动到行尾",
     },
-    ["<C-v>"] = {
+    ["<A-p>"] = {
       "<middlemouse>",
       desc = "输入时粘贴系统剪切板",
     },
   },
   c = {
-    ["<C-v>"] = {
+    ["<A-p>"] = {
       "<middlemouse>",
       desc = "输入时粘贴系统剪切板",
     },
