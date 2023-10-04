@@ -1,8 +1,7 @@
 return {
   -- first key is the mode
   n = {
-    ["<A-p>"] = { "<middlemouse>", desc = "从系统粘贴" },
-    ["<leader>;f"] = { "<cmd>Format<cr>", desc = "格式化代码" },
+    ["<A-p>"] = { '"+p', desc = "从系统粘贴" },
     ["<tab>"] = { "v>", desc = "缩进" },
     ["<s-tab>"] = { "v<", desc = "缩进" },
     ["<A-h>"] = { "^", desc = "移动到行首" },
