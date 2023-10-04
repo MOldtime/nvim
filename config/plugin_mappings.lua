@@ -5,8 +5,8 @@ if is_available "vim-visual-multi" then
   -- visual multi
   vim.g["VM_default_mappings"] = 0
   vim.g.VM_maps = {
-    ["Add Cursor Up"] = "<C-Up>",
-    ["Add Cursor Down"] = "<C-Down>",
+    ["Add Cursor Down"] = "<M-j>",
+    ["Add Cursor Up"] = "<M-k>",
   }
 end
 

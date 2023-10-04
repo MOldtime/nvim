@@ -1,7 +1,7 @@
 return {
   -- first key is the mode
   n = {
-    ["<A-p>"] = { '"+p', desc = "从系统粘贴" },
+    ["<A-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
     ["<tab>"] = { "v>", desc = "缩进" },
     ["<s-tab>"] = { "v<", desc = "缩进" },
     ["<A-h>"] = { "^", desc = "移动到行首" },
