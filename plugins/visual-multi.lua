@@ -1,6 +1,6 @@
 -- 基本用法:
 --    选择单词Ctrl-N（如Ctrl-dSublime Text/VS Code 中）
---    Ctrl-Down使用/创建垂直光标Ctrl-Up
+--    Alt + j,k 设置垂直或向上光标
 --    一次选择一个字符Shift-Arrows
 --    按n/N获取下一个/上一个出现的情况
 --    按[/]选择下一个/上一个光标
