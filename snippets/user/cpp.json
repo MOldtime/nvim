@@ -1,12 +1,13 @@
 {
-    "Main function template": {
-        "prefix": "main",
+    "Main function": {
+        "prefix": "main0",
         "body": [
-            "int main () {",
+            "int main ()",
+            "{",
             "\t$1",
             "\treturn 0;",
             "}"
         ],
-        "description": "A standard main function for a C++ program"
+        "description": "创建一个没有参数的mian函数"
     }
 }

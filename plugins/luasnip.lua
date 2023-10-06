@@ -1,5 +1,4 @@
 return {
-  plugins = {
     {
       "L3MON4D3/LuaSnip",
       config = function(plugin, opts)
@@ -14,5 +13,4 @@ return {
         }
       end,
     },
-  },
 }
