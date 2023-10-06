@@ -14,6 +14,7 @@ return {
     listchars = {
       tab = "---",
     },
+    fileencodings = 'utf-8,gbk'
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

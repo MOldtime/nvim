@@ -70,7 +70,7 @@ git clone https://github.com/MOldtime/vim.git
 | 重命名                   |`<leader>lr`       |
 | 类型定义                 |`gy`               |
 | 实现                     |`gI`               |
-| 格式化代码               | `<leader>lf`      |
+| 格式化代码               |`<leader>lf`       |
 | 方法&字段                |`<leader>ls`       |
 | 左侧显示``方法``&``字段` |`<leader>lS`       |
 | 查看所有错误             |`<leader>lD`       |
