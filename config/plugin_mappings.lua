@@ -14,4 +14,11 @@ if is_available "telescope.nvim" then
   maps.v["<leader>fc"] = { function() require("telescope.builtin").grep_string() end, desc = "Find word under cursor" }
 end
 
+if is_available 'pastify.nvim' then
+  maps.n['<leader>zp'] = {
+    '<cmd>Pastify<cr>',
+    desc = '粘贴图片文件'
+  }
+end
+
 utils.set_mappings(astronvim.user_opts("mappings", maps)) -- 写入
