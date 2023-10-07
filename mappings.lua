@@ -6,6 +6,7 @@ return {
     ["<s-tab>"] = { "v<", desc = "缩进" },
     ["<M-h>"] = { "^", desc = "移动到行首" },
     ["<M-l>"] = { "$", desc = "移动到行尾" },
+    ['<leader>r'] = {function() vim.api.nvim_command('e!') end, desc = '重新加载文件'},
   },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv", desc = "选择当前向下移动" },
