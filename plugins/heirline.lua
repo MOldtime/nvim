@@ -7,10 +7,20 @@ return {
       opts.statusline = { -- statusline
         hl = { fg = "fg", bg = "bg" },
         status.component.mode { mode_text = { icon = { kind = "VimIcon", padding = { right = 1} } } }, -- add the mode text
-        status.component.git_branch(),
         status.component.file_info { padding = { right = 1 }, },
+        status.component.git_branch(),
         status.component.git_diff(),
         status.component.diagnostics(),
+        {
+            status.component.builder{
+            	{
+    					  provider = function ()
+    					   local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
+    					   return enc
+    					  end,
+							},
+          	}
+        },
         status.component.fill(),
         status.component.cmd_info(),
         status.component.fill(),
