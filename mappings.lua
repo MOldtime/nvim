@@ -6,7 +6,7 @@ return {
     ['<leader>r'] = {function() vim.api.nvim_command('e!') end, desc = '重新加载文件'},
   },
   ['!'] = {
-    ["<M-p>"] = { "<middlemouse>", desc = "输入时粘贴系统剪切板" },
+    ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
   },
   -- first key is the mode
   n = {
