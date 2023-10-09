@@ -1,6 +1,6 @@
 -- mnode http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html
 --					                                          		*map-table*
--- 1     Mode     | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang |  
+--       Mode     | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang |  
 -- Command        +------+-----+-----+-----+-----+-----+------+------+  
 -- [nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
 -- n[nore]map     | yes  |  -  |  -  |  -  |  -  |  -  |  -   |  -   |
@@ -29,12 +29,12 @@ return {
     ["<s-tab>"] = { "v<",        desc = "缩进" },
     ["<M-h>"]   = { "^",         desc = "移动到行首" },
     ["<M-l>"]   = { "$",         desc = "移动到行尾" },
-    ["<c-s-j>"] = { ":m +1<CR>", desc = "选择当前向下移动" },
-    ["<c-s-k>"] = { ":m -2<CR>", desc = "选择当前向上移动" },
+    ["<c-s-j>"] = { function() vim.api.nvim_command("m +1") end, desc = "选择当前向下移动" },
+    ["<c-s-k>"] = { function() vim.api.nvim_command("m -2") end, desc = "选择当前向上移动" },
   },
   v = {
-    ["<c-s-j>"] = { ":m '>+1<CR>gv", desc = "选择当前向下移动" },
-    ["<c-s-k>"] = { ":m '<-2<CR>gv", desc = "选择当前向上移动" },
+    ["<c-s-j>"] = { function() vim.api.nvim_command("m '>+1") return 'gv=gv' end, desc = "选择当前向下移动" },
+    ["<c-s-k>"] = { function() vim.api.nvim_command("m '<-2") return 'gv=gv' end, desc = "选择当前向上移动" },
     ["<M-l>"]   = { "$",             desc = "移动到行尾" },
     ["<M-h>"]   = { "^",             desc = "移动到行首" },
     ["<M-y>"]   = { '"+y',           desc = "复制文字到系统" },
