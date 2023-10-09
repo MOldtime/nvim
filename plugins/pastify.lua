@@ -1,3 +1,4 @@
+-- 截图工具
 return {
 	"TobinPalmer/pastify.nvim",
   cmd = { 'Pastify' },
