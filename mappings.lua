@@ -34,7 +34,28 @@ return {
   },
   v = {
     ["<c-s-j>"] = { function() vim.api.nvim_command("m '>+1") return 'gv=gv' end, desc = "选择当前向下移动" },
-    ["<c-s-k>"] = { function() vim.api.nvim_command("m '<-2") return 'gv=gv' end, desc = "选择当前向上移动" },
+    ["<c-s-k>"] = { function() 
+  -- vim.api.nvim_command("m '<-2")
+  -- return 'gv=gv'
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+
+  vim.schedule(function()
+    -- 在此处编写您希望在按键输入完成后执行的代码
+    vim.notify(vim.api.nvim_get_mode().mode)
+    vim.api.nvim_command("m '<-2")
+    local start_pos = vim.fn.getpos "'<"
+    local end_pos = vim.fn.getpos "'>"
+
+    local start_line = start_pos[2]
+    local start_col = start_pos[3]
+    local end_line = end_pos[2]
+    local end_col = end_pos[3]
+
+    print("Selected range: " .. start_line .. ":" .. start_col .. " - " .. end_line .. ":" .. end_col)
+    vim.api.nvim_input('gv')
+  end
+      )
+    end, desc = "选择当前向上移动" },
     ["<M-l>"]   = { "$",             desc = "移动到行尾" },
     ["<M-h>"]   = { "^",             desc = "移动到行首" },
     ["<M-y>"]   = { '"+y',           desc = "复制文字到系统" },
@@ -46,3 +67,8 @@ return {
   },
   c = {},
 }
+
+
+---
+--
+----
