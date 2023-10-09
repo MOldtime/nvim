@@ -84,4 +84,22 @@ git clone https://github.com/MOldtime/vim.git
 |功能介绍|快捷键      |
 | ------ | :--------: |
 | lazygit|`<leader>gg`|
+
+---
+
+
+### Map-Table
+|    Mode    | Normal | Insert | Command-line | Visual | Select | Operator-pending | Terminal | Lang-Arg |  
+|-----------:|:------:|:------:|:------------:|:------:|:------:|:----------------:|:--------:|:--------:|  
+| [nore]map  |   ✓    |   -    |      -       |   ✓    |    ✓   |        ✓         |    -     |    -     |
+| n[nore]map |   ✓    |   -    |      -       |   -    |    -   |        -         |    -     |    -     |
+| [nore]map! |   -    |   ✓    |      ✓       |   -    |    -   |        -         |    -     |    -     |
+| i[nore]map |   -    |   ✓    |      -       |   -    |    -   |        -         |    -     |    -     |
+| c[nore]map |   -    |   -    |      ✓       |   -    |    -   |        -         |    -     |    -     |
+| v[nore]map |   -    |   -    |      -       |   ✓    |    ✓   |        -         |    -     |    -     |
+| x[nore]map |   -    |   -    |      -       |   ✓    |    -   |        -         |    -     |    -     |
+| s[nore]map |   -    |   -    |      -       |   -    |    ✓   |        -         |    -     |    -     |
+| o[nore]map |   -    |   -    |      -       |   -    |    -   |        ✓         |    -     |    -     |
+| t[nore]map |   -    |   -    |      -       |   -    |    -   |        -         |    ✓     |    -     |
+| l[nore]map |   -    |   ✓    |      ✓       |   -    |    -   |        -         |    -     |    ✓     |
 ---
