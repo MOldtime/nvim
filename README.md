@@ -27,13 +27,11 @@ git clone https://github.com/MOldtime/vim.git
         ``0` and `O` very similar, characters are either very curvy or straight lined` 
         ```
     - [lazygit](https://github.com/jesseduffield/lazygit)   
-    > <leader>gg git请求
     Install:   
     ```Bash
     winget install -e --id=JesseDuffield.lazygit
     ```
     - [ripgrep](https://github.com/BurntSushi/ripgrep)  
-    > <leader>fw 搜索文件  
     Install:
     ```Shell
     winget install BurntSushi.ripgrep.MSVC
