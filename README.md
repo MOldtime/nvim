@@ -74,7 +74,7 @@ git clone https://github.com/MOldtime/vim.git
 | 实现                     |`gI`               |
 | 格式化代码               |`<leader>lf`       |
 | 方法&字段                |`<leader>ls`       |
-| 左侧显示``方法``&``字段` |`<leader>lS`       |
+| 左侧显示方法&字段        |`<leader>lS`       |
 | 查看所有错误             |`<leader>lD`       |
 | 打开错误详情             |`<leader>ld` & `gl`|
 
@@ -84,4 +84,22 @@ git clone https://github.com/MOldtime/vim.git
 |功能介绍|快捷键      |
 | ------ | :--------: |
 | lazygit|`<leader>gg`|
+
+---
+
+
+### Map-Table
+|    Mode    | Normal | Insert | Command-line | Visual | Select | Operator-pending | Terminal | Lang-Arg |  
+|:----------:|:------:|:------:|:------------:|:------:|:------:|:----------------:|:--------:|:--------:|  
+|    map     |   ✓    |   -    |      -       |   ✓    |    ✓   |        ✓         |    -     |    -     |
+|    nmap    |   ✓    |   -    |      -       |   -    |    -   |        -         |    -     |    -     |
+|    map!    |   -    |   ✓    |      ✓       |   -    |    -   |        -         |    -     |    -     |
+|    imap    |   -    |   ✓    |      -       |   -    |    -   |        -         |    -     |    -     |
+|    cmap    |   -    |   -    |      ✓       |   -    |    -   |        -         |    -     |    -     |
+|    vmap    |   -    |   -    |      -       |   ✓    |    ✓   |        -         |    -     |    -     |
+|    xmap    |   -    |   -    |      -       |   ✓    |    -   |        -         |    -     |    -     |
+|    smap    |   -    |   -    |      -       |   -    |    ✓   |        -         |    -     |    -     |
+|    omap    |   -    |   -    |      -       |   -    |    -   |        ✓         |    -     |    -     |
+|    tmap    |   -    |   -    |      -       |   -    |    -   |        -         |    ✓     |    -     |
+|    lmap    |   -    |   ✓    |      ✓       |   -    |    -   |        -         |    -     |    ✓     |
 ---

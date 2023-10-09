@@ -24,6 +24,9 @@ return {
       'json',
       'json5',
       'markdown',
+      'markdown_inline',
+      'bash',
+      'regex',
     })
   end,
 }
