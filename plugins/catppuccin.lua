@@ -99,7 +99,7 @@ return {
         subtext0  = "#959ec2",
         overlay2  = "#848cad",
         overlay1  = "#717997", -- 未知
-        overlay0  = "#777B93", -- 注释颜色
+        overlay0  = "#9599AD", -- 注释颜色
         surface2  = "#505469", -- 未知
         surface1  = "#3E4255", -- 其他颜色
         surface0  = "#1A1C2A", -- 行颜色
