@@ -42,4 +42,4 @@ g.neovide_refresh_rate = 165
 g.neovide_refresh_rate_idle = 30
 
 -- 透明背景
--- g.neovide_transparency = 0.9
+g.neovide_transparency = 0.8
