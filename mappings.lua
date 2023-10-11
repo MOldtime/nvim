@@ -15,9 +15,10 @@
 -- l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
 return {
   [""] = {
+    -- ['<leader>;'] = { name = '用户自定义'},
     ["<leader>`"] = { "~", desc = "把小写转换为大写" },
     ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
-    ["<leader>r"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
+    ["<leader>;r"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
   },
   ["!"] = {
     ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },

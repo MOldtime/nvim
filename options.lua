@@ -14,6 +14,7 @@ return {
     listchars = {
       tab = "---",
     },
+    inccommand = "split", -- 在实时预览窗口中显示搜索/替换的效果
     -- fileencodings  = 'utf-8,gbk'
   },
   g = {
