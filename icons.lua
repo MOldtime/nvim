@@ -1,5 +1,5 @@
 return {
-  VimIcon                = "",
+  VimIcon                = "",
   ScrollText             = "",
   ActiveLSP              = "",
   ActiveTS               = "",

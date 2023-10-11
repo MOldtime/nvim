@@ -25,6 +25,42 @@ return {
   },
   -- first key is the mode
   n = {
+    ["<leader>q"] = {
+      function()
+        local unsaved_files = {}
+
+        -- 获取所有已修改但未保存的文件
+        for _, buffer in ipairs(vim.fn.getbufinfo { modified = true, buflisted = true }) do
+          -- 检查缓冲区是否有文件名
+          if buffer.name ~= "" then
+            -- 检查文件是否已保存
+            if vim.fn.getbufvar(buffer.bufnr, "&modified") == 1 then table.insert(unsaved_files, buffer.name) end
+          end
+        end
+
+        -- 检查是否有未保存的文件
+        local num_unsaved_files = #unsaved_files
+        if num_unsaved_files > 0 then
+          -- 构建提示消息
+          local message = "以下文件有未保存的更改:\n"
+           for i, file in ipairs(unsaved_files) do
+            message = message .. i .. ". " .. file .. "\n"
+          end
+          message = message .. "是否仍然退出?"
+
+          -- 提示用户是否要继续退出
+          local choice = vim.fn.confirm(message, "&Yes\n&No", 2)
+          if choice == 2 then
+            -- 如果用户选择“否”，则取消退出
+            return
+          end
+        end
+
+        -- 如果没有未保存的文件，则退出 Neovim
+        vim.cmd "quitall!"
+      end,
+      desc = "Quit",
+    },
     ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
     ["<tab>"] = { "v>", desc = "缩进" },
     ["<s-tab>"] = { "v<", desc = "缩进" },
@@ -63,7 +99,7 @@ return {
     ["<M-l>"] = { "$", desc = "移动到行尾" },
     ["<M-h>"] = { "^", desc = "移动到行首" },
     ["<M-y>"] = { '"+y', desc = "复制文字到系统" },
-    ['<M-f>'] = {"<Esc>*", desc = '搜索选中的字符'}
+    ["<M-f>"] = { "<Esc>*", desc = "搜索选中的字符" },
   },
   i = {
     ["<M-h>"] = { "<Esc>^i", desc = "移动到行首" },
