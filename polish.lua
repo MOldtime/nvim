@@ -9,12 +9,12 @@ return function()
   -- end
   -- require("alpha").start(false, require("alpha").default_config)
   -- vim.api.nvim_command "SessionManager! load_current_dir_session"
-  local path = vim.fn.expand "%:p"
-  if path == "" then
-    vim.api.nvim_command "SessionManager! load_last_session"
+  -- local path = vim.fn.expand "%:p"
+  -- if path == "" then
+    -- vim.api.nvim_command "SessionManager! load_last_session"
   -- elseif vim.fn.isdirectory(path) == 1 then
     -- vim.api.nvim_command "SessionManager! load_current_dir_session"
   -- else
     -- print("启动时指定的是文件: " .. path)
-  end
+  -- end
 end

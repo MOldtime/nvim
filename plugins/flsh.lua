@@ -5,9 +5,13 @@ return {
   opts = {
     modes = {
       char = {
-        jump_labels = true
-      }
-    }
+        jump_labels = true,
+      },
+    },
+    label = {
+      -- 大写标签
+      uppercase = false,
+    },
   },
   -- stylua: ignore
     keys = {
