@@ -27,6 +27,11 @@ return {
   n = {
     ["<leader>q"] = {
       function()
+        if vim.api.nvim_win_get_number(0) > 1 then
+          vim.api.nvim_command "q"
+          return
+        end
+
         local unsaved_files = {}
 
         -- 获取所有已修改但未保存的文件
@@ -43,7 +48,7 @@ return {
         if num_unsaved_files > 0 then
           -- 构建提示消息
           local message = "以下文件有未保存的更改:\n"
-           for i, file in ipairs(unsaved_files) do
+          for i, file in ipairs(unsaved_files) do
             message = message .. i .. ". " .. file .. "\n"
           end
           message = message .. "是否仍然退出?"
@@ -57,7 +62,7 @@ return {
         end
 
         -- 如果没有未保存的文件，则退出 Neovim
-        vim.cmd "quitall!"
+        vim.api.nvim_command "q!"
       end,
       desc = "Quit",
     },
@@ -68,6 +73,10 @@ return {
     ["<M-l>"] = { "$", desc = "移动到行尾" },
     ["<c-s-j>"] = { function() vim.api.nvim_command "m +1" end, desc = "选择当前向下移动" },
     ["<c-s-k>"] = { function() vim.api.nvim_command "m -2" end, desc = "选择当前向上移动" },
+    ["<leader>qq"] = {
+      function()
+      end,
+    },
   },
   v = {
     ["<c-s-j>"] = {

@@ -16,6 +16,7 @@ return {
     },
     inccommand = "split", -- 在实时预览窗口中显示搜索/替换的效果
     -- fileencodings  = 'utf-8,gbk'
+    sidescrolloff = 10, -- 水平滚动距离
   },
   g = {
     mapleader                = " ", -- sets vim.g.mapleader

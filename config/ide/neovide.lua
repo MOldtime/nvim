@@ -7,7 +7,7 @@ vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,Not
 
 -- neovideconfig.neovide_theme = "dark"
 -- debug
--- neovideconfig.neovide_profiler = true
+-- g.neovide_profiler = true
 -- 没有空闲
 -- neovideconfig.neovide_no_idle = true
 

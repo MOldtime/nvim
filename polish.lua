@@ -13,4 +13,29 @@ return function()
     print("启动时指定的是文件: " .. path)
   end
   ]]
+  -- 光标居中
+  vim.cmd [[
+  augroup CenteredScrolling
+    autocmd!
+    autocmd WinScrolled * let &scrolloff = (winwidth(0) - &textwidth) / 2
+    autocmd CursorMoved * let &scrolloff = (winwidth(0) - &textwidth) / 2
+  augroup END
+  ]]
+
+  -- 在普通模式下动态调整 sidescrolloff
+  -- autocmd VimResized * lua if vim.o.wrap then vim.o.sidescrolloff = (vim.fn.winwidth(0) - vim.fn.winwidth(0, true)) / 2 end
+  -- autocmd VimEnter,WinEnter,BufWinEnter * lua if vim.o.wrap then vim.o.sidescrolloff = (vim.fn.winwidth(0) - vim.fn.winwidth(0, true)) / 2 end
+  -- autocmd VimEnter,WinEnter,BufWinEnter * lua print(vim.fn.winwidth(0) / 2)
+--   vim.api.nvim_exec(
+--     [[
+--   augroup AutoCenterSidescroll
+--     autocmd!
+--     autocmd BufWinEnter * lua vim.o.sidescrolloff =  math.floor(vim.fn.winwidth(0) / 2 + 0.5)
+--   augroup END
+-- ]],
+--     false
+--   )
+  -- autocmd WinEnter * lua print('WinEnter')
+  -- autocmd VimEnter * lua print('VimEnter')
+  -- autocmd VimResized * lua print("VimResized")
 end
