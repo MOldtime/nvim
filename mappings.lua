@@ -15,10 +15,9 @@
 -- l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
 return {
   [""] = {
-    -- ['<leader>;'] = { name = '用户自定义'},
     ["<leader>`"] = { "~", desc = "把小写转换为大写" },
     ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
-    ["<leader>;r"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
+    ["<leader>zr"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
   },
   ["!"] = {
     ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
@@ -78,14 +77,6 @@ return {
     },
     ["<leader>'"] = {
       function()
-        local tabpage = vim.api.nvim_get_current_tabpage()
-        local wins = vim.api.nvim_tabpage_list_wins(tabpage)
-
-        for _, win in ipairs(wins) do
-          local buf = vim.api.nvim_win_get_buf(win)
-          local buf_name = vim.api.nvim_buf_get_name(buf)
-          print(":", buf_name)
-        end
       end,
     },
     ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },

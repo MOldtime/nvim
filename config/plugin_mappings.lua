@@ -1,4 +1,5 @@
 local utils = require "astronvim.utils"
+local tool = require "user.tools.command"
 local maps = utils.empty_map_table() -- 可能是mappings
 local is_available = utils.is_available
 if is_available "vim-visual-multi" then
@@ -48,14 +49,20 @@ if is_available "search-replace.nvim" then
 end
 
 if is_available "vim-bitoai" then
-  maps[""]["<leader>agc"] = { ":BitoAiGenerate<cr>", desc = "偍问" }
-  maps[""]["<leader>agu"] = { ":BitoAiGenerateUnit<cr>", desc = "生成单元" }
-  maps[""]["<leader>agC"] = { ":BitoAiGenerateComment<cr>", desc = "生成注释" }
-  maps[""]["<leader>acc"] = { ":BitoAiCheck<cr>", desc = "检测代码质量" }
-  maps[""]["<leader>acs"] = { ":BitoAiCheckSecurity<cr>", desc = "检测代码安全" }
-  maps[""]["<leader>acS"] = { ":BitoAiCheckStyle<cr>", desc = "检测代码风格" }
-  maps[""]["<leader>acp"] = { ":BitoAiCheckPerformance<cr>", desc = "检测性能" }
-  maps[""]["<leader>ar"] = { ":BitoAiReadable<cr>", desc = "回答" }
-  maps[""]["<leader>ae"] = { ":BitoAiExplain<cr>", desc = "解释代码" }
+  local function run(str)
+    tool.conmand(str)
+    vim.notify "请稍等"
+  end
+  maps.n["<leader>aa"] = { function() vim.api.nvim_command "BitoAiGenerate" end, desc = "提问" }
+  maps.v["<leader>aa"] = { function() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true) vim.schedule(function() vim.fn.BitoAiSelected "generate" end) vim.notify("请稍等") end, desc = "选中提问", }
+  maps.v["<leader>agu"] = { function() run "BitoAiGenerateUnit" end, desc = "生成测试" }
+  maps.v["<leader>agc"] = { function() run "BitoAiGenerateComment" end, desc = "生成注释，解释参数和输出" }
+  maps.v["<leader>acc"] = { function() run "BitoAiCheck" end, desc = "检测代码潜在问题" }
+  maps.v["<leader>acs"] = { function() run "BitoAiCheckSecurity" end, desc = "检测代码安全" }
+  maps.v["<leader>acS"] = { function() run "BitoAiCheckStyle" end, desc = "检测代码样式" }
+  maps.v["<leader>acp"] = { function() run "BitoAiCheckPerformance" end, desc = "分析代码性能" }
+  maps.v["<leader>ar"] = { function() run "BitoAiReadable" end, desc = "整理代码，增强可读性和可维护性" }
+  maps.v["<leader>ae"] = { function() run "BitoAiExplain" end, desc = "生成解释" }
 end
+
 utils.set_mappings(astronvim.user_opts("mappings", maps)) -- 写入

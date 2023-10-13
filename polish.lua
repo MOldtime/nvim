@@ -22,21 +22,8 @@ return function()
     autocmd BufWinEnter * lua vim.o.sidescrolloff =  math.floor(vim.fn.winwidth(0) / 5 + 0.5)
   augroup END
   ]]
-
-  -- 在普通模式下动态调整 sidescrolloff
-  -- autocmd VimResized * lua if vim.o.wrap then vim.o.sidescrolloff = (vim.fn.winwidth(0) - vim.fn.winwidth(0, true)) / 2 end
-  -- autocmd VimEnter,WinEnter,BufWinEnter * lua if vim.o.wrap then vim.o.sidescrolloff = (vim.fn.winwidth(0) - vim.fn.winwidth(0, true)) / 2 end
-  -- autocmd VimEnter,WinEnter,BufWinEnter * lua print(vim.fn.winwidth(0) / 2)
---   vim.api.nvim_exec(
---     [[
---   augroup AutoCenterSidescroll
---     autocmd!
---     autocmd BufWinEnter * lua vim.o.sidescrolloff =  math.floor(vim.fn.winwidth(0) / 2 + 0.5)
---   augroup END
--- ]],
---     false
---   )
-  -- autocmd WinEnter * lua print('WinEnter')
-  -- autocmd VimEnter * lua print('VimEnter')
-  -- autocmd VimResized * lua print("VimResized")
+  -- 设置
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.offsetEncoding = { "utf-16" }
+  require("lspconfig").clangd.setup { capabilities = capabilities }
 end
