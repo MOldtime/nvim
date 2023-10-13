@@ -2,40 +2,8 @@ return {
   {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
-      -- local status = require "astronvim.utils.status"
-      --
-      -- opts.statusline = { -- statusline
-      --   hl = { fg = "fg", bg = "bg" },
-      --   status.component.mode { mode_text = { icon = { kind = "VimIcon", padding = { right = 1} } } }, -- add the mode text
-      --   -- status.component.file_info { padding = { right = 1 }, },
-      --   {
-      --       status.component.builder{
-      --       	{
-      -- 			  provider = function ()
-      -- 			   local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
-      -- 			   return enc
-      -- 			  end,
-      -- 	},
-      --       surround = { separator = "left", color = "file_info_bg",},
-      --       h1 = nil
-      --     	}
-      --   },
-      --   status.component.git_branch {
-      --       -- hl = { fg = "fg", bg = "bg" },
-      --       h1 = nil
-      --   },
-      --   status.component.git_diff(),
-      --   status.component.diagnostics(),
-      --   status.component.fill(),
-      --   -- status.component.cmd_info(),
-      --   status.component.lsp{
-      --     lsp_progress = false
-      --   },
-      --   status.component.treesitter(),
-      --   status.component.nav(),
-      -- }
-      opts.winbar = nil
       local status = require "astronvim.utils.status"
+      opts.winbar = nil
       opts.statusline = {
         -- default highlight for the entire statusline
         hl = { fg = "fg", bg = "bg" },
@@ -66,10 +34,11 @@ return {
         },
         -- add a section for the currently opened file information
         status.component.file_info {
-          -- enable the file_icon and disable the highlighting based on filetype
           filename = { fallback = "Empty" },
           -- add padding
           padding = { right = 1 },
+          -- define the section separator
+          surround = { separator = "left", condition = false },
         },
         -- add a component for the current git branch if it exists and use no separator for the sections
         status.component.git_branch { surround = { separator = "none" } },
