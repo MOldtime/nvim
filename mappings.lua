@@ -27,19 +27,29 @@ return {
   n = {
     ["<leader>q"] = {
       function()
-        if vim.api.nvim_win_get_number(0) > 1 then
-          vim.api.nvim_command "q"
+        local b = 1
+        local tabpage = vim.api.nvim_get_current_tabpage()
+        local wins = vim.api.nvim_tabpage_list_wins(tabpage)
+        for _, win in ipairs(wins) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local buf_name = vim.api.nvim_buf_get_name(buf)
+          local file_name = vim.fn.fnamemodify(buf_name, ":t")
+          if file_name == "neo-tree filesystem [1]" then
+            b = b + 1
+            break
+          end
+        end
+        if vim.api.nvim_win_get_number(0) > b then
+          vim.cmd "q"
           return
         end
-
         local unsaved_files = {}
-
         -- 获取所有已修改但未保存的文件
         for _, buffer in ipairs(vim.fn.getbufinfo { modified = true, buflisted = true }) do
           -- 检查缓冲区是否有文件名
           if buffer.name ~= "" then
             -- 检查文件是否已保存
-            if vim.fn.getbufvar(buffer.bufnr, "&modified") == 1 then table.insert(unsaved_files, buffer.name) end
+            if vim.api.nvim_buf_get_option(buffer.bufnr, "modified") then table.insert(unsaved_files, buffer.name) end
           end
         end
 
@@ -49,7 +59,7 @@ return {
           -- 构建提示消息
           local message = "以下文件有未保存的更改:\n"
           for i, file in ipairs(unsaved_files) do
-            message = message .. i .. ". " .. file .. "\n"
+            message = string.format("%s%d. %s\n", message, i, file)
           end
           message = message .. "是否仍然退出?"
 
@@ -62,9 +72,21 @@ return {
         end
 
         -- 如果没有未保存的文件，则退出 Neovim
-        vim.api.nvim_command "q!"
+        vim.cmd "q!"
       end,
       desc = "Quit",
+    },
+    ["<leader>'"] = {
+      function()
+        local tabpage = vim.api.nvim_get_current_tabpage()
+        local wins = vim.api.nvim_tabpage_list_wins(tabpage)
+
+        for _, win in ipairs(wins) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local buf_name = vim.api.nvim_buf_get_name(buf)
+          print(":", buf_name)
+        end
+      end,
     },
     ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
     ["<tab>"] = { "v>", desc = "缩进" },
@@ -73,10 +95,6 @@ return {
     ["<M-l>"] = { "$", desc = "移动到行尾" },
     ["<c-s-j>"] = { function() vim.api.nvim_command "m +1" end, desc = "选择当前向下移动" },
     ["<c-s-k>"] = { function() vim.api.nvim_command "m -2" end, desc = "选择当前向上移动" },
-    ["<leader>qq"] = {
-      function()
-      end,
-    },
   },
   v = {
     ["<c-s-j>"] = {

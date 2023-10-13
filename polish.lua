@@ -17,8 +17,9 @@ return function()
   vim.cmd [[
   augroup CenteredScrolling
     autocmd!
-    autocmd WinScrolled * let &scrolloff = (winwidth(0) - &textwidth) / 2
-    autocmd CursorMoved * let &scrolloff = (winwidth(0) - &textwidth) / 2
+    autocmd WinScrolled * let &scrolloff = (winwidth(0) - &textwidth) / 16
+    autocmd CursorMoved * let &scrolloff = (winwidth(0) - &textwidth) / 16
+    autocmd BufWinEnter * lua vim.o.sidescrolloff =  math.floor(vim.fn.winwidth(0) / 5 + 0.5)
   augroup END
   ]]
 
