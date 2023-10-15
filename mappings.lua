@@ -77,6 +77,11 @@ return {
     },
     ["<leader>'"] = {
       function()
+        local l_start = vim.fn.getpos("'<")[2]
+        local l_end = vim.fn.getpos("'>")[2]
+        local l_lines = vim.api.nvim_buf_get_lines(0, l_start - 1, l_end, false)
+        local l_text = table.concat(l_lines, "\n")
+        vim.notify(l_text)
       end,
     },
     ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
