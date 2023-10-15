@@ -2,7 +2,11 @@
 return {
 	"TobinPalmer/pastify.nvim",
   cmd = { 'Pastify' },
-  lazy = false,
+  event = {
+    "BufReadPre *.md", -- markdown
+    "BufReadPre *.html", -- html
+    -- "BufReadPre *.html", -- tex 
+  },
   opts = function (_,opts)
     return opts
   end
