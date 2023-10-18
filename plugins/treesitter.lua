@@ -34,5 +34,14 @@ return {
 
     opts.textobjects.select.keymaps["a?"] = nil
     opts.textobjects.select.keymaps["i?"] = nil
+
+    -- 使用回车或返回选择范围
+    local incremental_selection_keymaps = {
+      init_selection = "gnn", -- set to `false` to disable one of the mappings
+      node_incremental = "<CR>",
+      -- scope_incremental = "grc",
+      node_decremental = "<BS>",
+    }
+    opts.incremental_selection.keymaps = incremental_selection_keymaps
   end,
 }
