@@ -13,6 +13,7 @@
 -- o[nore]map     |  -   |  -  |  -  |  -  |  -  | yes |  -   |  -   |
 -- t[nore]map     |  -   |  -  |  -  |  -  |  -  |  -  | yes  |  -   |
 -- l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
+local tool = require "user.tools.command"
 return {
   [""] = {
     ["<leader>`"] = { "~", desc = "把小写转换为大写" },
@@ -75,45 +76,46 @@ return {
       end,
       desc = "Quit",
     },
-    ["<leader>'"] = {
-      function()
-        local l_start = vim.fn.getpos("'<")[2]
-        local l_end = vim.fn.getpos("'>")[2]
-        local l_lines = vim.api.nvim_buf_get_lines(0, l_start - 1, l_end, false)
-        local l_text = table.concat(l_lines, "\n")
-        vim.notify(l_text)
-      end,
-    },
     ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
     ["<tab>"] = { "v>", desc = "缩进" },
     ["<s-tab>"] = { "v<", desc = "缩进" },
     ["<M-h>"] = { "^", desc = "移动到行首" },
     ["<M-l>"] = { "$", desc = "移动到行尾" },
-    ["<c-s-j>"] = { function() vim.api.nvim_command "m +1" end, desc = "选择当前向下移动" },
-    ["<c-s-k>"] = { function() vim.api.nvim_command "m -2" end, desc = "选择当前向上移动" },
+    ["<M-J>"] = {
+      function()
+        if vim.api.nvim_win_get_cursor(0)[1] < vim.api.nvim_buf_line_count(0) then vim.api.nvim_command "m +1" end
+      end,
+      desc = "选择当前向下移动",
+    },
+    ["<M-K>"] = {
+      function()
+        if vim.api.nvim_win_get_cursor(0)[1] > 1 then vim.api.nvim_command "m -2" end
+      end,
+      desc = "选择当前向上移动",
+    },
   },
   v = {
-    ["<c-s-j>"] = {
+    ["<M-J>"] = {
       function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
-        vim.schedule(function()
+        tool.LazyConmand(function()
           local start_pos = vim.fn.getpos "'<"
           local end_pos = vim.fn.getpos "'>"
           local end_line = end_pos[2]
-          vim.api.nvim_command(start_pos[2] .. "," .. end_line .. "m" .. end_line + 1)
+          if end_line < vim.api.nvim_buf_line_count(0) then
+            vim.api.nvim_command(start_pos[2] .. "," .. end_line .. "m" .. end_line + 1)
+          end
           vim.api.nvim_input "gv"
         end)
       end,
       desc = "选择当前向下移动",
     },
-    ["<c-s-k>"] = {
+    ["<M-K>"] = {
       function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
-        vim.schedule(function()
+        tool.LazyConmand(function()
           local start_pos = vim.fn.getpos "'<"
           local end_pos = vim.fn.getpos "'>"
           local start_line = start_pos[2]
-          vim.api.nvim_command(start_line .. "," .. end_pos[2] .. "m" .. start_line - 2)
+          if start_line > 1 then vim.api.nvim_command(start_line .. "," .. end_pos[2] .. "m" .. start_line - 2) end
           vim.api.nvim_input "gv"
         end)
       end,
