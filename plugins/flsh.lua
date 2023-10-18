@@ -8,6 +8,9 @@ return {
         jump_labels = true,
       },
     },
+    jump = {
+      autojump = false, -- 当唯一个的时候自动跳转
+    },
     label = {
       -- 大写标签
       uppercase = false,

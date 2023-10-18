@@ -32,14 +32,14 @@ g.neovide_hide_mouse_when_typing = true
 -- 粒子密度
 -- neovideconfig.neovide_cursor_vfx_particle_density = 50.0
 -- 动画时长
-g.neovide_cursor_animation_length = 0.1
+g.neovide_cursor_animation_length = 0.25
 -- 光标尾部
-g.neovide_cursor_trail_size = 0.5
+g.neovide_cursor_trail_size = 0.2
 
 -- 设置刷新率
 g.neovide_refresh_rate = 165
 -- 空闲刷新率
-g.neovide_refresh_rate_idle = 30
+g.neovide_refresh_rate_idle = 165
 
 -- 透明背景
 g.neovide_transparency = 0.8
