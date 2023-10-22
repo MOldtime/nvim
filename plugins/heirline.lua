@@ -21,23 +21,24 @@ return {
         },
       },
       -- we want an empty space here so we can use the component builder to make a new section with just an empty string
-      status.component.builder {
-        { provider = "" },
-        -- define the surrounding separator and colors to be used inside of the component
-        -- and the color to the right of the separated out section
-        -- surround = { separator = "left", color = { main = "blank_bg", right = "file_info_bg" } },
-        surround = {
-          separator = "left",
-          color = function() return { main = status.hl.mode_bg(), right = "file_info_bg" } end,
-        },
-      },
+      -- status.component.builder {
+      --   { provider = "" },
+      --   -- define the surrounding separator and colors to be used inside of the component
+      --   -- and the color to the right of the separated out section
+      --   -- surround = { separator = "left", color = { main = "blank_bg", right = "file_info_bg" } },
+      --   surround = {
+      --     separator = "left",
+      --     color = function() return { main = status.hl.mode_bg(), right = "file_info_bg" } end,
+      --   },
+      -- },
       -- add a section for the currently opened file information
       status.component.file_info {
         filename = { fallback = "Empty" },
         -- add padding
         padding = { right = 1 },
         -- define the section separator
-        surround = { separator = "left", condition = false },
+        -- surround = { separator = "left", condition = false },
+        surround = false,
       },
       -- add a component for the current git branch if it exists and use no separator for the sections
       status.component.git_branch { surround = { separator = "none" }},
