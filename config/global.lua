@@ -2,7 +2,7 @@
 if vim.g.neovide then require "user.config.ide.neovide" end
 
 local VimScript_list = {
-  -- "lan zh_CN.UTF-8", -- 设置语言为中文
+  "lan zh_CN.UTF-8", -- 设置语言为中文
 }
 
 for _, v in ipairs(VimScript_list) do
