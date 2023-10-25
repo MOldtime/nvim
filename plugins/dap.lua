@@ -8,6 +8,7 @@ return {
     -- { "theHamsta/nvim-dap-virtual-text", config = true },
   },
   config = function()
+    local outputdir = vim.fn.getcwd() .. "/output" -- 编译后的位置
     local dap = require "dap"
     local CODELLDB_DIR = require("mason-registry").get_package("codelldb"):get_install_path()
       .. "/extension/adapter/codelldb"
@@ -71,6 +72,18 @@ return {
     require("astronvim.utils").set_mappings {
       n = {
         ["<leader>de"] = { set_program, desc = "Set program path" },
+        ["<C-F4>"] = {
+          function()
+            local filetype = vim.bo.filetype
+            local filename = vim.fn.expand "%:p"
+            local outputfile = outputdir .. "/" .. vim.fn.expand "%:t:r"
+
+            if vim.fn.isdirectory(outputdir) == 0 then vim.fn.mkdir(outputdir, "p") end
+
+            if filetype == "cpp" then vim.cmd("!g++ -g " .. filename .. " -o " .. outputfile) end
+          end,
+          desc = "编译cpp",
+        },
       },
     }
 
@@ -80,7 +93,7 @@ return {
       request = "launch",
       program = function()
         if not vim.g.dap_program or #vim.g.dap_program == 0 then
-          vim.g.dap_program = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          vim.g.dap_program = vim.fn.input("Path to executable: ", outputdir .. "/", "file")
         end
         return vim.g.dap_program
       end,

@@ -128,7 +128,7 @@ git clone https://github.com/MOldtime/vim.git
 | `%s/{光标下的词}/new/gcI`         | `<leader>rw`  |
 | `%s/{光标下的词，范围大}/new/gcI` | `<leader>rW`  |
 | `%s/{光标下的词}/new/gcI`         | `<leader>re`  |
-| `%s/{变量路径}/new/gcI`         | `<leader>rf`  |
+| `%s/{变量路径}/new/gcI`           | `<leader>rf`  |
 | 显示列表                          | `<leader>rbs` |
 ---
 
