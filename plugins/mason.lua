@@ -9,6 +9,14 @@ return {
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "lua_ls",
       })
+      local lspconfig = require "lspconfig"
+      opts.handlers = {
+        ["lua_ls"] = function()
+          lspconfig.lua_ls.setup {
+            cmd = { "lua-language-server", "--locale=zh-cn" },
+          }
+        end,
+      }
     end,
   },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
