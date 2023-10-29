@@ -38,31 +38,4 @@ function M.is_win()
   return ""
 end
 
---- Returns the active buffers path or name.
---- Defaults to name.
---- @param fullPath boolean? Default is false
---- @return string
-function M.get_buffer_name(fullPath)
-  fullPath = fullPath or false
-  local buffer_name
-  if fullPath == true then
-    buffer_name = vim.api.nvim_buf_get_name(0)
-  else
-    buffer_name = string.match(vim.api.nvim_buf_get_name(0), "(%w+)$")
-  end
-  return buffer_name
-end
-
---- Clears the extmark on all windows.
---- @param name string Default is false
-function M.clear_extmark(name)
-  local ns_id = vim.api.nvim_get_namespaces()[name]
-  local window_ids = vim.api.nvim_list_wins()
-  local bufnr
-  for _, winid in pairs(window_ids) do
-    bufnr = vim.api.nvim_win_get_buf(winid)
-    vim.api.nvim_buf_clear_namespace(bufnr, ns_id, 0, -1)
-  end
-end
-
 return M

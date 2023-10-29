@@ -16,8 +16,8 @@
 local tool = require "user.tools.command"
 require("astronvim.utils").set_mappings {
   [""] = {
-    ["<leader>`"]  = { "~", desc = "把小写转换为大写" },
-    ["<M-p>"]      = { "<middlemouse>", desc = "粘贴系统剪切板" },
+    ["<leader>`"] = { "~", desc = "把小写转换为大写" },
+    ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
     ["<leader>zr"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
   },
   ["!"] = {
@@ -25,12 +25,12 @@ require("astronvim.utils").set_mappings {
   },
   -- first key is the mode
   n = {
-    ["<M-p>"]   = { '"+p', desc = "输入时粘贴系统剪切板" },
-    ["<tab>"]   = { "v>", desc = "缩进" },
+    ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
+    ["<tab>"] = { "v>", desc = "缩进" },
     ["<s-tab>"] = { "v<", desc = "缩进" },
-    ["<M-h>"]   = { "^", desc = "移动到行首" },
-    ["<M-l>"]   = { "$", desc = "移动到行尾" },
-    ["<M-J>"]   = {
+    ["<M-h>"] = { "^", desc = "移动到行首" },
+    ["<M-l>"] = { "$", desc = "移动到行尾" },
+    ["<M-J>"] = {
       function()
         if vim.api.nvim_win_get_cursor(0)[1] < vim.api.nvim_buf_line_count(0) then vim.api.nvim_command "m +1" end
       end,
@@ -81,11 +81,19 @@ require("astronvim.utils").set_mappings {
     },
   },
   i = {
-    ["<M-h>"]  = { "<Esc>^i", desc = "移动到行首" },
-    ["<M-l>"]  = { "<Esc>$a", desc = "移动到行尾" },
+    ["<M-h>"] = { "<Esc>^i", desc = "移动到行首" },
+    ["<M-l>"] = { "<Esc>$a", desc = "移动到行尾" },
     ["<M-CR>"] = { "<Esc>o", desc = "下一行" },
-    ["<M-f>"]  = { "%" },
-    ["<M-j>"]  = { "^" },
+    ["<M-f>"] = { "%" },
+    ["<M-j>"] = { "^" },
+  },
+  c = {
+    ["<M-l>"] = {
+      "<Right>",
+    },
+    ["<M-h>"] = {
+      "<Left>",
+    },
   },
 }
 return function(tables)
