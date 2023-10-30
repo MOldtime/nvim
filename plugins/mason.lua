@@ -6,17 +6,25 @@ return {
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = function(_, opts)
       -- 需要安装的lsp
+      -- 查看语言支持列表：https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+      -- 复看对应的名子：https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "lua_ls",
+        "clangd",
+        "jsonls",
+        "pylsp",
+        "kotlin_language_server",
+        -- "java_language_server",
+        "rust_analyzer",
+        "tsserver",
+        "yamlls",
+        "lemminx",
+        "vimls", -- vim language server
+        "taplo", -- Toml
+        "sqlls", -- sql language server
+        "html", -- html language server
+        "cssls", -- css language server
       })
-      local lspconfig = require "lspconfig"
-      opts.handlers = {
-        ["lua_ls"] = function()
-          lspconfig.lua_ls.setup {
-            cmd = { "lua-language-server", "--locale=zh-cn" },
-          }
-        end,
-      }
     end,
   },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
