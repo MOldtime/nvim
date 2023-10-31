@@ -4,7 +4,7 @@ return {
     Lua = {
       hint = {
         enable = true,
-        arrayIndex = "Auto",
+        -- arrayIndex = "Auto",
       },
     },
   },
