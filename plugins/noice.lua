@@ -2,6 +2,7 @@ return {
   -- lazy.nvim
   "folke/noice.nvim",
   event = "VeryLazy",
+  enabled = true,
   opts = function(_, opts)
     opts.views = {
       mini = {
@@ -10,6 +11,10 @@ return {
           winblend = 100,
         },
       },
+    }
+    opts.notify = {
+      enabled = true,
+      view = "notify",
     }
     opts.lsp = {
       override = {

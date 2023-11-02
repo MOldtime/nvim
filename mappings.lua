@@ -74,11 +74,6 @@ require("astronvim.utils").set_mappings {
     ["<M-h>"] = { "^", desc = "移动到行首" },
     ["<M-y>"] = { '"+y', desc = "复制文字到系统" },
     ["<M-f>"] = { "<Esc>*", desc = "选中文本在当前的文件搜索" },
-    ["<leader>;"] = {
-      function()
-        tool.LazyConmand(function() require("user.tools.utils").Gets_selected_text() end)
-      end,
-    },
   },
   i = {
     ["<M-h>"] = { "<Esc>^i", desc = "移动到行首" },
@@ -94,6 +89,9 @@ require("astronvim.utils").set_mappings {
     ["<M-h>"] = {
       "<Left>",
     },
+  },
+  t = {
+    ["<M-p>"] = { "<middlemouse>a", desc = "粘贴系统剪切板" },
   },
 }
 return function(tables)

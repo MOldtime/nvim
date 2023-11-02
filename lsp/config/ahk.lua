@@ -3,7 +3,7 @@ return {
   root_dir = require("lspconfig.util").root_pattern "*.ahk",
   cmd = {
     "node",
-    "C:/File_Data/Language Server Protocol/Autohotkey/server/dist/server.js",
+    "C:/APP_File/File_Data/Language Server Protocol/Autohotkey/server/dist/server.js",
     "--stdio",
   },
   filetypes = { "autohotkey", "ahk" },
