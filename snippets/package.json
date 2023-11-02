@@ -8,6 +8,10 @@
       {
         "language": "cpp",
         "path": "./user/cpp.json"
+      },
+      {
+        "language": "autohotkey",
+        "path": "./user/ahk.json"
       }
     ]
   }

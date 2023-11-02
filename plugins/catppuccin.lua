@@ -29,7 +29,13 @@ return {
       types = {},
       operators = {},
     },
-    custom_highlights = {},
+    -- 覆盖组
+    custom_highlights = function(C)
+      return {
+        Folded = { bg = C.base }, -- 折叠
+        LineNr = { fg = C.overlay0 }, -- 未选中行颜色
+      }
+    end,
     integrations = {
       aerial = true,
       alpha = true,

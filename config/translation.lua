@@ -21,6 +21,43 @@ end
 
 -- default
 function M.mian_(tables)
+  tables.o['a"'] = [[双引号括起来的字符串]]
+  tables.o["a'"] = [[单引号括起来的字符串]]
+  tables.o["a("] = [[与ab相同]]
+  tables.o["a)"] = [[与ab相同]]
+  tables.o["a<lt>"] = [[从'<'到匹配的'>'的<>]]
+  tables.o["a>"] = [[与a<相同]]
+  tables.o["aB"] = [[从'{'到'}'的块（带有大括号）]]
+  tables.o["aW"] = [[带有空格的单词（包括空格）]]
+  tables.o["a["] = [[从'['到匹配的']'的]]
+  tables.o["a]"] = [[与a[]相同]]
+  tables.o["a`"] = [[反引号括起来的字符串]]
+  tables.o["ab"] = [[从'('到')'的块（带有括号）]]
+  tables.o["ap"] = [[带有空格的段落（包括空格）]]
+  tables.o["as"] = [[带有空格的句子（包括空格）]]
+  tables.o["at"] = [[带有空格的标签块（包括空格）]]
+  tables.o["aw"] = [[带有空格的单词（包括空格）]]
+  tables.o["a{"] = [[与aB相同]]
+  tables.o["a}"] = [[与aB相同]]
+  tables.o['i"'] = [[没有引号的双引号括起来的字符串]]
+  tables.o["i'"] = [[没有引号的单引号括起来的字符串]]
+  tables.o["i("] = [[与ib相同]]
+  tables.o["i)"] = [[与ib相同]]
+  tables.o["i<lt>"] = [[从'<'到匹配的'>'的内部<>]]
+  tables.o["i>"] = [[与i<相同]]
+  tables.o["iB"] = [[从'{'到'}'的内部块]]
+  tables.o["iW"] = [[内部单词]]
+  tables.o["i["] = [[从'['到匹配的']'的内部]]
+  tables.o["i]"] = [[与i[]相同]]
+  tables.o["i`"] = [[没有反引号的反引号括起来的字符串]]
+  tables.o["ib"] = [[从'('到')'的内部块]]
+  tables.o["ip"] = [[内部段落]]
+  tables.o["is"] = [[内部句子]]
+  tables.o["it"] = [[内部标签块]]
+  tables.o["iw"] = [[内部单词]]
+  tables.o["i{"] = [[与iB相同]]
+  tables.o["i}"] = [[与iB相同]]
+
   -- default - t
   utils.Assignment(tables.t, "<C-h>", "终端左窗口导航")
   utils.Assignment(tables.t, "<C-'>", "切换终端")
