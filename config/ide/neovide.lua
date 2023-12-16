@@ -43,4 +43,27 @@ g.neovide_refresh_rate = 165
 g.neovide_refresh_rate_idle = 165
 
 -- 透明背景
-g.neovide_transparency = 0.8
+g.neovide_transparency = 0.9
+
+-- 禁用输入法
+local function set_ime(args)
+  if args.event:match "Enter$" then
+    vim.g.neovide_input_ime = true
+  else
+    vim.g.neovide_input_ime = false
+  end
+end
+
+local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+  group = ime_input,
+  pattern = "*",
+  callback = set_ime,
+})
+
+-- vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+--   group = ime_input,
+--   pattern = "[/\\?]",
+--   callback = set_ime,
+-- })
