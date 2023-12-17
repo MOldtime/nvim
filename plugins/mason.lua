@@ -14,7 +14,6 @@ return {
         "jsonls",
         "pylsp",
         "kotlin_language_server",
-        -- "java_language_server",
         "rust_analyzer",
         "tsserver",
         "yamlls",

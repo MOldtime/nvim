@@ -2,17 +2,13 @@
 return function()
   require "user.config.global"
   require "user.config.plugin_mappings" -- 插件设置
-  --[[
-  -- 有路径就加载当前的目录的窗口
+  -- 自动打开上一次会话
   local path = vim.fn.expand "%:p"
   if path == "" then
-    vim.api.nvim_command "SessionManager! load_last_session"
+    require("resession").load "Last Session"
   elseif vim.fn.isdirectory(path) == 1 then
-    vim.api.nvim_command "SessionManager! load_current_dir_session"
-  else
-    print("启动时指定的是文件: " .. path)
+    require("resession").load(path:sub(1, -2), { dir = "dirsession", silence_errors = true })
   end
-  ]]
   -- 光标居中
   vim.cmd [[
   augroup CenteredScrolling
@@ -23,7 +19,5 @@ return function()
   augroup END
   ]]
   -- 设置
-  -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- capabilities.offsetEncoding = { "utf-16" }
-  -- require("lspconfig").clangd.setup { capabilities = capabilities }
+  -- vim.lsp.set_log_level(vim.log.levels.DEBUG)
 end

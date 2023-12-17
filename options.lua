@@ -16,6 +16,7 @@ return {
     },
     inccommand = "split", -- 在实时预览窗口中显示搜索/替换的效果
     -- fileencodings  = 'utf-8,gbk'
+    -- guicursor = "i:ver20-blinkwait500-blinkon1000-blinkoff1000"
   },
   g = {
     mapleader                = " ", -- sets vim.g.mapleader
@@ -25,7 +26,7 @@ return {
     diagnostics_mode         = 3, -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
     icons_enabled            = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
-    resession_enabled        = false, -- enable experimental resession.nvim session management (will be default in AstroNvim v4)
+    resession_enabled        = true, -- enable experimental resession.nvim session management (will be default in AstroNvim v4)
     inlay_hints_enabled      = true
   },
 }

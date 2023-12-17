@@ -31,7 +31,7 @@ return {
       space_in_paren = false,
       wrap_line_length = 0,
     },
-    InterpreterPath = "C:/Program Files/Autohotkey/v2/AutoHotkey.exe",
+    InterpreterPath = "C:/Program Files/Autohotkey/v2/AutoHotkey64.exe",
     SymbolFoldingFromOpenBrace = false,
   },
   single_file_support = true,
