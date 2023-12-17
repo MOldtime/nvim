@@ -12,6 +12,17 @@ if is_available "vim-visual-multi" then
   }
 end
 
+if is_available "nvim-notify" then
+  maps {
+    n = {
+      ["<leader>za"] = {
+        function() require("notify").dismiss { silent = true } end,
+        desc = "关闭通知",
+      },
+    },
+  }
+end
+
 if is_available "telescope.nvim" then
   local builtin = require "telescope.builtin"
   maps {
