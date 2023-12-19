@@ -8,16 +8,16 @@ return {
         jump_labels = true,
       },
     },
-    jump = {
-      autojump = false, -- 当唯一个的时候自动跳转
-    },
+    -- jump = {
+    --   autojump = false, -- 当唯一个的时候自动跳转
+    -- },
     label = {
       -- 大写标签
       uppercase = false,
     },
   },
   -- stylua: ignore
-    keys = {
+  keys = {
     { "<leader><leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
     -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },

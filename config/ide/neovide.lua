@@ -2,7 +2,7 @@
 
 local g = vim.g
 vim.o.guifont =
-  "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,NotoSansM_Nerd_Font_Mono:h11:w1:b:#e-subpixelantialias:#h-full"
+  "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,NotoSansM_Nerd_Font_Mono:h11:b:#e-subpixelantialias:#h-full"
 -- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h11:#e-antialias:#h-ful"
 -- vim.o.guifont = "NotoSansM Nerd Font:h11:#e-antialias:#h-ful"
 
@@ -33,9 +33,9 @@ g.neovide_hide_mouse_when_typing = true
 -- 粒子密度
 -- neovideconfig.neovide_cursor_vfx_particle_density = 50.0
 -- 动画时长
-g.neovide_cursor_animation_length = 0.25
+g.neovide_cursor_animation_length = 0.2
 -- 光标尾部
-g.neovide_cursor_trail_size = 0.2
+g.neovide_cursor_trail_size = 0.3
 
 -- 设置刷新率
 g.neovide_refresh_rate = 165
