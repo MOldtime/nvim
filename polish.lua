@@ -7,7 +7,7 @@ return function()
   if path == "" then
     require("resession").load "Last Session"
   elseif vim.fn.isdirectory(path) == 1 then
-    require("resession").load(path:sub(1, -2), { dir = "dirsession", silence_errors = true })
+    require("resession").load(path.sub(1, -2), { dir = "dirsession", silence_errors = true })
   end
   -- 光标居中
   vim.cmd [[

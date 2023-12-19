@@ -22,21 +22,9 @@ return {
       return string.format("#%02x%02x%02x", r, g, b)
     end
 
-    -- local astronvim = require "utils.status"
     local mode_color = function() return lighten_color(status.hl.lualine_mode(status.hl.mode_bg(), "#ffffff"), 0.65) end
-    -- Same function as above just used for text.
-    local mode_text_color = function()
-      -- local get_mode = vim.fn.mode()
-      -- local mode = get_mode:lower()
-      -- if mode == "n" then return "#E4F1FE" end
-      -- if mode == "i" or mode == "t" then return "#C8F7C5" end
-      -- if mode == "v" or mode == "�" then return "#FFECDB" end
-      -- if mode == "r" then return "#FFECDB" end
-      -- if mode == "c" then return "#FFFACD" end
-      return lighten_color(status.hl.lualine_mode(status.hl.mode_bg(), "#ffffff"), 0.2)
-    end
+    local mode_text_color = function() return lighten_color(status.hl.lualine_mode(status.hl.mode_bg(), "#ffffff"), 0.2) end
 
-    -- like mode component but you can change the icon for each mode.
     local mode_icon = function()
       local mode_text = status.env.modes[vim.fn.mode()][1]
       local get_mode = vim.fn.mode()
@@ -62,10 +50,8 @@ return {
     end
     opts.winbar = nil
     opts.statusline = {
-      -- default highlight for the entire statusline
       hl = { fg = "fg", bg = "bg" },
 
-      -- add the vim mode component
       status.component.builder {
         { provider = function() return mode_icon() end },
         hl = { fg = "bg" },
