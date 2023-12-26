@@ -9,7 +9,7 @@ return {
   filetypes = { "autohotkey", "ahk" },
   init_options = {
     locale = "zh-cn",
-    AutoLibInclude = "Disabled",
+    AutoLibInclude = "All",
     CommentTags = "^;;\\s*(?<tag>.+)",
     CompleteFunctionParens = false,
     Diagnostics = {

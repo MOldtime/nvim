@@ -12,6 +12,21 @@ if is_available "vim-visual-multi" then
   }
 end
 
+if is_available "accelerated-jk.nvim" then
+  maps {
+    n = {
+      j = {
+        "<Plug>(accelerated_jk_gj)",
+        desc = "向下移动",
+      },
+      k = {
+        "<Plug>(accelerated_jk_gk)",
+        desc = "向上移动",
+      },
+    },
+  }
+end
+
 if is_available "nvim-notify" then
   maps {
     n = {

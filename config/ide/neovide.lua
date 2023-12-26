@@ -33,9 +33,9 @@ g.neovide_hide_mouse_when_typing = true
 -- 粒子密度
 -- neovideconfig.neovide_cursor_vfx_particle_density = 50.0
 -- 动画时长
-g.neovide_cursor_animation_length = 0.2
+-- g.neovide_cursor_animation_length = 0.2
 -- 光标尾部
-g.neovide_cursor_trail_size = 0.3
+-- g.neovide_cursor_trail_size = 0.3
 
 -- 设置刷新率
 g.neovide_refresh_rate = 165
@@ -43,7 +43,7 @@ g.neovide_refresh_rate = 165
 g.neovide_refresh_rate_idle = 165
 
 -- 透明背景
-g.neovide_transparency = 0.9
+-- g.neovide_transparency = 0.95
 
 -- 禁用输入法
 local function set_ime(args)
