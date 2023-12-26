@@ -1,3 +1,4 @@
+-- https://github.com/max397574/better-escape.nvim
 -- 用于绑定<leader>
 return {
   "max397574/better-escape.nvim",

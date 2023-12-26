@@ -1,7 +1,6 @@
+-- https://github.com/zhenyangze/vim-bitoai
 return {
   "zhenyangze/vim-bitoai",
   lazy = false,
-  config = function()
-    vim.g.vim_bito_prompt_append = "请使用中文回答"
-  end,
+  config = function() vim.g.vim_bito_prompt_append = "请使用中文回答" end,
 }

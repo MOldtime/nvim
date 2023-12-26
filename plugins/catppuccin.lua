@@ -54,6 +54,7 @@
     WarningMsg: 警告消息的颜色。
     Whitespace: 'listchars'
 ]]
+--https://github.com/catppuccin/nvim
 return {
   "catppuccin/nvim",
   name = "catppuccin",
@@ -90,7 +91,7 @@ return {
       return {
         Folded = { bg = C.base }, -- 折叠
         LineNr = { fg = C.overlay0 }, -- 未选中行颜色
-        Visual = { bg = "#5A6377"}
+        Visual = { bg = "#5A6377" },
       }
     end,
     integrations = {
