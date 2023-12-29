@@ -2,9 +2,7 @@
 
 local g = vim.g
 vim.o.guifont =
-  "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,NotoSansM_Nerd_Font_Mono:h11:b:#e-subpixelantialias:#h-full"
--- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h11:#e-antialias:#h-ful"
--- vim.o.guifont = "NotoSansM Nerd Font:h11:#e-antialias:#h-ful"
+  "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,NotoSansM_Nerd_Font_Mono:h13:b:#e-subpixelantialias:#h-full"
 
 -- neovideconfig.neovide_theme = "dark"
 -- debug
@@ -27,7 +25,7 @@ g.neovide_hide_mouse_when_typing = true
 -- 开启轨道动画
 -- g.neovide_cursor_vfx_mode = "railgun"
 -- 粒子透明度
--- neovideconfig.neovide_cursor_vfx_opacity = 99.0
+-- g.neovide_cursor_vfx_opacity = 99.0
 -- 粒子寿命
 -- neovideconfig.neovide_cursor_vfx_particle_lifetime = 1.0
 -- 粒子密度
@@ -36,11 +34,6 @@ g.neovide_hide_mouse_when_typing = true
 -- g.neovide_cursor_animation_length = 0.2
 -- 光标尾部
 -- g.neovide_cursor_trail_size = 0.3
-
--- 设置刷新率
-g.neovide_refresh_rate = 165
--- 空闲刷新率
-g.neovide_refresh_rate_idle = 165
 
 -- 透明背景
 -- g.neovide_transparency = 0.95
@@ -67,3 +60,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
 --   pattern = "[/\\?]",
 --   callback = set_ime,
 -- })
+
+-- require("astronvim.utils").set_mappings {
+--
+-- }

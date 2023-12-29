@@ -99,13 +99,16 @@ return {
       alpha = true,
       gitsigns = true,
       indent_blankline = {
-        enabled = true,
+        enabled = false,
         colored_indent_levels = true,
       },
       leap = true,
       markdown = true,
       mason = true,
-      mini = true,
+      mini = {
+        enabled = true,
+        indentscope_color = "blue",
+      },
       neotree = true,
       noice = true,
       cmp = true,
