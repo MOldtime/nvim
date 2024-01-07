@@ -11,32 +11,24 @@ vim.o.guifont =
 -- neovideconfig.neovide_no_idle = true
 
 -- 退出需要确认
-g.neovide_confirm_quit = true
+-- g.neovide_confirm_quit = true
 -- 记住以前窗口的大小
 g.neovide_remember_window_size = true
 -- 输入时隐藏鼠标
 g.neovide_hide_mouse_when_typing = true
 
--- 触控板死亡地带
--- neovideconfig.neovide_touch_deadzone = 4.0
--- 触控板拖动超时
--- neovideconfig.neovide_touch_drag_timeout = -1.17
-
 -- 开启轨道动画
--- g.neovide_cursor_vfx_mode = "railgun"
+g.neovide_cursor_vfx_mode = "railgun"
 -- 粒子透明度
--- g.neovide_cursor_vfx_opacity = 99.0
+g.neovide_cursor_vfx_opacity = 80.0
 -- 粒子寿命
--- neovideconfig.neovide_cursor_vfx_particle_lifetime = 1.0
+g.neovide_cursor_vfx_particle_lifetime = 1.0
 -- 粒子密度
--- neovideconfig.neovide_cursor_vfx_particle_density = 50.0
+g.neovide_cursor_vfx_particle_density = 50.0
 -- 动画时长
--- g.neovide_cursor_animation_length = 0.2
+g.neovide_cursor_animation_length = 0.2
 -- 光标尾部
--- g.neovide_cursor_trail_size = 0.3
-
--- 透明背景
--- g.neovide_transparency = 0.95
+g.neovide_cursor_trail_size = 0.3
 
 -- 禁用输入法
 local function set_ime(args)

@@ -35,4 +35,9 @@ return {
       },
     },
   },
+
+  polish = function()
+    require "user.config.global"
+    require "user.config.plugin_mappings" -- 插件设置
+  end,
 }

@@ -6,10 +6,6 @@ local is_available = utils.is_available
 if is_available "vim-visual-multi" then
   -- visual multi
   vim.g["VM_default_mappings"] = 0
-  vim.g.VM_maps = {
-    ["Add Cursor Down"] = "<S-NL>", -- ctrl + shfit + j
-    ["Add Cursor Up"] = "<C-S-K>",
-  }
 end
 
 if is_available "accelerated-jk.nvim" then
