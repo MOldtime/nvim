@@ -1,4 +1,5 @@
 return {
+  colorscheme = "catppuccin",
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use

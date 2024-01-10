@@ -1,5 +1,4 @@
--- mnode http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html
---					                                          		*map-table*
+-- help: map-table
 -- Mode           | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang |
 -- Command        +------+-----+-----+-----+-----+-----+------+------+
 -- [nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
@@ -13,6 +12,12 @@
 -- o[nore]map     |  -   |  -  |  -  |  -  |  -  | yes |  -   |  -   |
 -- t[nore]map     |  -   |  -  |  -  |  -  |  -  |  -  | yes  |  -   |
 -- l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
+-- Normal Mode: 即Vim的普通模式，我们打开Vim后进入的第一个模式即此模式。
+-- Visual Mode: 即Vim的Visual模式，我们在选中了一定的文本之后(通过v或者V命令)即进入此模式。
+-- Select Mode: 这种模式和Visual模式相似，不过输入的文本都会替换选中的文本。在普通模式下，通过鼠标选中或者使用gH命令都可以进入此模式。
+-- Operator-pending Mode: 当我们输入一个操作符后(例如，d，y，c等等)，就会进入此模式。
+-- Insert Mode: 即Vim的插入模式，普通模式下我们输入i(或者s,a等等)就会进入此模式。
+-- Command-line Mode: 命令行模式，我们在普通模式下输入:或者/等就会进入此模式。
 local tool = require "user.tools.command"
 require("astronvim.utils").set_mappings {
   [""] = {
