@@ -1,4 +1,5 @@
--- set vim options here (vim.<first_key>.<second_key> = value)
+if vim.g.neovide then require "user.config.ide.neovide" end -- ide 的检测, 并启动不同的设置
+--  set vim options here (vim.<first_key>.<second_key> = value)
 return {
   opt = {
     -- set to true or false etc.

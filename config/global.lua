@@ -1,5 +1,3 @@
-if vim.g.neovide then require "user.config.ide.neovide" end -- ide 的检测, 并启动不同的设置
-
 local VimScript_list = {
   "lan zh_CN.UTF-8", -- 设置语言为中文
 }
@@ -17,7 +15,8 @@ elseif vim.fn.isdirectory(path) == 1 then
   -- vim.notify(name)
   require("resession").load(name, { dir = "dirsession", silence_errors = true })
 end
--- 光标居中
+
+-- 光标
 vim.cmd [[
 augroup CenteredScrolling
   autocmd!

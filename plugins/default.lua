@@ -1,6 +1,7 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    -- enabled = false,
     opts = function(_, opts)
       local highlight = {
         "RainbowDefalut",
@@ -14,8 +15,8 @@ return {
       )
       opts.indent = {
         highlight = highlight,
-        char = "",
       }
+      opts.scope = { enabled = false }
     end,
   },
   {
