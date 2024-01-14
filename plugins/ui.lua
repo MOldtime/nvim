@@ -3,25 +3,19 @@ return {
     -- lazy.nvim
     "folke/noice.nvim",
     event = "VeryLazy",
-    enabled = true,
     opts = function(_, opts)
+      opts.messages = {
+        enabled = false,
+      }
       opts.views = {
-        mini = {
-          timeout = 500,
-          win_options = {
-            winblend = 100,
-          },
-        },
+        enabled = false,
       }
       opts.notify = {
-        enabled = true,
-        view = "notify",
+        enabled = false,
       }
       opts.lsp = {
         override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+          enabled = false,
         },
         hover = {
           enabled = false,
@@ -32,7 +26,7 @@ return {
       }
       opts.presets = {
         bottom_search = false, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
+        command_palette = false, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = true, -- enables an input dialog for inc-rename.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
@@ -40,8 +34,13 @@ return {
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
     },
+  },
+  {
+    "sainnhe/sonokai",
+    init = function() -- init function runs before the plugin is loaded
+      vim.g.sonokai_style = "default"
+    end,
   },
   {
     "catppuccin/nvim",
@@ -78,18 +77,14 @@ return {
       custom_highlights = function(C)
         return {
           Folded = { bg = C.base }, -- 折叠
-          LineNr = { fg = C.overlay0 }, -- 未选中行颜色
-          Visual = { bg = "#5A6377" },
+          LineNr = { fg = C.overlay0 }, -- 左边的未选的中的行号颜色
+          CursorLine = { bg = C.base }, -- 行颜色
         }
       end,
       integrations = {
         aerial = true,
         alpha = true,
         gitsigns = true,
-        indent_blankline = {
-          enabled = false,
-          colored_indent_levels = true,
-        },
         leap = true,
         markdown = true,
         mason = true,
@@ -150,25 +145,36 @@ return {
           blue = "#739df2",
           lavender = "#a0a8f6",
           text = "#b5c1f1",
-          subtext1 = "#a6b0d8",
-          subtext0 = "#959ec2",
-          overlay2 = "#848cad",
-          overlay1 = "#717997", -- 未知
-          overlay0 = "#9599AD", -- 注释颜色
-          surface2 = "#505469", -- 未知
-          surface1 = "#3E4255", -- 其它颜色
-          surface0 = "#282C34", -- 行颜色
-          base = "#282C34", -- 代码编写区域背景
-          mantle = "#282C34", -- tree树背景
-          crust = "#282C34", -- tree与代码编写分隔线
+        },
+        latte = {
+          rosewater = "#cc7983",
+          flamingo = "#bb5d60",
+          pink = "#d54597",
+          mauve = "#a65fd5",
+          red = "#b7242f",
+          maroon = "#db3e68",
+          peach = "#e46f2a",
+          yellow = "#bc8705",
+          green = "#1a8e32",
+          teal = "#00a390",
+          sky = "#089ec0",
+          sapphire = "#0ea0a0",
+          blue = "#017bca",
+          lavender = "#8584f7",
+          text = "#444444",
+          subtext1 = "#555555",
+          subtext0 = "#666666",
+          overlay2 = "#777777",
+          overlay1 = "#888888",
+          overlay0 = "#999999",
+          surface2 = "#aaaaaa",
+          surface1 = "#bbbbbb",
+          surface0 = "#cccccc",
+          base = "#ffffff",
+          mantle = "#eeeeee",
+          crust = "#dddddd",
         },
       },
-    },
-  },
-  {
-    "eandrju/cellular-automaton.nvim",
-    keys = {
-      { "<leader>zi", mode = { "n" }, "<cmd>CellularAutomaton make_it_rain<CR>", desc = "散落" },
     },
   },
   {
@@ -180,12 +186,8 @@ return {
   {
     -- 使其它内容变暗
     "folke/twilight.nvim",
-    lazy = false,
+    lazy = true,
     enabled = false,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
+    opts = {},
   },
 }

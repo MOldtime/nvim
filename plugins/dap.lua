@@ -3,7 +3,6 @@ local telescope = require "user.util.telescope"
 
 return {
   "mfussenegger/nvim-dap",
-  enabled = true,
   dependencies = {
     -- { "theHamsta/nvim-dap-virtual-text", config = true },
   },
@@ -52,7 +51,7 @@ return {
     }
 
     local function set_program()
-      local function set_path(prompt_bufnr, map)
+      local function set_path(prompt_bufnr, _)
         telescope.actions.select_default:replace(function()
           telescope.actions.close(prompt_bufnr)
           local selected = telescope.actions_state.get_selected_entry()

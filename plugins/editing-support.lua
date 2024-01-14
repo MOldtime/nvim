@@ -113,6 +113,7 @@ return {
   {
     -- https://github.com/rainbowhxch/accelerated-jk.nvim
     "rainbowhxch/accelerated-jk.nvim",
+    event = { "User AstroFile" },
     lazy = false,
     opts = {
       -- acceleration_table = { 7,12,17,21,24,26,28,30 }
@@ -157,20 +158,12 @@ return {
     end,
   },
   {
-    "Exafunction/codeium.vim",
-    event = "BufEnter",
-    config = function()
-      vim.keymap.set("i", "<C-g>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
-      vim.keymap.set("i", "<c-;>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true })
-      vim.keymap.set("i", "<c-,>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true })
-      vim.keymap.set("i", "<c-x>", function() return vim.fn["codeium#Clear"]() end, { expr = true })
-      vim.keymap.set("n", "<leader>;", function()
-        if vim.g.codeium_enabled == true then
-          vim.cmd "CodeiumDisable"
-        else
-          vim.cmd "CodeiumEnable"
-        end
-      end, { noremap = true, desc = "切换Codeium激活" })
-    end,
+    "Exafunction/codeium.nvim",
+    event = { "BufEnter" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = true,
   },
 }

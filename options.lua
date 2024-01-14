@@ -16,8 +16,7 @@ return {
       tab = "---",
     },
     inccommand = "split", -- 在实时预览窗口中显示搜索/替换的效果
-    -- fileencodings  = 'utf-8,gbk'
-    -- guicursor = "i:ver20-blinkwait500-blinkon1000-blinkoff1000"
+    cmdheight = 1,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

@@ -1,30 +1,37 @@
-vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono,JetBrainsMonoNl_Nerd_Font_Mono,NotoSansM_Nerd_Font_Mono:h13:b"
+-- vim.o.guifont = "JetBrainsMono Nerd Font,JetBrains Mono NL,Noto Sans Sc:h12:b"
+vim.o.guifont = "JetBrainsMono Nerd Font,"
+  .. "JetBrainsMono Nerd Font Propo,"
+  .. "JetBrainsMonoNL Nerd Font,"
+  .. "JetBrainsMonoNL Nerd Font Propo,"
+  .. "Noto Sans Sc"
+  .. ":h13:b"
 
 for key, value in pairs {
-  -- debug
-  -- neovide_profiler = true
-  -- 没有空闲
-  -- neovideconfig.neovide_no_idle = true
+  -- neovide_profiler = true -- debug
+  -- neovideconfig.neovide_no_idle = true -- 没有空闲
 
-  -- 退出需要确认
-  -- neovide_confirm_quit = true
-  -- 记住以前窗口的大小
-  neovide_remember_window_size = true,
-  -- 输入时隐藏鼠标
-  neovide_hide_mouse_when_typing = true,
+  -- neovide_confirm_quit = true -- 退出需要确认
+  neovide_remember_window_size = true, -- 记住以前窗口的大小
+  neovide_hide_mouse_when_typing = true, -- 输入时隐藏鼠标
+  neovide_refresh_rate = 165, -- 刷新率
+  -- neovide_unlink_border_highlights = true, -- 修复边框和 winbar 滚动故障
 
-  -- 开启轨道动画
-  -- neovide_cursor_vfx_mode = "railgun",
-  -- -- 粒子透明度
-  -- neovide_cursor_vfx_opacity = 80.0,
-  -- -- 粒子寿命
-  -- neovide_cursor_vfx_particle_lifetime = 1.0,
-  -- -- 粒子密度
-  -- neovide_cursor_vfx_particle_density = 50.0,
-  -- -- 动画时长
-  -- neovide_cursor_animation_length = 0.2,
-  -- -- 光标尾部
-  -- neovide_cursor_trail_size = 0.3,
+  -- 浮影
+  neovide_floating_shadow = true, --  false 将禁用浮动窗口的阴影边框
+  neovide_floating_z_height = 10, -- 设置浮窗距地平面的虚拟高度
+  neovide_light_angle_degrees = 45, -- 设置投射光与屏幕法线的角度
+  neovide_light_radius = 5, -- 设置投射光的半径
+
+  neovide_cursor_antialiasing = false, -- 启用或禁用光标四边形的抗锯齿功能。禁用可能会修复一些光标视觉问题。
+  neovide_cursor_animate_in_insert_mode = true, -- 在插入模式下制作动画
+  neovide_cursor_unfocused_outline_width = 0, -- 未聚焦的轮廓宽度
+
+  -- neovide_cursor_vfx_mode = "railgun", 开启轨道动画
+  -- neovide_cursor_vfx_opacity = 80.0, -- 粒子透明度
+  -- neovide_cursor_vfx_particle_lifetime = 1.0, -- 粒子寿命
+  -- neovide_cursor_vfx_particle_density = 50.0, -- 粒子密度
+  neovide_cursor_animation_length = 0.1, -- 动画时长
+  -- neovide_cursor_trail_size = 0.3, -- 光标尾部
 } do
   vim.g[key] = value
 end

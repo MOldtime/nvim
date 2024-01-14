@@ -17,13 +17,13 @@ elseif vim.fn.isdirectory(path) == 1 then
 end
 
 -- 光标
-vim.cmd [[
-augroup CenteredScrolling
-  autocmd!
-  autocmd WinScrolled * let &scrolloff = (winwidth(0) - &textwidth) / 16
-  autocmd CursorMoved * let &scrolloff = (winwidth(0) - &textwidth) / 16
-  autocmd BufWinEnter * lua vim.o.sidescrolloff =  math.floor(vim.fn.winwidth(0) / 5 + 0.5)
-augroup END
-]]
+-- vim.cmd [[
+-- augroup CenteredScrolling
+--   autocmd!
+--   autocmd WinScrolled * let &scrolloff = (winwidth(0) - &textwidth) / 16
+--   autocmd CursorMoved * let &scrolloff = (winwidth(0) - &textwidth) / 16
+--   autocmd BufWinEnter * lua vim.o.sidescrolloff =  math.floor(vim.fn.winwidth(0) / 5 + 0.5)
+-- augroup END
+-- ]]
 -- 设置
 -- vim.lsp.set_log_level(vim.log.levels.INFO)
