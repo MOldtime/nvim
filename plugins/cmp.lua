@@ -1,47 +1,57 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.experimental = {
-        ghost_text = { hlgroup = "Comment" },
-      }
-      local utils = require "astronvim.utils"
+    dependencies = {
+      "hrsh7th/cmp-calc",
+    },
+    event = "BufEnter",
+    opts = {
+      -- performance.max_view_entries = 100, -- 最大条目
+      experimental = {
+        ghost_text = { hlgroup = "Comment" }, -- 显示出来
+      },
+    },
+    config = function(_, opts)
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
-      local function has_words_before()
-        local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-      end
-
+      -- local function has_words_before()
+      --   local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+      --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+      -- end
       for key, value in pairs {
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.expand_or_jumpable() then
+          if luasnip.locally_jumpable(1) then
             luasnip.expand_or_jump()
           elseif cmp.visible() then
             cmp.confirm { select = true }
-          elseif has_words_before() then
-            cmp.complete()
+            -- elseif has_words_before() then
+            --   vim.notify "has_words_before"
+            --   cmp.complete()
           else
             fallback()
           end
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(-1) then
+          if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
-        -- ["<CR>"] = cmp.mapping.confirm { select = true },
-        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
       } do
         opts.mapping[key] = value
       end
 
-      utils.list_insert_unique(opts.sources, { group_index = 1, name = "codeium", priority = 950 })
-      return opts
+      local sources = cmp.config.sources {
+        { name = "calc", priority = 250 },
+      }
+      for _, value in ipairs(sources) do
+        table.insert(opts.sources, value)
+      end
+      cmp.setup(opts)
     end,
   },
   {

@@ -1,8 +1,6 @@
-local VimScript_list = {
+for _, v in ipairs {
   "lan zh_CN.UTF-8", -- 设置语言为中文
-}
-
-for _, v in ipairs(VimScript_list) do
+} do
   vim.api.nvim_command(v)
 end
 

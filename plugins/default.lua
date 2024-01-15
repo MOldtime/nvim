@@ -95,47 +95,7 @@ return {
         FileEncoding,
         status.component.git_diff { padding = { left = 1 }, surround = { separator = "none" } },
         status.component.fill(),
-        { -- create custom winbar
-          -- store the current buffer number
-          init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
-          fallthrough = false, -- pick the correct winbar based on condition
-          -- inactive winbar
-          {
-            condition = function() return not status.condition.is_active() end,
-            -- show the path to the file relative to the working directory
-            status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
-            -- add the file name and icon
-            status.component.file_info {
-              file_icon = { hl = status.hl.file_icon "winbar", padding = { left = 0 } },
-              file_modified = false,
-              file_read_only = false,
-              hl = status.hl.get_attributes("winbarnc", true),
-              surround = false,
-              update = "BufEnter",
-            },
-          },
-          -- active winbar
-          {
-            -- show the path to the file relative to the working directory
-            status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
-            -- add the file name and icon
-            status.component.file_info { -- add file_info to breadcrumbs
-              file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
-              file_modified = false,
-              file_read_only = false,
-              hl = status.hl.get_attributes("winbar", true),
-              surround = false,
-              update = "BufEnter",
-            },
-            -- show the breadcrumbs
-            status.component.breadcrumbs {
-              icon = { hl = true },
-              hl = status.hl.get_attributes("winbar", true),
-              prefix = true,
-              padding = { left = 0 },
-            },
-          },
-        },
+        status.component.lsp { lsp_client_names = false, surround = { separator = "none", color = "bg" } },
         status.component.fill(),
         status.component.diagnostics { surround = false, padding = { right = 2 } },
         status.component.lsp { lsp_progress = false, surround = false },
@@ -175,10 +135,12 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      opts.filesystem.use_libuv_file_watcher = false
-      opts.filesystem.hijack_netrw_behavior = "open_default"
-    end,
+    opts = {
+      filesystem = {
+        use_libuv_file_watcher = false, -- 不开的原因是 Windows 下有Bug;
+        -- hijack_netrw_behavior = "open_default",
+      },
+    },
   },
   {
     "folke/which-key.nvim",
@@ -277,6 +239,13 @@ return {
         node_decremental = "<BS>",
       }
       opts.incremental_selection.keymaps = incremental_selection_keymaps
+
+      if opts.ensure_installed ~= "all" then
+        opts.ensure_installed = require("astronvim.utils").list_insert_unique(
+          opts.ensure_installed,
+          { "bash", "markdown", "markdown_inline", "regex", "vim" }
+        )
+      end
     end,
   },
   {
