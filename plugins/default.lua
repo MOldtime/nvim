@@ -175,10 +175,12 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      opts.filesystem.use_libuv_file_watcher = false
-      opts.filesystem.hijack_netrw_behavior = "open_default"
-    end,
+    opts = {
+      filesystem = {
+        use_libuv_file_watcher = false, -- 不开的原因是 Windows 下有Bug;
+        hijack_netrw_behavior = "open_default",
+      },
+    },
   },
   {
     "folke/which-key.nvim",
@@ -277,6 +279,13 @@ return {
         node_decremental = "<BS>",
       }
       opts.incremental_selection.keymaps = incremental_selection_keymaps
+
+      if opts.ensure_installed ~= "all" then
+        opts.ensure_installed = require("astronvim.utils").list_insert_unique(
+          opts.ensure_installed,
+          { "bash", "markdown", "markdown_inline", "regex", "vim" }
+        )
+      end
     end,
   },
   {

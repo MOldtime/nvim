@@ -28,7 +28,7 @@ return {
   FolderOpen             = "",
   Git                    = "󰊢",
   GitAdd                 = "",
-  GitBranch              = "",
+  GitBranch              = "",
   GitChange              = "",
   GitConflict            = "",
   GitDelete              = "",

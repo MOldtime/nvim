@@ -1,10 +1,11 @@
+local maps = require("astronvim.utils").set_mappings
 return {
   {
     -- 对齐插件 ga gA 接 ip
     -- jl lc jr, s= , = ,
     "echasnovski/mini.align",
     lazy = false,
-    opts = {},
+    opts = true,
   },
   {
     "folke/flash.nvim",
@@ -93,6 +94,12 @@ return {
     --    多光标选择
     "mg979/vim-visual-multi",
     event = "BufEnter",
+    init = function()
+      vim.g.VM_maps = {
+        ["Add Cursor Down"] = "<C-j>",
+        ["Add Cursor Up"] = "<C-k>",
+      }
+    end,
   },
   {
     -- Old text                    Command         New text-
@@ -114,10 +121,23 @@ return {
     -- https://github.com/rainbowhxch/accelerated-jk.nvim
     "rainbowhxch/accelerated-jk.nvim",
     event = { "User AstroFile" },
-    lazy = false,
     opts = {
       -- acceleration_table = { 7,12,17,21,24,26,28,30 }
     },
+    config = function()
+      maps {
+        n = {
+          j = {
+            "<Plug>(accelerated_jk_gj)",
+            desc = "向下移动",
+          },
+          k = {
+            "<Plug>(accelerated_jk_gk)",
+            desc = "向上移动",
+          },
+        },
+      }
+    end,
   },
   {
     -- https://github.com/max397574/better-escape.nvim
@@ -147,14 +167,40 @@ return {
   },
   {
     "roobert/search-replace.nvim",
-    lazy = false,
-    -- enabled = false,
-    config = function()
-      require("search-replace").setup {
-        -- optionally override defaults
-        default_replace_single_buffer_options = "gcI",
-        default_replace_multi_buffer_options = "egcI",
+    event = "BufEnter",
+    opts = {
+      default_replace_single_buffer_options = "gcI",
+      default_replace_multi_buffer_options = "egcI",
+    },
+    config = function(_, opts)
+      maps {
+        n = {
+          ["<leader>rs"] = {
+            function() vim.api.nvim_command "SearchReplaceSingleBufferSelections" end,
+            desc = "SearchReplaceSingleBuffer [s]elction list",
+          },
+          ["<leader>ro"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferOpen" end, desc = "[o]pen" },
+          ["<leader>rw"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCWord" end, desc = "[w]ord" },
+          ["<leader>rW"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCWORD" end, desc = "[W]ORD" },
+          ["<leader>re"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCExpr" end, desc = "[e]xpr" },
+          ["<leader>rf"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCFile" end, desc = "[f]ile" },
+          ["<leader>rbs"] = {
+            function() vim.api.nvim_command "SearchReplaceMultiBufferSelections" end,
+            desc = "SearchReplaceMultiBuffer [s]elction list",
+          },
+          ["<leader>rbo"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferOpen" end, desc = "[o]pen" },
+          ["<leader>rbw"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCWord" end, desc = "[w]ord" },
+          ["<leader>rbW"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCWORD" end, desc = "[W]ORD" },
+          ["<leader>rbe"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCExpr" end, desc = "[e]xpr" },
+          ["<leader>rbf"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCFile" end, desc = "[f]ile" },
+        },
+        v = {
+          ["<C-r>"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end },
+          ["<C-s>"] = { function() vim.api.nvim_command "SearchReplaceWithinVisualSelection" end },
+          ["<C-b>"] = { function() vim.api.nvim_command "SearchReplaceWithinVisualSelectionCWord" end },
+        },
       }
+      require("search-replace").setup(opts)
     end,
   },
   {

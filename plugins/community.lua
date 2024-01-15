@@ -4,9 +4,8 @@ return {
   {
     "echasnovski/mini.indentscope",
     opts = {
-      symbol = "╎",
+      symbol = "⏽",
       options = { try_as_border = true, indent_at_cursor = true },
-      -- draw = { delay = 0 },
     },
   },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },

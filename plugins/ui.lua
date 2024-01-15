@@ -1,47 +1,31 @@
 return {
+  -- nvim-notify
+  { "rcarriga/nvim-notify", init = false, config = true },
+  -- noice
   {
-    -- lazy.nvim
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = function(_, opts)
-      opts.messages = {
-        enabled = false,
-      }
-      opts.views = {
-        enabled = false,
-      }
-      opts.notify = {
-        enabled = false,
-      }
-      opts.lsp = {
-        override = {
-          enabled = false,
-        },
-        hover = {
-          enabled = false,
-        },
-        signature = {
-          enabled = false,
-        },
-      }
-      opts.presets = {
-        bottom_search = false, -- use a classic bottom cmdline for search
-        command_palette = false, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = true, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
-      }
-    end,
+    opts = {
+      cmdline = { view = "cmdline" },
+      messages = { view_search = false },
+      lsp = {
+        progress = { enabled = false },
+        hover = { enabled = false },
+        signature = { enabled = false },
+      },
+      routes = {
+        { filter = { event = "msg_show", min_height = 20 }, view = "messages" }, -- send long messages to split
+        { filter = { event = "msg_show", find = "%d+L,%s%d+B" }, opts = { skip = true } }, -- skip save notifications
+        { filter = { event = "msg_show", find = "^%d+ more lines$" }, opts = { skip = true } }, -- skip paste notifications
+        { filter = { event = "msg_show", find = "^%d+ fewer lines$" }, opts = { skip = true } }, -- skip delete notifications
+        { filter = { event = "msg_show", find = "^%d+ lines yanked$" }, opts = { skip = true } }, -- skip yank notifications
+      },
+    },
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
   },
-  {
-    "sainnhe/sonokai",
-    init = function() -- init function runs before the plugin is loaded
-      vim.g.sonokai_style = "default"
-    end,
-  },
+  -- theme
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -177,12 +161,14 @@ return {
       },
     },
   },
+  -- log
   {
     -- 对Log加上颜色
     "fei6409/log-highlight.nvim",
     lazy = false,
     config = function() require("log-highlight").setup {} end,
   },
+  -- ?
   {
     -- 使其它内容变暗
     "folke/twilight.nvim",

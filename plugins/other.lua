@@ -1,9 +1,5 @@
+local maps = require("astronvim.utils").set_mappings
 return {
-  {
-    "zhenyangze/vim-bitoai",
-    lazy = false,
-    config = function() vim.g.vim_bito_prompt_append = "请使用中文回答" end,
-  },
   {
     "epwalsh/obsidian.nvim",
     enabled = false,
@@ -184,7 +180,16 @@ return {
       "BufReadPre *.html", -- html
       -- "BufReadPre *.html", -- tex
     },
-    opts = function(_, opts) return opts end,
+    config = function()
+      maps {
+        n = {
+          ["<leader>zp"] = {
+            function() vim.api.nvim_command "Pastify" end,
+            desc = "粘贴图片文件",
+          },
+        },
+      }
+    end,
   },
   {
     "Mythos-404/xmake.nvim",
