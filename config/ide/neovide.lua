@@ -17,6 +17,8 @@ for key, value in pairs {
   -- neovide_unlink_border_highlights = true, -- 修复边框和 winbar 滚动故障
 
   -- 浮影
+  neovide_floating_blur_amount_x = 5.0, -- 浮动模糊量
+  neovide_floating_blur_amount_y = 5.0, -- 浮动模糊量
   neovide_floating_shadow = true, --  false 将禁用浮动窗口的阴影边框
   neovide_floating_z_height = 10, -- 设置浮窗距地平面的虚拟高度
   neovide_light_angle_degrees = 45, -- 设置投射光与屏幕法线的角度
@@ -32,6 +34,8 @@ for key, value in pairs {
   -- neovide_cursor_vfx_particle_density = 50.0, -- 粒子密度
   neovide_cursor_animation_length = 0.1, -- 动画时长
   -- neovide_cursor_trail_size = 0.3, -- 光标尾部
+
+  neovide_transparency = 0.9, -- 透明度
 } do
   vim.g[key] = value
 end

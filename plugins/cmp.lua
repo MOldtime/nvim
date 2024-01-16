@@ -1,11 +1,13 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-calc",
+    },
     opts = function(_, opts)
       opts.experimental = {
-        ghost_text = { hlgroup = "Comment" },
+        ghost_text = { hlgroup = "Comment" }, -- 显示出来
       }
-      local utils = require "astronvim.utils"
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
@@ -34,13 +36,20 @@ return {
           end
         end, { "i", "s" }),
         -- ["<CR>"] = cmp.mapping.confirm { select = true },
-        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
       } do
         opts.mapping[key] = value
       end
 
-      utils.list_insert_unique(opts.sources, { group_index = 1, name = "codeium", priority = 950 })
+      local sources = cmp.config.sources {
+        { name = "calc", priority = 250 },
+      }
+
+      for _, value in ipairs(sources) do
+        table.insert(opts.sources, value)
+      end
+
       return opts
     end,
   },

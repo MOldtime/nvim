@@ -176,4 +176,11 @@ return {
     enabled = false,
     opts = {},
   },
+  -- 彩虹分隔
+      {
+    "HiPhish/rainbow-delimiters.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
+    main = "rainbow-delimiters.setup",
+  },
 }
