@@ -178,7 +178,7 @@ return {
     opts = {
       filesystem = {
         use_libuv_file_watcher = false, -- 不开的原因是 Windows 下有Bug;
-        hijack_netrw_behavior = "open_default",
+        -- hijack_netrw_behavior = "open_default",
       },
     },
   },

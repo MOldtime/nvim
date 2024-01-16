@@ -204,12 +204,44 @@ return {
     end,
   },
   {
-    "Exafunction/codeium.nvim",
-    event = { "BufEnter" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = true,
+    "Exafunction/codeium.vim",
+    event = "InsertEnter",
+    init = function()
+      vim.g.codeium_disable_bindings = 1
+      vim.g.codeium_enabled = true
+    end,
+    config = function()
+      maps {
+        i = {
+          ["<M-CR>"] = {
+            function() return vim.fn["codeium#Accept"]() end, -- 插入建议
+            expr = true,
+            silent = true,
+          },
+          ["<M-;>"] = {
+            function() vim.fn["codeium#CycleCompletions"](1) end, -- 下一个
+          },
+          ["<M-'>"] = {
+            function() vim.fn["codeium#CycleCompletions"](-1) end, -- 上一个
+          },
+          ["<M-BS>"] = {
+            function() vim.fn["codeium#Clear"]() end, -- 清除
+          },
+          ["<C-Tab>"] = {
+            function() vim.fn["codeium#Complete"]() end, -- 手动补全
+          },
+        },
+        n = {
+          ["<M-F2>"] = {
+            function()
+              vim.g.codeium_enabled = not vim.g.codeium_enabled
+
+              vim.notify(vim.g.codeium_enabled and "Codeium已开启" or "Codeium已关闭")
+            end,
+            desc = "切换codeium",
+          },
+        },
+      }
+    end,
   },
 }

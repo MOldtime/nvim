@@ -34,8 +34,8 @@ return {
           end
         end, { "i", "s" }),
         -- ["<CR>"] = cmp.mapping.confirm { select = true },
-        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+        ["<M-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<M-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
       } do
         opts.mapping[key] = value
       end
