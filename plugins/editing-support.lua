@@ -10,7 +10,6 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    -- @type Flash.Config
     opts = {
       modes = {
         char = {
@@ -28,7 +27,6 @@ return {
   -- stylua: ignore
   keys = {
     { "<leader><leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
-    -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<leader>zf", mode = { "n" },
@@ -95,6 +93,7 @@ return {
     "mg979/vim-visual-multi",
     event = "BufEnter",
     init = function()
+      vim.g.VM_quit_after_leaving_insert_mode = 1 -- 退出没有提示
       vim.g.VM_maps = {
         ["Add Cursor Down"] = "<C-j>",
         ["Add Cursor Up"] = "<C-k>",
@@ -153,7 +152,6 @@ return {
     -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
     "gbprod/cutlass.nvim",
     event = { "User AstroFile" },
-    -- enabled = false,
     opts = {
       cut_key = "m",
       override_del = nil,
@@ -207,8 +205,9 @@ return {
     "Exafunction/codeium.vim",
     event = "InsertEnter",
     init = function()
-      vim.g.codeium_disable_bindings = 1
-      vim.g.codeium_enabled = true
+      vim.g.codeium_disable_bindings = 1 -- 取消默认的映射
+      vim.g.codeium_enabled = true -- 默认启用
+      vim.g.codeium_manual = true -- 取消自动补全
     end,
     config = function()
       maps {
@@ -228,14 +227,13 @@ return {
             function() vim.fn["codeium#Clear"]() end, -- 清除
           },
           ["<C-Tab>"] = {
-            function() vim.fn["codeium#Complete"]() end, -- 手动补全
+            function() vim.fn["codeium#Complete"]() end, -- 手动触发
           },
         },
         n = {
           ["<M-F2>"] = {
             function()
               vim.g.codeium_enabled = not vim.g.codeium_enabled
-
               vim.notify(vim.g.codeium_enabled and "Codeium已开启" or "Codeium已关闭")
             end,
             desc = "切换codeium",
