@@ -95,8 +95,8 @@ return {
     init = function()
       vim.g.VM_quit_after_leaving_insert_mode = 1 -- 退出没有提示
       vim.g.VM_maps = {
-        ["Add Cursor Down"] = "<C-j>",
-        ["Add Cursor Up"] = "<C-k>",
+        ["Add Cursor Down"] = "<C-Down>",
+        ["Add Cursor Up"] = "<C-Up>",
       }
     end,
   },
@@ -241,5 +241,33 @@ return {
         },
       }
     end,
+  },
+  {
+    -- 添加标记 快速跳转
+    "LeonHeidelbach/trailblazer.nvim",
+    event = "BufEnter",
+    opts = {
+      mappings = {
+        nv = {
+          motions = {
+            new_trail_mark = "<M-;>", -- 新建一个标记
+            track_back = "<M-o>", -- 跳转到上一个，并清除
+            peek_move_next_down = "<M-j>", -- 跳转到到下一个
+            peek_move_previous_up = "<M-k>", -- 跳转到上一个
+            move_to_nearest = "<M-n>", -- 跳转到最近
+            toggle_trail_mark_list = "<M-m>", -- 显示标记列表
+          },
+          actions = {
+            delete_all_trail_marks = "<leader>md", -- 删除所有标记
+            paste_at_last_trail_mark = "<leader>mp", -- 粘贴到最后一个标记
+            paste_at_all_trail_marks = "<leader>mP", -- 粘贴到所有的标记
+            set_trail_mark_select_mode = "<leader>mt", -- 将轨迹标记选择模式设置为给定模式或在可用模式之间切换
+            switch_to_next_trail_mark_stack = "<leader>m.", -- 使用排序模式切换到下一个跟踪标记堆栈
+            switch_to_previous_trail_mark_stack = "<leader>m,", -- 使用排序模式切换到上一个跟踪标记堆栈
+            set_trail_mark_stack_sort_mode = "<leader>ms", -- 将跟踪标记堆栈排序模式设置为给定模式或在可用模式之间切换
+          },
+        },
+      },
+    },
   },
 }
