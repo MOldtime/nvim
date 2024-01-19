@@ -8,4 +8,11 @@ function M.LazyConmand(func)
   vim.schedule(func)
 end
 
+-- 执行
+--- @param command string 命令
+--- @param mode string  模式
+function M.Conmand(command, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(command, true, false, true), mode, true)
+end
+
 return M
