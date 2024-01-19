@@ -93,10 +93,12 @@ return {
     "mg979/vim-visual-multi",
     event = "BufEnter",
     init = function()
-      vim.g.VM_quit_after_leaving_insert_mode = 1 -- 退出没有提示
+      -- vim.g.VM_quit_after_leaving_insert_mode = 1 -- 退出没有提示
+      vim.g.VM_default_mappings = 0
       vim.g.VM_maps = {
-        ["Add Cursor Down"] = "<C-Down>",
-        ["Add Cursor Up"] = "<C-Up>",
+        ["Add Cursor Down"] = "<C-S-Down>",
+        ["Add Cursor Up"] = "<C-S-Up>",
+        ["Add Cursor At Pos"] = "<C-;>",
       }
     end,
   },
