@@ -1,10 +1,9 @@
--- vim.o.guifont = "JetBrainsMono Nerd Font,JetBrains Mono NL,Noto Sans Sc:h12:b"
 vim.o.guifont = "JetBrainsMono Nerd Font,"
   .. "JetBrainsMono Nerd Font Propo,"
   .. "JetBrainsMonoNL Nerd Font,"
   .. "JetBrainsMonoNL Nerd Font Propo,"
   .. "Noto Sans Sc"
-  .. ":h13:b"
+  .. ":h11:b"
 
 for key, value in pairs {
   -- neovide_profiler = true -- debug

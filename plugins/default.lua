@@ -60,11 +60,13 @@ return {
 
       local FileEncoding = status.component.builder {
         {
-          provider = function()
-            local enc = (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc -- :h 'enc'
-            return enc ~= "utf-8" and " " .. enc:upper() .. " "
-          end,
+          provider = function() return (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc end,
           hl = require("astronvim.utils.status.hl").get_attributes "git_branch",
+          condition = function() return (((vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc) ~= "utf-8") end,
+          on_click = {
+            name = "SetFileEncoding",
+            callback = function() require("user.tools.utils").SetFileEncoding() end,
+          },
         },
       }
 

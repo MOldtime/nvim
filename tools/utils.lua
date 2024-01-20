@@ -29,4 +29,12 @@ function M.Assignment(tables, key, desc)
   if tables[key] then tables[key].desc = desc end
 end
 
+---设置文件的格式, 来启动对应的lsp服务器
+function M.SetFileType() vim.api.nvim_command("set filetype=" .. string.gsub(vim.fn.input "Set File Type:", "^%s*", "")) end
+
+--- 设置文件编码
+function M.SetFileEncoding()
+  vim.api.nvim_command("set fileencoding=" .. string.gsub(vim.fn.input "Set File Encoding:", "^%s*", ""))
+end
+
 return M

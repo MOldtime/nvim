@@ -6,12 +6,16 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      cmdline = { view = "cmdline" },
+      -- cmdline = { view = "cmdline" },
       messages = { view_search = false },
       lsp = {
         progress = { enabled = false },
         hover = { enabled = false },
         signature = { enabled = false },
+      },
+      presets = {
+        bottom_search = false, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
       },
       routes = {
         { filter = { event = "msg_show", min_height = 20 }, view = "messages" }, -- send long messages to split
@@ -177,7 +181,7 @@ return {
     opts = {},
   },
   -- 彩虹分隔
-      {
+  {
     "HiPhish/rainbow-delimiters.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",

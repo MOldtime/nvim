@@ -19,6 +19,7 @@
 -- Insert Mode: 即Vim的插入模式，普通模式下我们输入i(或者s,a等等)就会进入此模式。
 -- Command-line Mode: 命令行模式，我们在普通模式下输入:或者/等就会进入此模式。
 local tool = require "user.tools.command"
+local utils = require "user.tools.utils"
 require("astronvim.utils").set_mappings {
   [""] = {
     ["<leader>`"] = { "~", desc = "把小写转换为大写" },
@@ -46,6 +47,14 @@ require("astronvim.utils").set_mappings {
         if vim.api.nvim_win_get_cursor(0)[1] > 1 then vim.api.nvim_command "m -2" end
       end,
       desc = "选择当前向上移动",
+    },
+    ["<leader>zt"] = {
+      function() utils.SetFileType() end,
+      desc = "设置文件类型",
+    },
+    ["<leader>ze"] = {
+      function() utils.SetFileEncoding() end,
+      desc = "设置文件编码",
     },
   },
   v = {
