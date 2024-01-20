@@ -4,7 +4,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-calc",
     },
-    event = "BufEnter",
+    event = "InsertEnter",
     opts = {
       -- performance.max_view_entries = 100, -- 最大条目
       experimental = {
@@ -15,6 +15,18 @@ return {
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
+      local lspkind = require "lspkind"
+      opts.formatting = {
+        format = lspkind.cmp_format {
+          with_text = true, -- do not show text alongside icons
+          maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          before = function(entry, vim_item)
+            -- Source 显示提示来源
+            vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+            return vim_item
+          end,
+        },
+      }
       -- local function has_words_before()
       --   local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
       --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
@@ -45,47 +57,31 @@ return {
         opts.mapping[key] = value
       end
 
-      local sources = cmp.config.sources {
+      opts.sources = cmp.config.sources {
+        { name = "luasnip", priority = 1000 },
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "buffer", priority = 750 },
+        { name = "path", priority = 500 },
         { name = "calc", priority = 250 },
       }
-      for _, value in ipairs(sources) do
-        table.insert(opts.sources, value)
-      end
       cmp.setup(opts)
     end,
   },
   {
     "onsails/lspkind.nvim",
-    opts = {
-      mode = "symbol",
-      symbol_map = {
-        Text = "", --
-        Method = "", --
-        Function = "", --
-        Constructor = "",
-        Field = "",
-        Variable = "",
-        Class = "", --
-        Interface = "", --
-        Module = "", --
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "פּ",
-        Event = "", --
-        Operator = "",
-        TypeParameter = "",
+    opts = function(_, opts)
+      for key, value in ipairs {
         Codeium = "",
-      },
-    },
+      } do
+        opts.symbol_map[key] = value
+      end
+    end,
   },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   config = function()
+  --     require("luasnip.loaders.from_vscode").lazy_load({})
+  --     require "plugins.configs.luasnip"
+  --   end
+  -- }
 }
