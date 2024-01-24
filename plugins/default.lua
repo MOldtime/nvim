@@ -70,6 +70,15 @@ return {
         },
       }
 
+      local mode = status.component.builder {
+        status.component.mode {
+          mode_text = { padding = { left = 1, right = 1 } },
+          surround = { separators = "mode" },
+        },
+      }
+      -- ection_separators = { left = '', right = '' },
+      -- component_separators = { left = '', right = '' }
+
       opts.winbar = nil
       opts.statusline = {
         hl = { fg = "fg", bg = "bg" },
@@ -89,10 +98,10 @@ return {
             color = function() return { main = mode_color(), right = "file_info_bg" } end,
           },
         },
-        status.component.builder {
-          { provider = "" },
-          surround = { separator = "left", color = { main = "file_info_bg", right = "bg" } },
-        },
+        -- status.component.builder {
+        --   { provider = "" },
+        --   surround = { separator = "left", color = { main = "file_info_bg", right = "bg" } },
+        -- },
         status.component.git_branch { surround = { separator = "none" } },
         FileEncoding,
         status.component.git_diff { padding = { left = 1 }, surround = { separator = "none" } },

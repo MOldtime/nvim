@@ -3,6 +3,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-calc",
+      "FelipeLema/cmp-async-path",
     },
     event = "InsertEnter",
     opts = {
@@ -15,18 +16,6 @@ return {
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
-      local lspkind = require "lspkind"
-      opts.formatting = {
-        format = lspkind.cmp_format {
-          with_text = true, -- do not show text alongside icons
-          maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-          before = function(entry, vim_item)
-            -- Source 显示提示来源
-            vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-            return vim_item
-          end,
-        },
-      }
       -- local function has_words_before()
       --   local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
       --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
@@ -61,7 +50,7 @@ return {
         { name = "luasnip", priority = 1000 },
         { name = "nvim_lsp", priority = 1000 },
         { name = "buffer", priority = 750 },
-        { name = "path", priority = 500 },
+        { name = "async_path", priority = 500 },
         { name = "calc", priority = 250 },
       }
       cmp.setup(opts)

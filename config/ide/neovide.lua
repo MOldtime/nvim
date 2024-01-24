@@ -34,7 +34,7 @@ for key, value in pairs {
   neovide_cursor_animation_length = 0.1, -- 动画时长
   -- neovide_cursor_trail_size = 0.3, -- 光标尾部
 
-  neovide_transparency = 0.9, -- 透明度
+  -- neovide_transparency = 0.9, -- 透明度
 } do
   vim.g[key] = value
 end
