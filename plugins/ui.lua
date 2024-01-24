@@ -67,6 +67,7 @@ return {
           Folded = { bg = C.base }, -- 折叠
           LineNr = { fg = C.overlay0 }, -- 左边的未选的中的行号颜色
           CursorLine = { bg = C.base }, -- 行颜色
+          StatusLine = { fg = C.text, bg = C.base },
         }
       end,
       integrations = {
