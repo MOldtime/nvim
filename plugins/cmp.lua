@@ -3,8 +3,9 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-calc",
+      "FelipeLema/cmp-async-path",
     },
-    event = "BufEnter",
+    event = "InsertEnter",
     opts = {
       -- performance.max_view_entries = 100, -- 最大条目
       experimental = {
@@ -45,47 +46,47 @@ return {
         opts.mapping[key] = value
       end
 
-      local sources = cmp.config.sources {
+      opts.sources = cmp.config.sources {
+        { name = "luasnip", priority = 1000 },
+        { name = "nvim_lsp", priority = 1000 },
+        {
+          name = "buffer",
+          priority = 750,
+          option = {
+            get_bufnrs = function()
+              local bufs = {}
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local buf = vim.api.nvim_win_get_buf(win)
+                local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                if byte_size < 1024 * 1024 then -- 1 Megabyte max
+                  bufs[buf] = true
+                end
+              end
+              return vim.tbl_keys(bufs)
+            end,
+          },
+        },
+        { name = "async_path", priority = 500 },
         { name = "calc", priority = 250 },
       }
-      for _, value in ipairs(sources) do
-        table.insert(opts.sources, value)
-      end
       cmp.setup(opts)
     end,
   },
   {
     "onsails/lspkind.nvim",
-    opts = {
-      mode = "symbol",
-      symbol_map = {
-        Text = "", --
-        Method = "", --
-        Function = "", --
-        Constructor = "",
-        Field = "",
-        Variable = "",
-        Class = "", --
-        Interface = "", --
-        Module = "", --
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "פּ",
-        Event = "", --
-        Operator = "",
-        TypeParameter = "",
+    opts = function(_, opts)
+      for key, value in ipairs {
         Codeium = "",
-      },
-    },
+      } do
+        opts.symbol_map[key] = value
+      end
+    end,
   },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   config = function()
+  --     require("luasnip.loaders.from_vscode").lazy_load({})
+  --     require "plugins.configs.luasnip"
+  --   end
+  -- }
 }

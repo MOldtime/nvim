@@ -6,12 +6,16 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      cmdline = { view = "cmdline" },
+      -- cmdline = { view = "cmdline" },
       messages = { view_search = false },
       lsp = {
         progress = { enabled = false },
         hover = { enabled = false },
         signature = { enabled = false },
+      },
+      presets = {
+        bottom_search = false, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
       },
       routes = {
         { filter = { event = "msg_show", min_height = 20 }, view = "messages" }, -- send long messages to split
@@ -63,6 +67,7 @@ return {
           Folded = { bg = C.base }, -- 折叠
           LineNr = { fg = C.overlay0 }, -- 左边的未选的中的行号颜色
           CursorLine = { bg = C.base }, -- 行颜色
+          StatusLine = { fg = C.text, bg = C.base },
         }
       end,
       integrations = {
@@ -165,22 +170,7 @@ return {
   {
     -- 对Log加上颜色
     "fei6409/log-highlight.nvim",
-    lazy = false,
-    config = function() require("log-highlight").setup {} end,
-  },
-  -- ?
-  {
-    -- 使其它内容变暗
-    "folke/twilight.nvim",
-    lazy = true,
-    enabled = false,
-    opts = {},
-  },
-  -- 彩虹分隔
-      {
-    "HiPhish/rainbow-delimiters.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    main = "rainbow-delimiters.setup",
+    config = function() require("log-highlight").setup {} end,
   },
 }

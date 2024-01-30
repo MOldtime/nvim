@@ -9,7 +9,7 @@ return {
     -- signcolumn = "auto", -- sets vim.opt.signcolumn to auto
     wrap = false, -- sets vim.opt.wrap
     clipboard = "",
-    expandtab = false,
+    expandtab = true,
     list = true,
     termguicolors = true, -- 开启真彩色
     listchars = {
@@ -17,6 +17,8 @@ return {
     },
     inccommand = "split", -- 在实时预览窗口中显示搜索/替换的效果
     cmdheight = 1,
+    -- autoindent = true,
+    smartindent = true,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

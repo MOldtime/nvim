@@ -1,12 +1,13 @@
 local maps = require("astronvim.utils").set_mappings
 return {
+  -- 对齐插件 ga gA 接 ip
   {
-    -- 对齐插件 ga gA 接 ip
     -- jl lc jr, s= , = ,
     "echasnovski/mini.align",
     lazy = false,
     opts = true,
   },
+  -- 快捷跳转
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -79,6 +80,7 @@ return {
       },
   },
   },
+  -- 多光标
   {
     -- 基本用法:
     --    选择单词Ctrl-N（如Ctrl-dSublime Text/VS Code 中）
@@ -102,6 +104,7 @@ return {
       }
     end,
   },
+  -- 增加 修改 删除 字符的周围，例如: (),“”
   {
     -- Old text                    Command         New text-
     -- ---------------------------------------------------------------------------s
@@ -110,14 +113,21 @@ return {
     -- delete ar*ound me!]        ds]             delete around me!r
     -- emove <b>HTML t*ags</b>    dst             remove HTML tags'
     -- change quot*es'            cs'"            "change quotes"<
-    -- b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>d
+    -- b>or tag* types</b>        csth1<CR>       or tag typesd
     -- elete(functi*on calls)     dsf             function calls
     -- 可以修改括住的文本，如：加字符'', 修改括号
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    opts = {},
+    event = "BufEnter",
+    opts = true,
   },
+  -- 直接添加字符在周围
+  {
+    "NStefan002/visual-surround.nvim",
+    event = "BufEnter",
+    opts = true,
+  },
+  -- 加速jk的移动
   {
     -- https://github.com/rainbowhxch/accelerated-jk.nvim
     "rainbowhxch/accelerated-jk.nvim",
@@ -140,9 +150,9 @@ return {
       }
     end,
   },
+  -- 用于绑定<leader>
   {
     -- https://github.com/max397574/better-escape.nvim
-    -- 用于绑定<leader>
     "max397574/better-escape.nvim",
     opts = function(_, opts)
       opts.mapping = { "jk", "fj" }
@@ -150,8 +160,8 @@ return {
       return opts
     end,
   },
+  -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
   {
-    -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
     "gbprod/cutlass.nvim",
     event = { "User AstroFile" },
     opts = {
@@ -165,6 +175,7 @@ return {
       },
     },
   },
+  -- replace
   {
     "roobert/search-replace.nvim",
     event = "BufEnter",
@@ -203,6 +214,7 @@ return {
       require("search-replace").setup(opts)
     end,
   },
+  -- codeium ai
   {
     "Exafunction/codeium.vim",
     event = "InsertEnter",
@@ -244,8 +256,8 @@ return {
       }
     end,
   },
+  -- 添加标记 快速跳转
   {
-    -- 添加标记 快速跳转
     "LeonHeidelbach/trailblazer.nvim",
     event = "BufEnter",
     opts = {
@@ -269,6 +281,28 @@ return {
             set_trail_mark_stack_sort_mode = "<leader>ms", -- 将跟踪标记堆栈排序模式设置为给定模式或在可用模式之间切换
           },
         },
+      },
+    },
+  },
+  -- 扩展 C-a, C-x, 切换true -> false...
+  {
+    "nat-418/boole.nvim",
+    event = "BufEnter",
+    opts = {
+      mappings = {
+        increment = "<C-a>",
+        decrement = "<C-x>",
+      },
+      -- User defined loops
+      additions = {
+        { "Foo", "Bar" },
+        { "tic", "tac", "toe" },
+      },
+      allow_caps_additions = {
+        { "enable", "disable" },
+        -- enable → disable
+        -- Enable → Disable
+        -- ENABLE → DISABLE
       },
     },
   },

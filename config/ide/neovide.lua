@@ -1,10 +1,9 @@
--- vim.o.guifont = "JetBrainsMono Nerd Font,JetBrains Mono NL,Noto Sans Sc:h12:b"
 vim.o.guifont = "JetBrainsMono Nerd Font,"
   .. "JetBrainsMono Nerd Font Propo,"
   .. "JetBrainsMonoNL Nerd Font,"
   .. "JetBrainsMonoNL Nerd Font Propo,"
   .. "Noto Sans Sc"
-  .. ":h13:b"
+  .. ":h11:b"
 
 for key, value in pairs {
   -- neovide_profiler = true -- debug
@@ -35,7 +34,7 @@ for key, value in pairs {
   neovide_cursor_animation_length = 0.1, -- 动画时长
   -- neovide_cursor_trail_size = 0.3, -- 光标尾部
 
-  neovide_transparency = 0.9, -- 透明度
+  -- neovide_transparency = 0.9, -- 透明度
 } do
   vim.g[key] = value
 end
