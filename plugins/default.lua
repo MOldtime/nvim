@@ -1,3 +1,4 @@
+local maps = require("astronvim.utils").set_mappings
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -104,7 +105,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
-        use_libuv_file_watcher = false, -- 不开的原因是 Windows 下有Bug;
+        use_libuv_file_watcher = false, -- Windows delete bug;
         -- hijack_netrw_behavior = "open_default",
       },
     },
@@ -129,10 +130,16 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      local utils = require "user.tools.utils"
-      -- 这里可以理解为要安装的语言
-      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
+    opts = {
+      incremental_selection = {
+        -- 使用回车或退格选择范围
+        keymaps = {
+          init_selection = "gnn",
+          node_incremental = "<CR>",
+          node_decremental = "<BS>",
+        },
+      },
+      ensure_installed = {
         "c",
         "cpp",
         "rust",
@@ -157,11 +164,12 @@ return {
         "markdown_inline",
         "bash",
         "regex",
-      })
-      -- local value = opts.textobjects.select.keymaps
+      },
+    },
+    config = function(_, opts)
+      local utils = require "user.tools.utils"
       opts.textobjects.select.keymaps["ad"] = opts.textobjects.select.keymaps["a?"]
       opts.textobjects.select.keymaps["id"] = opts.textobjects.select.keymaps["i?"]
-
       opts.textobjects.select.keymaps["a?"] = nil
       opts.textobjects.select.keymaps["i?"] = nil
       -- 翻译
@@ -197,29 +205,54 @@ return {
       utils.Assignment(opts.textobjects.select.keymaps, "il", "循环")
       utils.Assignment(opts.textobjects.select.keymaps, "aa", "参数")
       utils.Assignment(opts.textobjects.select.keymaps, "ia", "参数")
-
-      -- 使用回车或返回选择范围
-      local incremental_selection_keymaps = {
-        init_selection = "gnn", -- set to `false` to disable one of the mappings
-        node_incremental = "<CR>",
-        -- scope_incremental = "grc",
-        node_decremental = "<BS>",
-      }
-      opts.incremental_selection.keymaps = incremental_selection_keymaps
-
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = require("astronvim.utils").list_insert_unique(
-          opts.ensure_installed,
-          { "bash", "markdown", "markdown_inline", "regex", "vim" }
-        )
-      end
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, config)
-      config.sources = {}
-      return config -- return final config table
+    config = function(_, opts)
+      opts.sources = {}
+      require("null-ls").setup(opts)
     end,
   },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = {
+      on_create = function()
+        vim.opt.foldcolumn = "0"
+        vim.opt.signcolumn = "no"
+      end,
+      insert_mappings = true,
+      terminal_mappings = true,
+    },
+    config = function(_, opts)
+      local powershell_options = {
+        shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
+        shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+        shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+        shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+        shellquote = "",
+        shellxquote = "",
+      }
+
+      for option, value in pairs(powershell_options) do
+        vim.opt[option] = value
+      end
+
+      -- set mappings
+      maps {
+        t = {
+          ["<Esc>"] = {
+            [[<C-\><C-n>]],
+          },
+          ["fj"] = {
+            [[<C-\><C-n>]],
+          },
+        },
+      }
+      require("toggleterm").setup(opts)
+    end,
+  },
+  { "AstroNvim/astrotheme", enabled = false },
 }

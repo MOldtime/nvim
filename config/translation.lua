@@ -333,17 +333,3 @@ function M.mian_(tables)
 end
 
 return M
-
--- local function traverseTable(tbl, indent)
---   indent = indent or 0
---
---   for key, value in pairs(tbl) do
---     if type(value) == "table" then
---       if key == "n" then break end
---       print(string.rep(" ", indent) .. key .. ":")
---       traverseTable(value, indent + 4) -- 递归调用遍历子table，增加4个空格的缩进
---     else
---       print(string.rep(" ", indent) .. key .. ": " .. tostring(value))
---     end
---   end
--- end

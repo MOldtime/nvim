@@ -49,7 +49,23 @@ return {
       opts.sources = cmp.config.sources {
         { name = "luasnip", priority = 1000 },
         { name = "nvim_lsp", priority = 1000 },
-        { name = "buffer", priority = 750 },
+        {
+          name = "buffer",
+          priority = 750,
+          option = {
+            get_bufnrs = function()
+              local bufs = {}
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local buf = vim.api.nvim_win_get_buf(win)
+                local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                if byte_size < 1024 * 1024 then -- 1 Megabyte max
+                  bufs[buf] = true
+                end
+              end
+              return vim.tbl_keys(bufs)
+            end,
+          },
+        },
         { name = "async_path", priority = 500 },
         { name = "calc", priority = 250 },
       }

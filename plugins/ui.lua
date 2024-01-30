@@ -170,22 +170,7 @@ return {
   {
     -- 对Log加上颜色
     "fei6409/log-highlight.nvim",
-    lazy = false,
-    config = function() require("log-highlight").setup {} end,
-  },
-  -- ?
-  {
-    -- 使其它内容变暗
-    "folke/twilight.nvim",
-    lazy = true,
-    enabled = false,
-    opts = {},
-  },
-  -- 彩虹分隔
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    main = "rainbow-delimiters.setup",
+    config = function() require("log-highlight").setup {} end,
   },
 }
