@@ -22,10 +22,18 @@ return {
       -- end
       for key, value in pairs {
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(1) then
+          -- if luasnip.locally_jumpable(1) then
+          if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           elseif cmp.visible() then
-            cmp.confirm { select = true }
+            -- cmp.confirm { select = true }
+            local entry = cmp.get_selected_entry()
+	          if not entry then
+	            -- cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+	            cmp.confirm( { select = true } )
+	          else
+	            cmp.confirm()
+	          end
             -- elseif has_words_before() then
             --   vim.notify "has_words_before"
             --   cmp.complete()
