@@ -30,26 +30,38 @@ return {
     end,
   },
   {
+    "jose-elias-alvarez/null-ls.nvim",
+    enabled = false,
+  },
+  {
     "nvimtools/none-ls.nvim",
-    event = "User AstroFile",
     dependencies = {
       {
         "jay-babu/mason-null-ls.nvim",
-        opts = { handlers = {} },
+        cmd = { "NoneLsInstall", "NoneLsUninstall" },
+        opts = {
+          -- handlers = {},
+          handlers = nil,
+        },
       },
     },
-    opts = function(_, opts)
-      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        "stylua",
-      })
-      -- opts.debug = true
-      opts.on_attach = require("astronvim.utils.lsp").on_attach
+    event = "User AstroFile",
+    opts = {
+      on_attach = require("astronvim.utils.lsp").on_attach,
+    },
+    config = function (_, opts)
       maps {
         n = {
           ["<leader>lI"] = { "<cmd>NullLsInfo<cr>", desc = "Null-ls 信息" },
         },
       }
-    end,
+      opts.on_attach = require("astronvim.utils.lsp").on_attach
+      local null_ls = require("null-ls")
+      opts.sources = {
+        null_ls.builtins.formatting.stylua
+      }
+      null_ls.setup(opts)
+    end
   },
   {
     "jay-babu/mason-nvim-dap.nvim",

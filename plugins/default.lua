@@ -55,6 +55,31 @@ return {
         },
       }
 
+      local codeium = status.component.builder {
+        {
+
+          provider = function()
+            local model = vim.fn["codeium#GetStatusString"]()
+            local text = "  "
+            if model == " ON" then
+              text = text .. "ON"
+            elseif model == " 0 " then
+              text = text .. " 0"
+            elseif model == " * " then
+              text = text .. " *"
+            elseif model == "OFF" then
+              text = text .. "OFF"
+            elseif model == "   " then
+              text = text .. " "
+            else
+              text = text .. " " .. model
+            end
+            return text
+          end,
+          hl = status.hl.get_attributes "treesitter",
+        },
+      }
+
       opts.winbar = nil
       opts.statusline = {
         hl = { fg = "fg", bg = "bg" },
@@ -68,6 +93,7 @@ return {
         status.component.diagnostics { surround = false, padding = { right = 2 } },
         status.component.lsp { lsp_progress = false, surround = false },
         status.component.treesitter(),
+        codeium,
         {
           status.component.builder {
             { provider = utils.get_icon "FolderClosed" },
@@ -95,6 +121,45 @@ return {
             ruler = { padding = { left = 1 } },
             scrollbar = false,
             surround = { separator = "nav", color = "file_info_bg" },
+          },
+        },
+      }
+
+      opts.tabline = { -- bufferline
+        { -- file tree padding
+          condition = function(self)
+            self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
+            return status.condition.buffer_matches({
+              filetype = {
+                "NvimTree",
+                "OverseerList",
+                "aerial",
+                "dap%-repl",
+                "dapui_.",
+                "edgy",
+                "neo%-tree",
+                "undotree",
+              },
+            }, vim.api.nvim_win_get_buf(self.winid))
+          end,
+          provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid) + 1) end,
+          hl = { bg = "tabline_bg" },
+        },
+        status.heirline.make_buflist(status.component.tabline_file_info()), -- component for each buffer tab
+        status.component.fill { hl = { bg = "tabline_bg" } }, -- fill the rest of the tabline with background color
+        { -- tab list
+          condition = function() return #vim.api.nvim_list_tabpages() >= 2 end, -- only show tabs if there are more than one
+          status.heirline.make_tablist { -- component for each tab
+            provider = status.provider.tabnr(),
+            hl = function(self) return status.hl.get_attributes(status.heirline.tab_type(self, "tab"), true) end,
+          },
+          { -- close button for current tab
+            provider = status.provider.close_button { kind = "TabClose", padding = { left = 1, right = 1 } },
+            hl = status.hl.get_attributes("tab_close", true),
+            on_click = {
+              callback = function() require("astronvim.utils.buffer").close_tab() end,
+              name = "heirline_tabline_close_tab_callback",
+            },
           },
         },
       }

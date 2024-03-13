@@ -217,11 +217,11 @@ return {
   -- codeium ai
   {
     "Exafunction/codeium.vim",
-    event = "InsertEnter",
+    event = "BufEnter",
     init = function()
       vim.g.codeium_disable_bindings = 1 -- 取消默认的映射
-      vim.g.codeium_enabled = true -- 默认启用
-      vim.g.codeium_manual = true -- 取消自动补全
+      -- vim.g.codeium_enabled = false -- 默认启用
+      -- vim.g.codeium_manual = true -- 取消自动补全
     end,
     config = function()
       maps {

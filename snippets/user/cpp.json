@@ -1,13 +1,1 @@
-{
-    "Main function": {
-        "prefix": "main0",
-        "body": [
-            "int main ()",
-            "{",
-            "\t$1",
-            "\treturn 0;",
-            "}"
-        ],
-        "description": "创建一个没有参数的mian函数"
-    }
-}
+{}
