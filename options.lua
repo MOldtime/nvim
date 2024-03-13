@@ -17,7 +17,6 @@ return {
     },
     inccommand = "split", -- 在实时预览窗口中显示搜索/替换的效果
     cmdheight = 1,
-    -- autoindent = true,
     smartindent = true,
   },
   g = {

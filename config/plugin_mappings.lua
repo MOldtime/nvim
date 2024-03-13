@@ -34,36 +34,3 @@ if is_available "telescope.nvim" then
     },
   }
 end
-
--- if is_available "search-replace.nvim" then
---   maps {
---     n = {
---       ["<leader>rs"] = {
---         function() vim.api.nvim_command "SearchReplaceSingleBufferSelections" end,
---         desc = "SearchReplaceSingleBuffer [s]elction list",
---       },
---       ["<leader>ro"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferOpen" end, desc = "[o]pen" },
---       ["<leader>rw"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCWord" end, desc = "[w]ord" },
---       ["<leader>rW"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCWORD" end, desc = "[W]ORD" },
---       ["<leader>re"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCExpr" end, desc = "[e]xpr" },
---       ["<leader>rf"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCFile" end, desc = "[f]ile" },
---       ["<leader>rbs"] = {
---         function() vim.api.nvim_command "SearchReplaceMultiBufferSelections" end,
---         desc = "SearchReplaceMultiBuffer [s]elction list",
---       },
---       ["<leader>rbo"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferOpen" end, desc = "[o]pen" },
---       ["<leader>rbw"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCWord" end, desc = "[w]ord" },
---       ["<leader>rbW"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCWORD" end, desc = "[W]ORD" },
---       ["<leader>rbe"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCExpr" end, desc = "[e]xpr" },
---       ["<leader>rbf"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCFile" end, desc = "[f]ile" },
---     },
---     v = {
---       ["<C-r>"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end },
---       ["<C-s>"] = { function() vim.api.nvim_command "SearchReplaceWithinVisualSelection" end },
---       ["<C-b>"] = { function() vim.api.nvim_command "SearchReplaceWithinVisualSelectionCWord" end },
---     },
---   }
--- end
-
-if is_available "vim-bitoai" then
-end

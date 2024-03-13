@@ -1,6 +1,15 @@
 return {
   -- nvim-notify
-  { "rcarriga/nvim-notify", init = false, config = true },
+  {
+    "rcarriga/nvim-notify",
+    init = false,
+    opts = {
+      stages = "fade_in_slide_out",
+      render = "compact",
+      timeout = 1000,
+    },
+    config = true,
+  },
   -- noice
   {
     "folke/noice.nvim",
@@ -11,7 +20,19 @@ return {
       lsp = {
         progress = { enabled = false },
         hover = { enabled = false },
-        signature = { enabled = false },
+        -- signature = { enabled = false },
+        signature = {
+          enabled = true,
+          auto_open = {
+            enabled = true,
+            trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+            luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+            throttle = 50, -- Debounce lsp signature help request by 50ms
+          },
+          view = nil, -- when nil, use defaults from documentation
+          ---@type NoiceViewOptions
+          opts = {}, -- merged with defaults from documentation
+        },
       },
       presets = {
         bottom_search = false, -- use a classic bottom cmdline for search
@@ -49,22 +70,23 @@ return {
       },
       styles = {
         comments = { "italic" },
-        conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
+        conditionals = { "bold", "italic" },
+        loops = { "bold", "italic" },
+        functions = { "bold", "italic" },
+        keywords = { "bold", "italic" },
+        strings = { "bold" },
+        variables = { "bold" },
+        numbers = { "bold" },
+        booleans = { "bold" },
+        properties = { "bold" },
+        types = { "bold", "italic" },
+        operators = { "bold" },
       },
       -- 覆盖组
       custom_highlights = function(C)
         return {
-          Folded = { bg = C.base }, -- 折叠
+          Folded = { bg = C.base }, -- 用于闭合折叠的线
+          FoldColumn = { fg = C.red },
           LineNr = { fg = C.overlay0 }, -- 左边的未选的中的行号颜色
           CursorLine = { bg = C.base }, -- 行颜色
           StatusLine = { fg = C.text, bg = C.base },
@@ -136,32 +158,32 @@ return {
           text = "#b5c1f1",
         },
         latte = {
-          rosewater = "#cc7983",
-          flamingo = "#bb5d60",
-          pink = "#d54597",
-          mauve = "#a65fd5",
-          red = "#b7242f",
-          maroon = "#db3e68",
-          peach = "#e46f2a",
-          yellow = "#bc8705",
-          green = "#1a8e32",
-          teal = "#00a390",
-          sky = "#089ec0",
-          sapphire = "#0ea0a0",
-          blue = "#017bca",
-          lavender = "#8584f7",
-          text = "#444444",
-          subtext1 = "#555555",
-          subtext0 = "#666666",
-          overlay2 = "#777777",
-          overlay1 = "#888888",
-          overlay0 = "#999999",
-          surface2 = "#aaaaaa",
-          surface1 = "#bbbbbb",
-          surface0 = "#cccccc",
-          base = "#ffffff",
-          mantle = "#eeeeee",
-          crust = "#dddddd",
+          rosewater = "#a43b35",
+          flamingo = "#da3537",
+          pink = "#d332a1",
+          mauve = "#aa3685",
+          red = "#ff3532",
+          maroon = "#de3631",
+          peach = "#f36c0b",
+          yellow = "#bd8800",
+          green = "#596600",
+          teal = "#287e5e",
+          sky = "#52b1c7",
+          sapphire = "#3fb4b8",
+          blue = "#317da7",
+          lavender = "#474155",
+          text = "#4d4742",
+          subtext1 = "#5b5549",
+          subtext0 = "#6d6655",
+          overlay2 = "#786d5a",
+          overlay1 = "#8c7c62",
+          overlay0 = "#a18d66",
+          surface2 = "#c9bea5",
+          surface1 = "#d8d3ba",
+          surface0 = "#e8e2c8",
+          base = "#ebe4c8",
+          mantle = "#e1dab5",
+          crust = "#bdc0a0",
         },
       },
     },
@@ -172,5 +194,50 @@ return {
     "fei6409/log-highlight.nvim",
     event = "VeryLazy",
     config = function() require("log-highlight").setup {} end,
+  },
+  -- 窗口自动配置
+  {
+    "nvim-focus/focus.nvim",
+    event = "BufEnter",
+    version = "*",
+    opts = {
+      autoresize = {
+        width = 150,
+      },
+      ui = {
+        number = true,
+        winhighlight = true,
+      },
+    },
+    config = function(_, opts)
+      local ignore_filetypes = { "neo-tree" }
+      local ignore_buftypes = { "nofile", "prompt", "popup" }
+
+      local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+
+      vim.api.nvim_create_autocmd("WinEnter", {
+        group = augroup,
+        callback = function(_)
+          if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
+            vim.w.focus_disable = true
+          else
+            vim.w.focus_disable = false
+          end
+        end,
+        desc = "Disable focus autoresize for BufType",
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = augroup,
+        callback = function(_)
+          if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+            vim.b.focus_disable = true
+          else
+            vim.b.focus_disable = false
+          end
+        end,
+        desc = "Disable focus autoresize for FileType",
+      })
+      require("focus").setup(opts)
+    end,
   },
 }

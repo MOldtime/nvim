@@ -1,13 +1,15 @@
--- customize mason plugins
+local maps = require("astronvim.utils").set_mappings
 return {
-  -- use mason-lspconfig to configure LSP installations
+  -- {
+  --   "williamboman/mason.nvim",
+  --   config = function(_, opts)
+  --     opts.log_level = vim.log.levels.DEBUG
+  --     require("mason").setup(opts)
+  --   end,
+  -- },
   {
     "williamboman/mason-lspconfig.nvim",
-    -- overrides `require("mason-lspconfig").setup(...)`
     opts = function(_, opts)
-      -- 需要安装的lsp
-      -- 查看语言支持列表：https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-      -- 复看对应的名子：https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "lua_ls",
         "clangd",
@@ -23,26 +25,47 @@ return {
         "sqlls", -- sql language server
         "html", -- html language server
         "cssls", -- css language server
+        "volar",
       })
     end,
   },
-  -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
   {
-    "jay-babu/mason-null-ls.nvim",
-    -- overrides `require("mason-null-ls").setup(...)`
-    opts = function(_, opts)
-      -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        -- "prettier",
-        -- "stylua",
-      })
-    end,
+    "jose-elias-alvarez/null-ls.nvim",
+    enabled = false,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      {
+        "jay-babu/mason-null-ls.nvim",
+        cmd = { "NoneLsInstall", "NoneLsUninstall" },
+        opts = {
+          -- handlers = {},
+          handlers = nil,
+        },
+      },
+    },
+    event = "User AstroFile",
+    opts = {
+      on_attach = require("astronvim.utils.lsp").on_attach,
+    },
+    config = function (_, opts)
+      maps {
+        n = {
+          ["<leader>lI"] = { "<cmd>NullLsInfo<cr>", desc = "Null-ls 信息" },
+        },
+      }
+      opts.on_attach = require("astronvim.utils.lsp").on_attach
+      local null_ls = require("null-ls")
+      opts.sources = {
+        null_ls.builtins.formatting.stylua
+      }
+      null_ls.setup(opts)
+    end
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
-    -- overrides `require("mason-nvim-dap").setup(...)`
     opts = function(_, opts)
-      -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         -- "python",
       })

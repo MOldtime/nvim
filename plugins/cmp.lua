@@ -9,26 +9,39 @@ return {
     opts = {
       -- performance.max_view_entries = 100, -- 最大条目
       experimental = {
-        ghost_text = { hlgroup = "Comment" }, -- 显示出来
+        -- ghost_text = { hlgroup = "Comment" }, -- 显示出来
+      },
+      matching = { -- 匹配方式
+        disallow_fuzzy_matching = false,
+        disallow_fullfuzzy_matching = false,
+        disallow_partial_fuzzy_matching = true,
+        disallow_partial_matching = true,
+        disallow_prefix_unmatching = false,
       },
     },
     config = function(_, opts)
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
-      -- local function has_words_before()
-      --   local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
-      --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-      -- end
+      local function has_words_before()
+        local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+      end
       for key, value in pairs {
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(1) then
+          if cmp.visible() then
+            local entry = cmp.get_selected_entry()
+            if not entry then
+              -- vim.notify("1")
+              cmp.confirm { select = true }
+            else
+              -- vim.notify("2")
+              cmp.confirm()
+            end
+          elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
-          elseif cmp.visible() then
-            cmp.confirm { select = true }
-            -- elseif has_words_before() then
-            --   vim.notify "has_words_before"
-            --   cmp.complete()
+          elseif has_words_before() then
+            cmp.complete()
           else
             fallback()
           end
@@ -47,8 +60,8 @@ return {
       end
 
       opts.sources = cmp.config.sources {
-        { name = "luasnip", priority = 1000 },
         { name = "nvim_lsp", priority = 1000 },
+        { name = "luasnip", priority = 900 },
         {
           name = "buffer",
           priority = 750,
