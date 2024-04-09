@@ -298,4 +298,5 @@ return {
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
+  { "uga-rosa/utf8.nvim" },
 }

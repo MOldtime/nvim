@@ -1,3 +1,4 @@
+local maps = require("astrocore").set_mappings
 return {
   -- nvim-notify
   {
@@ -8,7 +9,16 @@ return {
       render = "compact",
       timeout = 1000,
     },
-    config = true,
+    config = {
+      maps {
+        n = {
+          ["<Leader>za"] = {
+            function() require("notify").dismiss { silent = true } end,
+            desc = "关闭通知",
+          },
+        },
+      },
+    },
   },
   -- noice
   {
@@ -20,19 +30,19 @@ return {
       lsp = {
         progress = { enabled = false },
         hover = { enabled = false },
-        -- signature = { enabled = false },
-        signature = {
-          enabled = true,
-          auto_open = {
-            enabled = true,
-            trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-            luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-            throttle = 50, -- Debounce lsp signature help request by 50ms
-          },
-          view = nil, -- when nil, use defaults from documentation
-          ---@type NoiceViewOptions
-          opts = {}, -- merged with defaults from documentation
-        },
+        signature = { enabled = false },
+        -- signature = {
+        --   enabled = true,
+        --   auto_open = {
+        --     enabled = true,
+        --     trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+        --     luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+        --     throttle = 50, -- Debounce lsp signature help request by 50ms
+        --   },
+        --   view = nil, -- when nil, use defaults from documentation
+        --   ---@type NoiceViewOptions
+        --   opts = {}, -- merged with defaults from documentation
+        -- },
       },
       presets = {
         bottom_search = false, -- use a classic bottom cmdline for search
@@ -199,7 +209,6 @@ return {
   {
     "nvim-focus/focus.nvim",
     event = "BufEnter",
-    enabled = false,
     version = "*",
     opts = {
       autoresize = {

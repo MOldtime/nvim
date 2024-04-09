@@ -1,4 +1,6 @@
 local maps = require("astrocore").set_mappings
+local tool = require "tools.command"
+local tus = require "tools.utils"
 return {
   {
     "epwalsh/obsidian.nvim",
@@ -167,7 +169,28 @@ return {
   {
     "kdheepak/lazygit.nvim",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
+      {
+        "nvim-telescope/telescope.nvim",
+        opts = function(_, _)
+          local builtin = require "telescope.builtin"
+          maps {
+            v = {
+              ["<leader>fc"] = {
+                function()
+                  tool.LazyConmand(function() builtin.grep_string { search = tus.Gets_selected_text() } end)
+                end,
+                desc = "Find Selected Content",
+              },
+              ["<leader>ff"] = {
+                function()
+                  tool.LazyConmand(function() builtin.find_files { search_file = tus.Gets_selected_text() } end)
+                end,
+                desc = "Find Selected files",
+              },
+            },
+          }
+        end,
+      },
       "nvim-lua/plenary.nvim",
     },
     config = function() require("telescope").load_extension "lazygit" end,

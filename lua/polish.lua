@@ -18,3 +18,4 @@ vim.filetype.add {
 }
 
 require "config.ide.neovide"
+require "config.config"

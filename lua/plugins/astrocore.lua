@@ -2,7 +2,8 @@
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
-
+local tool = require "tools.command"
+local utils = require "tools.utils"
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -86,14 +87,14 @@ return {
           end,
           desc = "选择当前向上移动",
         },
-        -- ["<leader>zt"] = {
-        --   function() utils.SetFileType() end,
-        --   desc = "设置文件类型",
-        -- },
-        -- ["<leader>ze"] = {
-        --   function() utils.SetFileEncoding() end,
-        --   desc = "设置文件编码",
-        -- },
+        ["<leader>zt"] = {
+          function() utils.SetFileType() end,
+          desc = "设置文件类型",
+        },
+        ["<leader>ze"] = {
+          function() utils.SetFileEncoding() end,
+          desc = "设置文件编码",
+        },
         -- second key is the lefthand side of the map
 
         -- navigate buffer tabs with `H` and `L`
@@ -116,32 +117,32 @@ return {
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },
       v = {
-        -- ["<M-J>"] = {
-        --   function()
-        --     tool.LazyConmand(function()
-        --       local start_pos = vim.fn.getpos "'<"
-        --       local end_pos = vim.fn.getpos "'>"
-        --       local end_line = end_pos[2]
-        --       if end_line < vim.api.nvim_buf_line_count(0) then
-        --         vim.api.nvim_command(start_pos[2] .. "," .. end_line .. "m" .. end_line + 1)
-        --       end
-        --       vim.api.nvim_input "gv"
-        --     end)
-        --   end,
-        --   desc = "选择当前向下移动",
-        -- },
-        -- ["<M-K>"] = {
-        --   function()
-        --     tool.LazyConmand(function()
-        --       local start_pos = vim.fn.getpos "'<"
-        --       local end_pos = vim.fn.getpos "'>"
-        --       local start_line = start_pos[2]
-        --       if start_line > 1 then vim.api.nvim_command(start_line .. "," .. end_pos[2] .. "m" .. start_line - 2) end
-        --       vim.api.nvim_input "gv"
-        --     end)
-        --   end,
-        --   desc = "选择当前向上移动",
-        -- },
+        ["<M-J>"] = {
+          function()
+            tool.LazyConmand(function()
+              local start_pos = vim.fn.getpos "'<"
+              local end_pos = vim.fn.getpos "'>"
+              local end_line = end_pos[2]
+              if end_line < vim.api.nvim_buf_line_count(0) then
+                vim.api.nvim_command(start_pos[2] .. "," .. end_line .. "m" .. end_line + 1)
+              end
+              vim.api.nvim_input "gv"
+            end)
+          end,
+          desc = "选择当前向下移动",
+        },
+        ["<M-K>"] = {
+          function()
+            tool.LazyConmand(function()
+              local start_pos = vim.fn.getpos "'<"
+              local end_pos = vim.fn.getpos "'>"
+              local start_line = start_pos[2]
+              if start_line > 1 then vim.api.nvim_command(start_line .. "," .. end_pos[2] .. "m" .. start_line - 2) end
+              vim.api.nvim_input "gv"
+            end)
+          end,
+          desc = "选择当前向上移动",
+        },
         ["<M-l>"] = { "$", desc = "移动到行尾" },
         ["<M-h>"] = { "^", desc = "移动到行首" },
         ["<M-y>"] = { '"+y', desc = "复制文字到系统" },
