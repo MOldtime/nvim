@@ -216,7 +216,7 @@ return {
       },
       ui = {
         number = true,
-        winhighlight = true,
+        winhighlight = false,
       },
     },
     config = function(_, opts)

@@ -133,17 +133,17 @@ return {
     "rainbowhxch/accelerated-jk.nvim",
     event = { "User AstroFile" },
     opts = {
-      -- acceleration_table = { 7,12,17,21,24,26,28,30 }
+      acceleration_table = { 5, 14, 19, 23, 26, 28, 30, 32 },
     },
     config = function()
       maps {
         n = {
           j = {
-            "<Plug>(accelerated_jk_gj)",
+            "<Plug>(accelerated_jk_j)",
             desc = "向下移动",
           },
           k = {
-            "<Plug>(accelerated_jk_gk)",
+            "<Plug>(accelerated_jk_k)",
             desc = "向上移动",
           },
         },
@@ -163,7 +163,7 @@ return {
   -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
   {
     "gbprod/cutlass.nvim",
-    event = { "User AstroFile" },
+    lazy = false, -- 使其在whick-key之前加载
     opts = {
       cut_key = "m",
       override_del = nil,
@@ -306,35 +306,5 @@ return {
         -- ENABLE → DISABLE
       },
     },
-  },
-  --自动补齐符号
-  {
-    "windwp/nvim-autopairs",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom autopairs configuration such as custom rules
-      local npairs = require "nvim-autopairs"
-      local Rule = require "nvim-autopairs.rule"
-      local cond = require "nvim-autopairs.conds"
-      npairs.add_rules(
-        {
-          Rule("$", "$", { "tex", "latex" })
-            -- don't add a pair if the next character is %
-            :with_pair(cond.not_after_regex "%%")
-            -- don't add a pair if  the previous character is xxx
-            :with_pair(
-              cond.not_before_regex("xxx", 3)
-            )
-            -- don't move right when repeat character
-            :with_move(cond.none())
-            -- don't delete if the next character is xx
-            :with_del(cond.not_after_regex "xx")
-            -- disable adding a newline when you press <cr>
-            :with_cr(cond.none()),
-        },
-        -- disable for .vim files, but it work for another filetypes
-        Rule("a", "a", "-vim")
-      )
-    end,
   },
 }

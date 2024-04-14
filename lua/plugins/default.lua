@@ -291,7 +291,7 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
-  { "AstroNvim/astrotheme", enabled = false },
+  -- { "AstroNvim/astrotheme", enabled = false },
   "andweeb/presence.nvim",
   {
     "ray-x/lsp_signature.nvim",

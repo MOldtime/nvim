@@ -70,6 +70,7 @@ return {
         ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
       },
       n = {
+        ["<Leader>h"] = nil,
         ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
         ["<tab>"] = { "v>", desc = "缩进" },
         ["<s-tab>"] = { "v<", desc = "缩进" },
