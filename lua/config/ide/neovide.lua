@@ -32,7 +32,7 @@ for key, value in pairs {
   neovide_padding_right = 5,
   neovide_padding_left = 5,
   neovide_window_blurred = true,
-  neovide_transparency = 0.9,
+  neovide_transparency = 0.95,
   neovide_cursor_smooth_blink = true,
 } do
   vim.g[key] = value
