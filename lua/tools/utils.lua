@@ -37,4 +37,13 @@ function M.SetFileEncoding()
   vim.api.nvim_command("set fileencoding=" .. string.gsub(vim.fn.input "Set File Encoding:", "^%s*", ""))
 end
 
+function M.Systemos()
+  local name = vim.loop.os_uname().sysname
+  if name == "Windows_NT" then
+    return "windows"
+  elseif name == "LInux" then
+    return "linux"
+  end
+end
+
 return M

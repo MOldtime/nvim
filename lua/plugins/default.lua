@@ -167,15 +167,6 @@ return {
     end,
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        -- use_libuv_file_watcher = false, -- Windows delete bug;
-        -- hijack_netrw_behavior = "open_default",
-      },
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       incremental_selection = {
@@ -220,38 +211,6 @@ return {
       opts.textobjects.select.keymaps["a?"] = nil
       opts.textobjects.select.keymaps["i?"] = nil
       -- 翻译
-      -- utils.Assignment(opts.textobjects.move.goto_next_start, "]k", "下一个区块开始")
-      -- utils.Assignment(opts.textobjects.move.goto_next_start, "]f", "下一个函数开始")
-      -- utils.Assignment(opts.textobjects.move.goto_next_start, "]a", "下一个参数开始")
-      -- utils.Assignment(opts.textobjects.move.goto_next_end, "]K", "下一个块结束")
-      -- utils.Assignment(opts.textobjects.move.goto_next_end, "]F", "下一个函数结束")
-      -- utils.Assignment(opts.textobjects.move.goto_next_end, "]A", "下一个参数结束")
-      -- utils.Assignment(opts.textobjects.move.goto_previous_start, "[k", "上一个块开始")
-      -- utils.Assignment(opts.textobjects.move.goto_previous_start, "[f", "上一个函数开始")
-      -- utils.Assignment(opts.textobjects.move.goto_previous_start, "[a", "上一个参数开始")
-      -- utils.Assignment(opts.textobjects.move.goto_previous_end, "[K", "上一个块结束")
-      -- utils.Assignment(opts.textobjects.move.goto_previous_end, "[F", "上一个函数结束")
-      -- utils.Assignment(opts.textobjects.move.goto_previous_end, "[A", "上一个参数结束")
-      -- -- -----------
-      -- utils.Assignment(opts.textobjects.swap.swap_next, ">K", "交换下一个块")
-      -- utils.Assignment(opts.textobjects.swap.swap_next, ">F", "交换下一个函数")
-      -- utils.Assignment(opts.textobjects.swap.swap_next, ">A", "交换下一个参数")
-      -- utils.Assignment(opts.textobjects.swap.swap_previous, "<K", "交换上一个块")
-      -- utils.Assignment(opts.textobjects.swap.swap_previous, "<F", "交换上一个函数")
-      -- utils.Assignment(opts.textobjects.swap.swap_previous, "<A", "交换前一个参数")
-      -- -- -----------
-      -- utils.Assignment(opts.textobjects.select.keymaps, "ak", "块")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "ik", "块")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "ac", "类")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "ic", "类")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "ad", "条件")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "id", "条件")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "af", "函数")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "if", "函数")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "al", "循环")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "il", "循环")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "aa", "参数")
-      -- utils.Assignment(opts.textobjects.select.keymaps, "ia", "参数")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
@@ -267,18 +226,20 @@ return {
       terminal_mappings = true,
     },
     config = function(_, opts)
-      -- local powershell_options = {
-      --   shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
-      --   shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-      --   shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-      --   shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-      --   shellquote = "",
-      --   shellxquote = "",
-      -- }
-      --
-      -- for option, value in pairs(powershell_options) do
-      --   vim.opt[option] = value
-      -- end
+      if vim.loop.os_uname().sysname == "Windows_NT" then
+        local powershell_options = {
+          shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
+          shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+          shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+          shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+          shellquote = "",
+          shellxquote = "",
+        }
+
+        for option, value in pairs(powershell_options) do
+          vim.opt[option] = value
+        end
+      end
 
       -- set mappings
       maps {
