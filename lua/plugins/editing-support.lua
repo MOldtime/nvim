@@ -307,4 +307,35 @@ return {
       },
     },
   },
+  -- 批量移动
+  {
+    "willothy/moveline.nvim",
+    event = "BufEnter",
+    build = "make",
+    config = function()
+      local moveline = require "moveline"
+      maps {
+        n = {
+          ["<M-K>"] = {
+            moveline.up,
+            desc = "移动到上一行",
+          },
+          ["<M-J>"] = {
+            moveline.down,
+            desc = "移动到下一行",
+          },
+        },
+        v = {
+          ["<M-K>"] = {
+            moveline.block_up,
+            desc = "选择移动到上一行",
+          },
+          ["<M-J>"] = {
+            moveline.block_down,
+            desc = "选择移动到下一行",
+          },
+        },
+      }
+    end,
+  },
 }

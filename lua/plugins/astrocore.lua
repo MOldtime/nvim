@@ -76,18 +76,6 @@ return {
         ["<s-tab>"] = { "v<", desc = "缩进" },
         ["<M-h>"] = { "^", desc = "移动到行首" },
         ["<M-l>"] = { "$", desc = "移动到行尾" },
-        ["<M-J>"] = {
-          function()
-            if vim.api.nvim_win_get_cursor(0)[1] < vim.api.nvim_buf_line_count(0) then vim.api.nvim_command "m +1" end
-          end,
-          desc = "选择当前向下移动",
-        },
-        ["<M-K>"] = {
-          function()
-            if vim.api.nvim_win_get_cursor(0)[1] > 1 then vim.api.nvim_command "m -2" end
-          end,
-          desc = "选择当前向上移动",
-        },
         ["<leader>zt"] = {
           function() utils.SetFileType() end,
           desc = "设置文件类型",
@@ -118,32 +106,6 @@ return {
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },
       v = {
-        ["<M-J>"] = {
-          function()
-            tool.LazyConmand(function()
-              local start_pos = vim.fn.getpos "'<"
-              local end_pos = vim.fn.getpos "'>"
-              local end_line = end_pos[2]
-              if end_line < vim.api.nvim_buf_line_count(0) then
-                vim.api.nvim_command(start_pos[2] .. "," .. end_line .. "m" .. end_line + 1)
-              end
-              vim.api.nvim_input "gv"
-            end)
-          end,
-          desc = "选择当前向下移动",
-        },
-        ["<M-K>"] = {
-          function()
-            tool.LazyConmand(function()
-              local start_pos = vim.fn.getpos "'<"
-              local end_pos = vim.fn.getpos "'>"
-              local start_line = start_pos[2]
-              if start_line > 1 then vim.api.nvim_command(start_line .. "," .. end_pos[2] .. "m" .. start_line - 2) end
-              vim.api.nvim_input "gv"
-            end)
-          end,
-          desc = "选择当前向上移动",
-        },
         ["<M-l>"] = { "$", desc = "移动到行尾" },
         ["<M-h>"] = { "^", desc = "移动到行首" },
         ["<M-y>"] = { '"+y', desc = "复制文字到系统" },
@@ -153,8 +115,6 @@ return {
         ["<M-h>"] = { "<Esc>^i", desc = "移动到行首" },
         ["<M-l>"] = { "<Esc>$a", desc = "移动到行尾" },
         ["<M-CR>"] = { "<Esc>o", desc = "下一行" },
-        -- ["<M-f>"] = { "%" },
-        -- ["<M-j>"] = { "^" },
         -- 方便写中文
         ["<M-j>"] = { "<Esc>" },
         [""] = { "" },
