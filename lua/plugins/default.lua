@@ -1,8 +1,27 @@
 local maps = require("astrocore").set_mappings
+local tool = require "tools.command"
+local tools = require "tools.utils"
+local is_available = require("astrocore").is_available
+
+-- 简单修改
+if is_available "telescope.nvim" then
+  local builtin = require "telescope.builtin"
+  maps {
+    v = {
+      ["<leader>fw"] = {
+        function() builtin.grep_string { search = tools.Gets_selected_text() } end,
+        desc = "Find Selected Content",
+      },
+      ["<leader>f/"] = {
+        function() builtin.current_buffer_fuzzy_find { default_text = tools.Gets_selected_text() } end,
+        desc = "Find words in current buffer",
+      },
+    },
+  }
+end
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    -- enabled = false,
     opts = { scope = { enabled = false } },
   },
   {
@@ -252,12 +271,10 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
-  -- { "AstroNvim/astrotheme", enabled = false },
-  "andweeb/presence.nvim",
+  { "AstroNvim/astrotheme", enabled = false },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
-  { "uga-rosa/utf8.nvim" },
 }

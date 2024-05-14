@@ -30,7 +30,7 @@ return {
     { "<Leader><Leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<Leader>zf", mode = { "n" },
+    { "<Leader>zf", mode = { "n" },
         function()
           local Flash = require("flash")
 
@@ -43,6 +43,9 @@ return {
             }
           end
 
+            --- @class Flash.Match
+            --- @field label2 string
+            --- @field label1 string
           Flash.jump({
             search = { mode = "search" },
             label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
