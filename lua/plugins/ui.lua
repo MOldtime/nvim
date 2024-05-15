@@ -64,6 +64,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    enabled = false,
     opts = {
       transparent_background = vim.g.transparent_background,
       show_end_of_buffer = true,

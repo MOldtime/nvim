@@ -1,5 +1,4 @@
 local maps = require("astrocore").set_mappings
-local tool = require "tools.command"
 local tools = require "tools.utils"
 local is_available = require("astrocore").is_available
 
@@ -271,7 +270,7 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
-  { "AstroNvim/astrotheme", enabled = false },
+  -- { "AstroNvim/astrotheme", enabled = false },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
