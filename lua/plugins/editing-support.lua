@@ -194,25 +194,13 @@ return {
             function() vim.api.nvim_command "SearchReplaceSingleBufferSelections" end,
             desc = "SearchReplaceSingleBuffer [s]elction list",
           },
-          ["<Leader>ro"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferOpen" end, desc = "[o]pen" },
-          ["<Leader>rw"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCWord" end, desc = "[w]ord" },
-          ["<Leader>rW"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCWORD" end, desc = "[W]ORD" },
-          ["<Leader>re"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCExpr" end, desc = "[e]xpr" },
-          ["<Leader>rf"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferCFile" end, desc = "[f]ile" },
-          ["<Leader>rbs"] = {
+          ["<Leader>rb"] = {
             function() vim.api.nvim_command "SearchReplaceMultiBufferSelections" end,
             desc = "SearchReplaceMultiBuffer [s]elction list",
           },
-          ["<Leader>rbo"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferOpen" end, desc = "[o]pen" },
-          ["<Leader>rbw"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCWord" end, desc = "[w]ord" },
-          ["<Leader>rbW"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCWORD" end, desc = "[W]ORD" },
-          ["<Leader>rbe"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCExpr" end, desc = "[e]xpr" },
-          ["<Leader>rbf"] = { function() vim.api.nvim_command "SearchReplaceMultiBufferCFile" end, desc = "[f]ile" },
         },
         v = {
-          ["<C-r>"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end },
-          ["<C-s>"] = { function() vim.api.nvim_command "SearchReplaceWithinVisualSelection" end },
-          ["<C-b>"] = { function() vim.api.nvim_command "SearchReplaceWithinVisualSelectionCWord" end },
+          ["<C-r>"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end, desc = "选中搜索替换" },
         },
       }
       require("search-replace").setup(opts)

@@ -3,7 +3,6 @@
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
-local tool = require "tools.command"
 local utils = require "tools.utils"
 ---@type LazySpec
 return {
@@ -57,6 +56,24 @@ return {
         ui_notifications_enabled = true, -- disable notifications when toggling UI elements
         resession_enabled = true, -- enable experimental resession.nvim session management (will be default in AstroNvim v4)
         inlay_hints_enabled = true,
+      },
+    },
+    autocmds = {
+      -- disable alpha autostart
+      alpha_autostart = false,
+      restore_session = {
+        {
+          event = "VimEnter",
+          desc = "Restore previous directory session if neovim opened with no arguments",
+          nested = true, -- trigger other autocommands as buffers open
+          callback = function()
+            -- Only load the session if nvim was started with no args
+            if vim.fn.argc(-1) == 0 then
+              -- try to load a directory session using the current working directory
+              require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+            end
+          end,
+        },
       },
     },
     -- Mappings can be configured through AstroCore as well.
