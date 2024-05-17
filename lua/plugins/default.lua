@@ -98,7 +98,6 @@ return {
         },
       }
 
-      opts.winbar = nil
       opts.statusline = {
         hl = { fg = "fg", bg = "bg" },
         mode,
