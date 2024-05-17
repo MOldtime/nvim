@@ -134,6 +134,7 @@ return {
   {
     -- https://github.com/rainbowhxch/accelerated-jk.nvim
     "rainbowhxch/accelerated-jk.nvim",
+    enabled = vim.loop.os_uname().sysname == "Windows_NT" and true or false,
     event = { "User AstroFile" },
     opts = {
       acceleration_table = { 5, 14, 19, 23, 26, 28, 30, 32 },
