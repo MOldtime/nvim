@@ -42,7 +42,6 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       lua_ls = {
         cmd = { "lua-language-server", "--locale=zh-cn" },
         settings = {

@@ -269,10 +269,17 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
-  -- { "AstroNvim/astrotheme", enabled = false },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        hijack_netrw_behavior = "open_default"
+      }
+    },
   },
 }
