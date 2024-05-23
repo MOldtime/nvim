@@ -1,8 +1,9 @@
+if not vim.g.neovide then return end
 vim.o.guifont = "JetBrainsMono Nerd Font,"
   .. "JetBrainsMono Nerd Font Propo,"
   .. "JetBrainsMonoNL Nerd Font,"
   .. "JetBrainsMonoNL Nerd Font Propo,"
-  .. (vim.loop.os_uname().sysname == "Windows_NT" and "Noto Sans" or "Noto Sans CJK SC") .. "," -- lua print(vim.loop.os_uname().sysname)
+  .. (vim.loop.os_uname().sysname == "Windows_NT" and "Noto Sans" or "Noto Sans CJK SC")
   .. ":h13:#e-subpixelantialias"
 
 for key, value in pairs {
