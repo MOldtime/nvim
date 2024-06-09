@@ -200,7 +200,10 @@ return {
           },
         },
         v = {
-          ["<C-r>"] = { function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end, desc = "选中搜索替换" },
+          ["<C-r>"] = {
+            function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end,
+            desc = "选中搜索替换",
+          },
         },
       }
       require("search-replace").setup(opts)
@@ -210,7 +213,7 @@ return {
   {
     "Exafunction/codeium.vim",
     event = "BufEnter",
-    enabled = true,
+    enabled = false,
     init = function()
       vim.g.codeium_disable_bindings = 1 -- 取消默认的映射
       -- vim.g.codeium_enabled = false -- 默认启用
@@ -248,6 +251,32 @@ return {
         },
       }
     end,
+  },
+  -- fittencode ai
+  {
+    "luozhiya/fittencode.nvim",
+    enabled = true,
+    opts = {
+      use_default_keymaps = false,
+      keymaps = {
+        inline = {
+          ["<M-CR>"] = "accept_all_suggestions",
+          ["<M-\\>"] = "accept_line",
+          ["<M-;>"] = "accept_word",
+          ["<C-Tab>"] = "triggering_completion",
+        },
+        chat = {
+          -- ["q"] = "close",
+          -- ["[c"] = "goto_previous_conversation",
+          -- ["]c"] = "goto_next_conversation",
+          -- ["c"] = "copy_conversation",
+          -- ["C"] = "copy_all_conversations",
+          -- ["d"] = "delete_conversation",
+          -- ["D"] = "delete_all_conversations",
+        },
+      },
+    },
+    config = function(_, opts) require("fittencode").setup(opts) end,
   },
   -- 添加标记 快速跳转
   {

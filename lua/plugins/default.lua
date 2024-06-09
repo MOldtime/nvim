@@ -73,31 +73,34 @@ return {
         },
       }
 
-      local codeium = status.component.builder {
-        {
-
-          provider = function()
-            local model = vim.fn["codeium#GetStatusString"]()
-            local text = "  "
-            if model == " ON" then
-              text = text .. "ON"
-            elseif model == " 0 " then
-              text = text .. " 0"
-            elseif model == " * " then
-              text = text .. " *"
-            elseif model == "OFF" then
-              text = text .. "OFF"
-            elseif model == "   " then
-              text = text .. " "
-            else
-              text = text .. " " .. model
-            end
-            return text
-          end,
-          hl = status.hl.get_attributes "treesitter",
-        },
-      }
-
+      -- 简单修改
+      local codeium = status.component.builder() -- 没有就为空
+      if is_available "codeium.vim" then
+        codeium = status.component.builder {
+          {
+            provider = function()
+              local model = vim.fn["codeium#GetStatusString"]()
+              local text = "  "
+              if model == " ON" then
+                text = text .. "ON"
+              elseif model == " 0 " then
+                text = text .. " 0"
+              elseif model == " * " then
+                text = text .. " *"
+              elseif model == "OFF" then
+                text = text .. "OFF"
+              elseif model == "   " then
+                text = text .. " "
+              else
+                text = text .. " " .. model
+              end
+              return text
+            end,
+            hl = status.hl.get_attributes "treesitter",
+          },
+        }
+      end
+      opts.winbar = nil
       opts.statusline = {
         hl = { fg = "fg", bg = "bg" },
         mode,
@@ -278,8 +281,8 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
-        hijack_netrw_behavior = "open_default"
-      }
+        hijack_netrw_behavior = "open_default",
+      },
     },
   },
 }
