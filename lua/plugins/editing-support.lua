@@ -255,13 +255,12 @@ return {
   -- fittencode ai
   {
     "luozhiya/fittencode.nvim",
-    enabled = true,
     opts = {
-      use_default_keymaps = false,
+      use_default_keymaps = true,
       keymaps = {
         inline = {
           ["<M-CR>"] = "accept_all_suggestions",
-          ["<M-\\>"] = "accept_line",
+          ["<M-'>"] = "accept_line",
           ["<M-;>"] = "accept_word",
           ["<C-Tab>"] = "triggering_completion",
         },
