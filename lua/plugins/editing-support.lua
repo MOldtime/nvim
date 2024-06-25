@@ -209,49 +209,6 @@ return {
       require("search-replace").setup(opts)
     end,
   },
-  -- codeium ai
-  {
-    "Exafunction/codeium.vim",
-    event = "BufEnter",
-    enabled = false,
-    init = function()
-      vim.g.codeium_disable_bindings = 1 -- 取消默认的映射
-      -- vim.g.codeium_enabled = false -- 默认启用
-      -- vim.g.codeium_manual = true -- 取消自动补全
-    end,
-    config = function()
-      maps {
-        i = {
-          ["<M-CR>"] = {
-            function() return vim.fn["codeium#Accept"]() end, -- 插入建议
-            expr = true,
-            silent = true,
-          },
-          ["<M-;>"] = {
-            function() vim.fn["codeium#CycleCompletions"](1) end, -- 下一个
-          },
-          ["<M-'>"] = {
-            function() vim.fn["codeium#CycleCompletions"](-1) end, -- 上一个
-          },
-          ["<M-BS>"] = {
-            function() vim.fn["codeium#Clear"]() end, -- 清除
-          },
-          ["<C-Tab>"] = {
-            function() vim.fn["codeium#Complete"]() end, -- 手动触发
-          },
-        },
-        n = {
-          ["<M-F2>"] = {
-            function()
-              vim.g.codeium_enabled = not vim.g.codeium_enabled
-              vim.notify(vim.g.codeium_enabled and "Codeium已开启" or "Codeium已关闭")
-            end,
-            desc = "切换codeium",
-          },
-        },
-      }
-    end,
-  },
   -- fittencode ai
   {
     "luozhiya/fittencode.nvim",
@@ -327,35 +284,86 @@ return {
       },
     },
   },
-  -- 批量移动
   {
-    "willothy/moveline.nvim",
+    "hinell/move.nvim",
     event = "BufEnter",
-    build = "make",
+    enabled = false,
     config = function()
-      local moveline = require "moveline"
+      local vert = require "move.core.vert"
+      local move = require "move.core.horiz"
       maps {
         n = {
           ["<M-K>"] = {
-            moveline.up,
+            function() vert.moveLine(-1) end,
             desc = "移动到上一行",
           },
           ["<M-J>"] = {
-            moveline.down,
+            function() vert.moveLine(1) end,
             desc = "移动到下一行",
           },
         },
         v = {
           ["<M-K>"] = {
-            moveline.block_up,
+            function()
+              vert.moveBlock(-1, _, _)
+              vim.api.nvim_command "gv"
+            end,
+            -- function() vim.api.nvim_command "MoveBlock -1" end,
+            -- ":MoveBlock -1<CR>",
             desc = "选择移动到上一行",
           },
           ["<M-J>"] = {
-            moveline.block_down,
+            function()
+              vert.moveBlock(1, _, _)
+              vim.api.nvim_command "gv"
+            end,
+            -- function() vim.api.nvim_command "MoveBlock 1" end,
+            -- ":MoveBlock 1<CR>",
             desc = "选择移动到下一行",
+          },
+          ["<M-L>"] = {
+            function()
+              move.horzBlock(1)
+              vim.api.nvim_command "gv"
+            end,
+            desc = "向左移动",
+          },
+          ["<M-H>"] = {
+            function()
+              move.horzBlock(-1)
+              vim.api.nvim_command "gv"
+            end,
+            desc = "向右移动",
           },
         },
       }
     end,
+  },
+  {
+    "echasnovski/mini.move",
+    event = "BufEnter",
+    -- No need to copy this inside `setup()`. Will be used automatically.
+    opts = {
+      -- Module mappings. Use `''` (empty string) to disable one.
+      mappings = {
+        -- Move visual selection in Visual mode.
+        left = "<M-H>",
+        right = "<M-L>",
+        down = "<M-J>",
+        up = "<M-K>",
+
+        -- Move current line in Normal mode
+        line_left = "<M-H>",
+        line_right = "<M-L>",
+        line_down = "<M-J>",
+        line_up = "<M-K>",
+      },
+
+      -- Options which control moving behavior
+      options = {
+        -- Automatically reindent selection during linewise vertical move
+        reindent_linewise = true,
+      },
+    },
   },
 }
