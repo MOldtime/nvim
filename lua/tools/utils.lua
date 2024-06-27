@@ -1,7 +1,6 @@
 local M = {}
 
 -- 获取选中的字符
--- 请注意，需要先取消选中状态，不然无法获取
 --- @return string 选中的字符
 function M.Gets_selected_text()
   vim.cmd 'noau normal! "vy"'

@@ -76,6 +76,17 @@ return {
           ["run"] = "onType",
         },
       },
+      kotlin_language_server = {
+        settings = {
+          kotlin = {
+            compiler = {
+              jvm = {
+                target = "17"
+              }
+            }
+          }
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {

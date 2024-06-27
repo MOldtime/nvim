@@ -1,4 +1,5 @@
 local maps = require("astrocore").set_mappings
+local utils = require "tools.utils"
 return {
   -- 对齐插件 ga gA 接 ip
   {
@@ -232,7 +233,23 @@ return {
         },
       },
     },
-    config = function(_, opts) require("fittencode").setup(opts) end,
+    config = function(_, opts)
+      local fittencode = require "fittencode"
+      maps {
+        v = {
+          ["<leader>ae"] = {
+            function()
+              fittencode.explain_code {
+                content = utils.Gets_selected_text(),
+              }
+            end,
+            desc = "解释代码"
+          },
+        },
+      }
+      -- 设置
+      fittencode.setup(opts)
+    end,
   },
   -- 添加标记 快速跳转
   {
