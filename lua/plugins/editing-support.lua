@@ -159,11 +159,13 @@ return {
   {
     -- https://github.com/max397574/better-escape.nvim
     "max397574/better-escape.nvim",
-    opts = function(_, opts)
-      opts.mapping = { "jk", "fj" }
-      opts.timeout = 200
-      return opts
-    end,
+    opts = {
+      timeout = 200,
+      default_mappings = false,
+      mappings = {
+        i = { j = { k = "<Esc>", j = "<Esc>" }, f = { j = "<Esc>" } },
+      },
+    },
   },
   -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
   {
@@ -243,7 +245,7 @@ return {
                 content = utils.Gets_selected_text(),
               }
             end,
-            desc = "解释代码"
+            desc = "解释代码",
           },
         },
       }

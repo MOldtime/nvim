@@ -10,4 +10,5 @@ return {
   },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.comment-box-nvim" },
+  { import = "astrocommunity.editing-support.auto-save-nvim" },
 }
