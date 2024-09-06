@@ -304,61 +304,6 @@ return {
     },
   },
   {
-    "hinell/move.nvim",
-    event = "BufEnter",
-    enabled = false,
-    config = function()
-      local vert = require "move.core.vert"
-      local move = require "move.core.horiz"
-      maps {
-        n = {
-          ["<M-K>"] = {
-            function() vert.moveLine(-1) end,
-            desc = "移动到上一行",
-          },
-          ["<M-J>"] = {
-            function() vert.moveLine(1) end,
-            desc = "移动到下一行",
-          },
-        },
-        v = {
-          ["<M-K>"] = {
-            function()
-              vert.moveBlock(-1, _, _)
-              vim.api.nvim_command "gv"
-            end,
-            -- function() vim.api.nvim_command "MoveBlock -1" end,
-            -- ":MoveBlock -1<CR>",
-            desc = "选择移动到上一行",
-          },
-          ["<M-J>"] = {
-            function()
-              vert.moveBlock(1, _, _)
-              vim.api.nvim_command "gv"
-            end,
-            -- function() vim.api.nvim_command "MoveBlock 1" end,
-            -- ":MoveBlock 1<CR>",
-            desc = "选择移动到下一行",
-          },
-          ["<M-L>"] = {
-            function()
-              move.horzBlock(1)
-              vim.api.nvim_command "gv"
-            end,
-            desc = "向左移动",
-          },
-          ["<M-H>"] = {
-            function()
-              move.horzBlock(-1)
-              vim.api.nvim_command "gv"
-            end,
-            desc = "向右移动",
-          },
-        },
-      }
-    end,
-  },
-  {
     "echasnovski/mini.move",
     event = "BufEnter",
     -- No need to copy this inside `setup()`. Will be used automatically.
@@ -372,8 +317,8 @@ return {
         up = "<M-K>",
 
         -- Move current line in Normal mode
-        line_left = "<M-H>",
-        line_right = "<M-L>",
+        line_right = "<Tab>",
+        line_left = "<S-Tab>",
         line_down = "<M-J>",
         line_up = "<M-K>",
       },
