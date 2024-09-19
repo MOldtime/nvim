@@ -81,10 +81,10 @@ return {
           kotlin = {
             compiler = {
               jvm = {
-                target = "17"
-              }
-            }
-          }
+                target = "17",
+              },
+            },
+          },
         },
       },
     },

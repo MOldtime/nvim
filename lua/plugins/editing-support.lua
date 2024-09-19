@@ -182,36 +182,6 @@ return {
       },
     },
   },
-  -- replace
-  {
-    "roobert/search-replace.nvim",
-    event = "BufEnter",
-    opts = {
-      default_replace_single_buffer_options = "gcI",
-      default_replace_multi_buffer_options = "egcI",
-    },
-    config = function(_, opts)
-      maps {
-        n = {
-          ["<Leader>rs"] = {
-            function() vim.api.nvim_command "SearchReplaceSingleBufferSelections" end,
-            desc = "SearchReplaceSingleBuffer [s]elction list",
-          },
-          ["<Leader>rb"] = {
-            function() vim.api.nvim_command "SearchReplaceMultiBufferSelections" end,
-            desc = "SearchReplaceMultiBuffer [s]elction list",
-          },
-        },
-        v = {
-          ["<C-r>"] = {
-            function() vim.api.nvim_command "SearchReplaceSingleBufferVisualSelection" end,
-            desc = "选中搜索替换",
-          },
-        },
-      }
-      require("search-replace").setup(opts)
-    end,
-  },
   -- fittencode ai
   {
     "luozhiya/fittencode.nvim",
@@ -329,5 +299,23 @@ return {
         reindent_linewise = true,
       },
     },
+  },
+  -- Search and Replace
+  {
+    "chrisgrieser/nvim-rip-substitute",
+    cmd = "RipSubstitute",
+    keys = {
+      {
+        "<leader>r",
+        function() require("rip-substitute").sub() end,
+        mode = { "n", "x" },
+        desc = " rip substitute",
+      },
+    },
+      opts = {
+      popupWin = {
+        position = "top"
+      }
+    }
   },
 }
