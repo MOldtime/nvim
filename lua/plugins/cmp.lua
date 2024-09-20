@@ -1,10 +1,11 @@
+---@type LazySpec
 return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-calc",
       "FelipeLema/cmp-async-path",
-      "amarakon/nvim-cmp-fonts"
+      "amarakon/nvim-cmp-fonts",
     },
     event = "InsertEnter",
     opts = {
@@ -82,7 +83,7 @@ return {
         },
         { name = "async_path", priority = 500 },
         { name = "calc", priority = 250 },
-        { name = "fonts", priority = 250 }
+        { name = "fonts", priority = 250 },
       }
       cmp.setup(opts)
     end,

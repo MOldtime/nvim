@@ -5,7 +5,7 @@ return {
   {
     -- jl lc jr, s= , = ,
     "echasnovski/mini.align",
-    lazy = false,
+    event = "BufRead",
     opts = true,
   },
   -- 快捷跳转
@@ -97,7 +97,7 @@ return {
     --    使用i, a, I,启动插入模式A
     --    多光标选择
     "mg979/vim-visual-multi",
-    event = "BufEnter",
+    event = "BufRead",
     init = function()
       -- vim.g.VM_quit_after_leaving_insert_mode = 1 -- 退出没有提示
       vim.g.VM_default_mappings = 0
@@ -122,13 +122,13 @@ return {
     -- 可以修改括住的文本，如：加字符'', 修改括号
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "BufEnter",
+    event = "BufRead",
     opts = true,
   },
   -- 直接添加字符在周围
   {
     "NStefan002/visual-surround.nvim",
-    event = "BufEnter",
+    event = "BufRead",
     opts = true,
   },
   -- 加速jk的移动
@@ -185,6 +185,7 @@ return {
   -- fittencode ai
   {
     "luozhiya/fittencode.nvim",
+    event = "InsertEnter",
     opts = {
       use_default_keymaps = true,
       keymaps = {
@@ -226,7 +227,7 @@ return {
   -- 添加标记 快速跳转
   {
     "LeonHeidelbach/trailblazer.nvim",
-    event = "BufEnter",
+    event = "BufRead",
     opts = {
       mappings = {
         nv = {
@@ -254,7 +255,7 @@ return {
   -- 扩展 C-a, C-x, 切换true -> false...
   {
     "nat-418/boole.nvim",
-    event = "BufEnter",
+    event = "BufRead",
     opts = {
       mappings = {
         increment = "<C-a>",
@@ -275,7 +276,7 @@ return {
   },
   {
     "echasnovski/mini.move",
-    event = "BufEnter",
+    event = "BufRead",
     -- No need to copy this inside `setup()`. Will be used automatically.
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
@@ -303,6 +304,7 @@ return {
   -- Search and Replace
   {
     "chrisgrieser/nvim-rip-substitute",
+    event = "BufEnter",
     cmd = "RipSubstitute",
     keys = {
       {
@@ -312,10 +314,10 @@ return {
         desc = " rip substitute",
       },
     },
-      opts = {
+    opts = {
       popupWin = {
-        position = "top"
-      }
-    }
+        position = "top",
+      },
+    },
   },
 }
