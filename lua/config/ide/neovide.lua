@@ -16,9 +16,12 @@ for key, value in pairs {
   -- neovide_refresh_rate = 165, -- 刷新率
   -- neovide_unlink_border_highlights = true, -- 修复边框和 winbar 滚动故障
 
-  -- neovide_cursor_antialiasing = true, -- 启用或禁用光标四边形的抗锯齿功能。禁用可能会修复一些光标视觉问题。
+  neovide_cursor_antialiasing = true, -- 启用或禁用光标四边形的抗锯齿功能。禁用可能会修复一些光标视觉问题。
   neovide_cursor_animate_in_insert_mode = true, -- 在插入模式下制作动画
   neovide_cursor_unfocused_outline_width = 0, -- 未聚焦的轮廓宽度
+
+  -- neovide_scroll_animation_length = 0.3, -- 滚动动画时长
+  neovide_scroll_animation_far_lines = 999, -- 远距离滚动的行数
 
   -- neovide_cursor_vfx_mode = "railgun", -- 开启轨道动画
   -- neovide_cursor_vfx_opacity = 80.0, -- 粒子透明度

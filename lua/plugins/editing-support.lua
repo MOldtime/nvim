@@ -85,27 +85,87 @@ return {
   },
   },
   -- 多光标
+  -- 基本用法:
+  --    选择单词Ctrl-N（如Ctrl-dSublime Text/VS Code 中）
+  --    Alt + j,k 设置垂直或向上光标
+  --    一次选择一个字符Shift-Arrows
+  --    按n/N获取下一个/上一个出现的情况
+  --    按[/]选择下一个/上一个光标
+  --    按此键q可跳过当前内容并获取下一个出现的内容
+  --    按下Q可删除当前光标/选择
+  --    使用i, a, I,启动插入模式A
   {
-    -- 基本用法:
-    --    选择单词Ctrl-N（如Ctrl-dSublime Text/VS Code 中）
-    --    Alt + j,k 设置垂直或向上光标
-    --    一次选择一个字符Shift-Arrows
-    --    按n/N获取下一个/上一个出现的情况
-    --    按[/]选择下一个/上一个光标
-    --    按此键q可跳过当前内容并获取下一个出现的内容
-    --    按下Q可删除当前光标/选择
-    --    使用i, a, I,启动插入模式A
-    --    多光标选择
-    "mg979/vim-visual-multi",
+    "jake-stewart/multicursor.nvim",
     event = "BufRead",
-    init = function()
-      -- vim.g.VM_quit_after_leaving_insert_mode = 1 -- 退出没有提示
-      vim.g.VM_default_mappings = 0
-      vim.g.VM_maps = {
-        ["Add Cursor Down"] = "<C-S-Down>",
-        ["Add Cursor Up"] = "<C-S-Up>",
-        ["Add Cursor At Pos"] = "<C-;>",
+    config = function()
+      local mc = require "multicursor-nvim"
+      local hydra = require "hydra"
+      local hydra_ = hydra {
+        mode = { "n", "v" },
+        name = "Multicursor",
+        config = {
+          exit = false,
+          hint = false,
+          color = "pink", -- foreign_keys = "run", 这是一个bug https://github.com/benlubas/hydra.nvim/blob/eb68396f4f3185e000d64711419c71f67b23bb1d/lua/hydra/init.lua#L126
+          on_exit = function()
+            if not mc.cursorsEnabled() then mc.enableCursors() end
+            if mc.hasCursors() then mc.clearCursors() end
+            vim.notify "exit multicursor"
+          end,
+        },
+        heads = {
+          { "<down>", mc.nextCursor },
+          { "<up>", mc.prevCursor },
+          { "Q", mc.deleteCursor },
+          {
+            "q",
+            function()
+              if mc.cursorsEnabled() then
+                mc.disableCursors()
+              else
+                mc.addCursor()
+                -- mc.enableCursors()
+              end
+            end,
+          },
+          {
+            "<leader>q",
+            function()
+              if not mc.cursorsEnabled() then
+                mc.enableCursors()
+              elseif mc.hasCursors() then
+                mc.clearCursors()
+              end
+            end,
+          },
+          { "<leader>a", mc.alignCursors, { mode = "n" } },
+          { "S", mc.splitCursors, { mode = "v" } },
+          { "I", mc.insertVisual, { mode = "v" } },
+          { "A", mc.appendVisual, { mode = "v" } },
+          { "M", mc.matchCursors, { mode = "v" } },
+          { "<leader>t", function() mc.transposeCursors(1) end, { mode = "v" } },
+          { "<leader>T", function() mc.transposeCursors(-1) end, { mode = "v" } },
+        },
       }
+      -- hydra:_enter()
+      vim.keymap.set({ "n", "v" }, "<C-S-Up>", function()
+        hydra_:activate()
+        mc.addCursor "k"
+      end)
+      vim.keymap.set({ "n", "v" }, "<C-S-Down>", function()
+        hydra_:activate()
+        mc.addCursor "j"
+      end)
+      vim.keymap.set({ "n", "v" }, "<C-n>", function()
+        hydra_:activate()
+        mc.addCursor "*"
+      end)
+      vim.keymap.set({ "n", "v" }, "<C-s>", function()
+        hydra_:activate()
+        mc.skipCursor "*"
+      end)
+      vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+      mc.setup()
     end,
   },
   -- 增加 修改 删除 字符的周围，例如: (),“”

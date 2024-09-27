@@ -78,4 +78,9 @@ return {
     -- End configuration
     config = true,
   },
+  {
+    "nvimtools/hydra.nvim",
+    lazy = true,
+    config = function() require("hydra").setup {} end,
+  },
 }
