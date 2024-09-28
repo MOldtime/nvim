@@ -104,7 +104,6 @@ return {
         mode = { "n", "v" },
         name = "Multicursor",
         config = {
-          exit = false,
           hint = false,
           color = "pink", -- foreign_keys = "run", 这是一个bug https://github.com/benlubas/hydra.nvim/blob/eb68396f4f3185e000d64711419c71f67b23bb1d/lua/hydra/init.lua#L126
           on_exit = function()
