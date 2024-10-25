@@ -17,6 +17,6 @@ return {
   },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.comment-box-nvim" },
-  { import = "astrocommunity.editing-support.auto-save-nvim" },
+  -- { import = "astrocommunity.editing-support.auto-save-nvim" },
   -- import/override with your plugins folder
 }
