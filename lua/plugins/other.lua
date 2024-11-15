@@ -83,4 +83,27 @@ return {
     lazy = true,
     config = function() require("hydra").setup {} end,
   },
+  -- cmake tools
+  {
+    "Civitasv/cmake-tools.nvim",
+    event = "BufReadPost CMakeLists.txt",
+  },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    event = "VeryLazy",
+    opts = {
+      has_breadcrumbs = true, -- show path
+      has_line_number = true, -- show line
+      bg_color = "#535c68", -- background color"
+      bg_x_padding = 50,
+      bg_y_padding = 20,
+      watermark = "",
+    },
+  },
+  {
+    "mistricky/code-link.nvim",
+    event = "VeryLazy",
+    lazy = true,
+  },
 }
