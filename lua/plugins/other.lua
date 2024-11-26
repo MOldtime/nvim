@@ -87,6 +87,10 @@ return {
   {
     "Civitasv/cmake-tools.nvim",
     event = "BufReadPost CMakeLists.txt",
+    opts = {
+      cmake_compile_commands_from_lsp = true,
+      cmake_soft_link_compile_commands = false
+    }
   },
   {
     "mistricky/codesnap.nvim",

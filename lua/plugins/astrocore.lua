@@ -79,17 +79,17 @@ return {
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
+      -- :help map-table
       [""] = {
         ["<Leader>`"] = { "~", desc = "把小写转换为大写" },
-        ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
+        ["<M-p>"] = { '"+p', desc = "粘贴系统剪切板" },
         ["<Leader>zr"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
       },
       ["!"] = {
-        ["<M-p>"] = { "<middlemouse>", desc = "粘贴系统剪切板" },
+        ["<M-p>"] = { "<C-R>+", desc = "粘贴系统剪切板" },
       },
       n = {
         ["<Leader>h"] = nil,
-        ["<M-p>"] = { '"+p', desc = "输入时粘贴系统剪切板" },
         ["<M-h>"] = { "^", desc = "移动到行首" },
         ["<M-l>"] = { "$", desc = "移动到行尾" },
         ["<leader>zt"] = {
@@ -133,7 +133,7 @@ return {
         ["<M-CR>"] = { "<Esc>o", desc = "下一行" },
         -- 方便写中文
         ["<M-j>"] = { "<Esc>" },
-        [""] = { "" },
+        [""] = { "" }, -- 
       },
       c = {
         ["<M-l>"] = {
@@ -142,9 +142,6 @@ return {
         ["<M-h>"] = {
           "<Left>",
         },
-      },
-      t = {
-        ["<M-p>"] = { "<middlemouse>a", desc = "粘贴系统剪切板" },
       },
     },
   },

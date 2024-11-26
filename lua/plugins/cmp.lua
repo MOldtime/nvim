@@ -3,6 +3,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
+      "onsails/lspkind.nvim",
       "hrsh7th/cmp-calc",
       "FelipeLema/cmp-async-path",
       "amarakon/nvim-cmp-fonts",
@@ -83,19 +84,9 @@ return {
         },
         { name = "async_path", priority = 500 },
         { name = "calc", priority = 250 },
-        { name = "fonts", priority = 250 },
+        { name = "fonts", priority = 250, option = { space_filter = "-" } },
       }
       cmp.setup(opts)
-    end,
-  },
-  {
-    "onsails/lspkind.nvim",
-    opts = function(_, opts)
-      for key, value in ipairs {
-        Codeium = "",
-      } do
-        opts.symbol_map[key] = value
-      end
     end,
   },
 }
