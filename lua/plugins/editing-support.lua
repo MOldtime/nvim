@@ -246,7 +246,7 @@ return {
     "luozhiya/fittencode.nvim",
     event = "InsertEnter",
     opts = {
-      use_default_keymaps = true,
+      use_default_keymaps = false,
       keymaps = {
         inline = {
           ["<M-CR>"] = "accept_all_suggestions",
@@ -254,15 +254,7 @@ return {
           ["<M-;>"] = "accept_word",
           ["<C-Tab>"] = "triggering_completion",
         },
-        chat = {
-          -- ["q"] = "close",
-          -- ["[c"] = "goto_previous_conversation",
-          -- ["]c"] = "goto_next_conversation",
-          -- ["c"] = "copy_conversation",
-          -- ["C"] = "copy_all_conversations",
-          -- ["d"] = "delete_conversation",
-          -- ["D"] = "delete_all_conversations",
-        },
+        chat = {},
       },
     },
     config = function(_, opts)
