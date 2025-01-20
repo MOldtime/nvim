@@ -36,6 +36,7 @@ return {
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
+    enabled = false,
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
@@ -45,4 +46,8 @@ return {
       })
     end,
   },
+  {
+     "mfussenegger/nvim-dap",
+      enabled = false
+  }
 }
