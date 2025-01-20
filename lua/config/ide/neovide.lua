@@ -15,7 +15,6 @@ for key, value in pairs {
   neovide_hide_mouse_when_typing = true, -- 输入时隐藏鼠标
   -- neovide_refresh_rate = 165, -- 刷新率
   -- neovide_unlink_border_highlights = true, -- 修复边框和 winbar 滚动故障
-
   neovide_cursor_antialiasing = true, -- 启用或禁用光标四边形的抗锯齿功能。禁用可能会修复一些光标视觉问题。
   neovide_cursor_animate_in_insert_mode = true, -- 在插入模式下制作动画
   neovide_cursor_unfocused_outline_width = 0, -- 未聚焦的轮廓宽度
@@ -37,6 +36,7 @@ for key, value in pairs {
   neovide_padding_left = 5,
   neovide_window_blurred = true,
   neovide_cursor_smooth_blink = true,
+  neovide_floating_corner_radius = 0.3
 } do
   vim.g[key] = value
 end

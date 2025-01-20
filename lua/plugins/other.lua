@@ -34,11 +34,19 @@ return {
   {
     "Mythos-404/xmake.nvim",
     event = "BufReadPost xmake.lua",
+    version = "^3",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {
-      compile_command = { -- compile_command 文件生成配置
-        lsp = "clangd", -- 生成供哪个 lsp 读取的 compile_commands 文件
-        dir = "build", -- 生成的的位置
+      on_save = {
+        lsp_compile_commands = {
+          enable = true,
+          -- Directory name (relative path) for output file
+          output_dir = "build",
+        },
+      },
+      lsp = {
+        enable = true,
+        language = "zh-cn",
       },
     },
   },
@@ -89,8 +97,8 @@ return {
     event = "BufReadPost CMakeLists.txt",
     opts = {
       cmake_compile_commands_from_lsp = true,
-      cmake_soft_link_compile_commands = false
-    }
+      cmake_soft_link_compile_commands = false,
+    },
   },
   {
     "mistricky/codesnap.nvim",

@@ -85,7 +85,7 @@ return {
     },
     config = function(_, opts)
       local ignore_filetypes = { "neo-tree" }
-      local ignore_buftypes = { "nofile", "prompt", "popup", "rip-substitute" }
+      local ignore_buftypes = { "nofile", "prompt", "popup", "rip-substitute", "qf" }
 
       local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
 
