@@ -256,6 +256,11 @@ return {
         },
         chat = {},
       },
+      disable_specific_inline_completion = {
+        -- Disable auto-completion for some specific file suffixes by entering them below
+        -- For example, `suffixes = {'lua', 'cpp'}`
+        suffixes = { "TelescopePrompt", "neo-tree-popup" },
+      },
     },
     config = function(_, opts)
       local fittencode = require "fittencode"
@@ -372,7 +377,7 @@ return {
     },
   },
   {
-    'kevinhwang91/nvim-bqf',
+    "kevinhwang91/nvim-bqf",
     lazy = false,
-  }
+  },
 }
