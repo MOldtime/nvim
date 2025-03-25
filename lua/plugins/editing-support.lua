@@ -86,14 +86,11 @@ return {
   },
   -- 多光标
   -- 基本用法:
-  --    选择单词Ctrl-N（如Ctrl-dSublime Text/VS Code 中）
-  --    Alt + j,k 设置垂直或向上光标
-  --    一次选择一个字符Shift-Arrows
-  --    按n/N获取下一个/上一个出现的情况
-  --    按[/]选择下一个/上一个光标
-  --    按此键q可跳过当前内容并获取下一个出现的内容
-  --    按下Q可删除当前光标/选择
-  --    使用i, a, I,启动插入模式A
+  --    Alt + shift + down, up 设置垂直或向上光标
+  --    down, up 选择光标
+  --    Q 删除关标
+  --    q 其它光标不动, c 添加光标
+  --    n 查找下一个符合要求
   {
     "jake-stewart/multicursor.nvim",
     event = "BufRead",
@@ -105,7 +102,7 @@ return {
         name = "Multicursor",
         config = {
           hint = false,
-          color = "pink", -- foreign_keys = "run", 这是一个bug https://github.com/benlubas/hydra.nvim/blob/eb68396f4f3185e000d64711419c71f67b23bb1d/lua/hydra/init.lua#L126
+          color = "pink",
           on_exit = function()
             if not mc.cursorsEnabled() then mc.enableCursors() end
             if mc.hasCursors() then mc.clearCursors() end
@@ -122,13 +119,12 @@ return {
               if mc.cursorsEnabled() then
                 mc.disableCursors()
               else
-                mc.addCursor()
-                -- mc.enableCursors()
+                mc.enableCursors()
               end
             end,
           },
           {
-            "<leader>q",
+            "<Esc>",
             function()
               if not mc.cursorsEnabled() then
                 mc.enableCursors()
@@ -137,6 +133,13 @@ return {
               end
             end,
           },
+          {
+            "c",
+            function()
+              if not mc.cursorsEnabled() then mc.addCursor() end
+            end,
+          },
+          { "<F1>", nil, { exit = true } },
           { "<leader>a", mc.alignCursors, { mode = "n" } },
           { "S", mc.splitCursors, { mode = "v" } },
           { "I", mc.insertVisual, { mode = "v" } },
@@ -259,7 +262,7 @@ return {
       disable_specific_inline_completion = {
         -- Disable auto-completion for some specific file suffixes by entering them below
         -- For example, `suffixes = {'lua', 'cpp'}`
-        suffixes = { "TelescopePrompt", "neo-tree-popup" },
+        suffixes = { "TelescopePrompt", "neo-tree-popup", "rip-substitute" },
       },
     },
     config = function(_, opts)
@@ -295,15 +298,15 @@ return {
             move_to_nearest = "<M-n>", -- 跳转到最近
             toggle_trail_mark_list = "<M-m>", -- 显示标记列表
           },
-          actions = {
-            delete_all_trail_marks = "<leader>md", -- 删除所有标记
-            paste_at_last_trail_mark = "<leader>mp", -- 粘贴到最后一个标记
-            paste_at_all_trail_marks = "<leader>mP", -- 粘贴到所有的标记
-            set_trail_mark_select_mode = "<leader>mt", -- 将轨迹标记选择模式设置为给定模式或在可用模式之间切换
-            switch_to_next_trail_mark_stack = "<leader>m.", -- 使用排序模式切换到下一个跟踪标记堆栈
-            switch_to_previous_trail_mark_stack = "<leader>m,", -- 使用排序模式切换到上一个跟踪标记堆栈
-            set_trail_mark_stack_sort_mode = "<leader>ms", -- 将跟踪标记堆栈排序模式设置为给定模式或在可用模式之间切换
-          },
+          -- actions = {
+          --   delete_all_trail_marks = "<leader>md", -- 删除所有标记
+          --   paste_at_last_trail_mark = "<leader>mp", -- 粘贴到最后一个标记
+          --   paste_at_all_trail_marks = "<leader>mP", -- 粘贴到所有的标记
+          --   set_trail_mark_select_mode = "<leader>mt", -- 将轨迹标记选择模式设置为给定模式或在可用模式之间切换
+          --   switch_to_next_trail_mark_stack = "<leader>m.", -- 使用排序模式切换到下一个跟踪标记堆栈
+          --   switch_to_previous_trail_mark_stack = "<leader>m,", -- 使用排序模式切换到上一个跟踪标记堆栈
+          --   set_trail_mark_stack_sort_mode = "<leader>ms", -- 将跟踪标记堆栈排序模式设置为给定模式或在可用模式之间切换
+          -- },
         },
       },
     },

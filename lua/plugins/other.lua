@@ -86,11 +86,14 @@ return {
     -- End configuration
     config = true,
   },
+
   {
     "nvimtools/hydra.nvim",
-    lazy = true,
-    config = function() require("hydra").setup {} end,
+    config = function()
+      -- create hydras in here
+    end,
   },
+
   -- cmake tools
   {
     "Civitasv/cmake-tools.nvim",

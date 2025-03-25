@@ -20,6 +20,7 @@ return {
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
         LspInlayHint = { fg = "#878787" },
+        -- MultiCursor = { bg = "#ffffff", fg = "#000000" },}
       },
     },
     -- Icons can be configured throughout the interface
