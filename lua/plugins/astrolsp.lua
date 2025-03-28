@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
@@ -20,7 +20,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
+        enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -44,7 +44,51 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      lua_ls = {
+        cmd = { "lua-language-server", "--locale=zh-cn" },
+        settings = {
+          Lua = {
+            hint = {
+              enable = true,
+              arrayIndex = "Disable",
+            },
+          },
+        },
+      },
+      clangd = {
+        cmd = { "clangd", "--fallback-style=WebKit" },
+      },
+      oxc_ls = {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
+        root_dir = function(fname)
+          local util = require "lspconfig.util"
+          return util.find_package_json_ancestor(fname)
+            or util.find_node_modules_ancestor(fname)
+            or util.find_git_ancestor(fname)
+            or vim.fn.getcwd()
+        end,
+        single_file_support = true,
+        settings = {
+          ["enable"] = true,
+          ["run"] = "onType",
+        },
+      },
+      kotlin_language_server = {
+        settings = {
+          kotlin = {
+            compiler = {
+              jvm = {
+                target = "17",
+              },
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -80,6 +124,7 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
+        gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         gD = {
           function() vim.lsp.buf.declaration() end,
