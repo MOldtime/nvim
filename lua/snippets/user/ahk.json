@@ -1,0 +1,11 @@
+{
+	"annotation": {
+		"prefix": "/*",
+		"body": [
+			"/**",
+			" * $1",
+			" */"
+		],
+		"description": "块注释"
+	}
+}
