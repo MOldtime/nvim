@@ -1,13 +1,6 @@
 local maps = require("astrocore").set_mappings
 local utils = require "tools.utils"
 return {
-  -- 对齐插件 ga gA 接 ip
-  {
-    -- jl lc jr, s= , = ,
-    "echasnovski/mini.align",
-    event = "BufRead",
-    opts = true,
-  },
   -- 快捷跳转
   {
     "folke/flash.nvim",
@@ -133,7 +126,7 @@ return {
                 mc.enableCursors()
               elseif mc.hasCursors() then
                 mc.clearCursors()
-              -- else
+                -- else
                 -- Hydra:exit() -- bug: self.layer:exit()
               end
             end,
@@ -141,30 +134,22 @@ return {
           },
           {
             "n",
-            function ()
-              mc.matchAddCursor(1)
-            end
+            function() mc.matchAddCursor(1) end,
           },
           {
             "N",
-            function ()
-              mc.matchAddCursor(-1)
-            end
+            function() mc.matchAddCursor(-1) end,
           },
           {
             "s",
-            function ()
-              mc.matchSkipCursor(1)
-            end
+            function() mc.matchSkipCursor(1) end,
           },
           {
             "S",
-            function ()
-              mc.matchSkipCursor(-1)
-            end
+            function() mc.matchSkipCursor(-1) end,
           },
           { "<F1>", nil, { exit = true } },
-          { "<leader>a", mc.alignCursors, { mode = "n" } },
+          { "<leader>a", mc.alignCursors, { mode = { "n", "v" } } },
           { "S", mc.splitCursors, { mode = "v" } },
           { "I", mc.insertVisual, { mode = "v" } },
           { "A", mc.appendVisual, { mode = "v" } },
@@ -191,25 +176,9 @@ return {
         mc.skipCursor "*"
       end)
       vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+      vim.keymap.set("v", "<M-S-Space>", function() hydra_:activate() end)
       mc.setup()
     end,
-  },
-  -- 增加 修改 删除 字符的周围，例如: (),“”
-  {
-    -- Old text                    Command         New text-
-    -- ---------------------------------------------------------------------------s
-    -- urr*ound_words             ysiw)           (surround_words)*
-    -- make strings               ys$"            "make strings"[
-    -- delete ar*ound me!]        ds]             delete around me!r
-    -- emove <b>HTML t*ags</b>    dst             remove HTML tags'
-    -- change quot*es'            cs'"            "change quotes"<
-    -- b>or tag* types</b>        csth1<CR>       or tag typesd
-    -- elete(functi*on calls)     dsf             function calls
-    -- 可以修改括住的文本，如：加字符'', 修改括号
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "BufRead",
-    opts = true,
   },
   -- 直接添加字符在周围
   {

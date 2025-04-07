@@ -66,11 +66,15 @@ return {
           "typescriptreact",
         },
         root_dir = function(fname)
-          local util = require "lspconfig.util"
-          return util.find_package_json_ancestor(fname)
-            or util.find_node_modules_ancestor(fname)
-            or util.find_git_ancestor(fname)
+          local param = { path = fname, upward = true }
+          return vim.fs.dirname(vim.fs.find("package.json", param)[1])
+            or vim.fs.dirname(vim.fs.find("node_modules", param)[1])
+            or vim.fs.dirname(vim.fs.find(".git", param)[1])
             or vim.fn.getcwd()
+          -- return util.find_package_json_ancestor(fname)
+          --   or util.find_node_modules_ancestor(fname)
+          --   or util.find_git_ancestor(fname)
+          --   or vim.fn.getcwd()
         end,
         single_file_support = true,
         settings = {

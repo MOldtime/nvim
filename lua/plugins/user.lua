@@ -87,7 +87,7 @@ return {
       )
     end,
   },
-  
+
   {
     "akinsho/toggleterm.nvim",
     version = "*",
@@ -100,6 +100,7 @@ return {
       terminal_mappings = true,
     },
     config = function(_, opts)
+      ---@diagnostic disable-next-line: undefined-field
       if vim.loop.os_uname().sysname == "Windows_NT" then
         local powershell_options = {
           shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
@@ -126,7 +127,7 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
-  
+
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
@@ -135,7 +136,7 @@ return {
       },
     },
   },
-  
+
   {
     -- https://github.com/max397574/better-escape.nvim
     "max397574/better-escape.nvim",
