@@ -82,13 +82,13 @@ return {
       -- :help map-table
       [""] = {
         ["<Leader>`"] = { "~", desc = "把小写转换为大写" },
-        ["<M-p>"] = { '"+p', desc = "粘贴系统剪切板" },
         ["<Leader>zr"] = { function() vim.api.nvim_command "e!" end, desc = "重新加载文件" },
       },
       ["!"] = {
         ["<M-p>"] = { "<C-R>+", desc = "粘贴系统剪切板" },
       },
       n = {
+        ["<M-p>"] = { '"+p', desc = "粘贴系统剪切板" },
         -- navigate buffer tabs
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },

@@ -20,12 +20,11 @@ return {
       },
     },
   -- stylua: ignore
-  keys = {
+    keys = {
     { "<Leader><Leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<Leader>zf", mode = { "n" },
-        function()
+    { "<Leader>zf", mode = { "n" }, function()
           local Flash = require("flash")
 
           -- @param opts Flash.Format
@@ -75,7 +74,7 @@ return {
         end,
         desc = "Flash 中文专用"
       },
-  },
+    },
   },
   -- 多光标
   -- 基本用法:
@@ -184,7 +183,32 @@ return {
   {
     "NStefan002/visual-surround.nvim",
     event = "BufRead",
+    enabled = false;
     opts = true,
+  },
+  --[[
+      add / delete / change 这三个“核心”操作可以分别使用键映射
+      ys{motion}{char} 、 ds{char} 和 cs{target}{replacement} 完成
+      在以下示例中， * 表示光标位置：
+      Old text                    Command         New text
+      ----------------------------------------------------------------------
+      surr*ound_words             ysiw)           (surround_words)
+      *make strings               ys$"            "make strings"
+      [delete ar*ound me!]        ds]             delete around me!
+      remove <b>HTML t*ags</b>    dst             remove HTML tags
+      'change quot*es'            cs'"            "change quotes"
+      <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+      delete(functi*on calls)     dsf             function calls
+  --]]
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "BufRead",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
   },
   -- 加速jk的移动
   {
@@ -269,7 +293,7 @@ return {
     "LeonHeidelbach/trailblazer.nvim",
     event = "BufRead",
     opts = {
-      mappings = {
+      force_mappings = {
         nv = {
           motions = {
             new_trail_mark = "<M-;>", -- 新建一个标记
@@ -279,15 +303,15 @@ return {
             move_to_nearest = "<M-n>", -- 跳转到最近
             toggle_trail_mark_list = "<M-m>", -- 显示标记列表
           },
-          -- actions = {
-          --   delete_all_trail_marks = "<leader>md", -- 删除所有标记
-          --   paste_at_last_trail_mark = "<leader>mp", -- 粘贴到最后一个标记
-          --   paste_at_all_trail_marks = "<leader>mP", -- 粘贴到所有的标记
-          --   set_trail_mark_select_mode = "<leader>mt", -- 将轨迹标记选择模式设置为给定模式或在可用模式之间切换
-          --   switch_to_next_trail_mark_stack = "<leader>m.", -- 使用排序模式切换到下一个跟踪标记堆栈
-          --   switch_to_previous_trail_mark_stack = "<leader>m,", -- 使用排序模式切换到上一个跟踪标记堆栈
-          --   set_trail_mark_stack_sort_mode = "<leader>ms", -- 将跟踪标记堆栈排序模式设置为给定模式或在可用模式之间切换
-          -- },
+          actions = {
+            --   delete_all_trail_marks = "<leader>md", -- 删除所有标记
+            --   paste_at_last_trail_mark = "<leader>mp", -- 粘贴到最后一个标记
+            --   paste_at_all_trail_marks = "<leader>mP", -- 粘贴到所有的标记
+            --   set_trail_mark_select_mode = "<leader>mt", -- 将轨迹标记选择模式设置为给定模式或在可用模式之间切换
+            --   switch_to_next_trail_mark_stack = "<leader>m.", -- 使用排序模式切换到下一个跟踪标记堆栈
+            --   switch_to_previous_trail_mark_stack = "<leader>m,", -- 使用排序模式切换到上一个跟踪标记堆栈
+            --   set_trail_mark_stack_sort_mode = "<leader>ms", -- 将跟踪标记堆栈排序模式设置为给定模式或在可用模式之间切换
+          },
         },
       },
     },

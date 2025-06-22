@@ -194,6 +194,5 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
       },
     },
-    opts_extend = { "sources.default" },
   },
 }

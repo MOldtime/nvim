@@ -47,7 +47,6 @@ return {
     opts.textobjects.select.keymaps["id"] = opts.textobjects.select.keymaps["i?"]
     opts.textobjects.select.keymaps["a?"] = nil
     opts.textobjects.select.keymaps["i?"] = nil
-    -- 翻译
     require("nvim-treesitter.configs").setup(opts)
   end,
 }
