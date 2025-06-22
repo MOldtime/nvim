@@ -19,12 +19,15 @@ return {
         uppercase = false,
       },
     },
-  -- stylua: ignore
+    -- stylua: ignore
     keys = {
-    { "<Leader><Leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<Leader>zf", mode = { "n" }, function()
+      { "<Leader><Leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "r",                mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",                mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      {
+        "<Leader>zf",
+        mode = { "n" },
+        function()
           local Flash = require("flash")
 
           -- @param opts Flash.Format
@@ -36,9 +39,9 @@ return {
             }
           end
 
-            --- @class Flash.Match
-            --- @field label2 string
-            --- @field label1 string
+          --- @class Flash.Match
+          --- @field label2 string
+          --- @field label1 string
           Flash.jump({
             search = { mode = "search" },
             label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
@@ -57,7 +60,7 @@ return {
                 end,
                 labeler = function(matches)
                   for _, m in ipairs(matches) do
-                    m.label = m.label2  -- use the second label
+                    m.label = m.label2 -- use the second label
                   end
                 end,
               })
@@ -74,7 +77,7 @@ return {
         end,
         desc = "Flash 中文专用"
       },
-    },
+    }
   },
   -- 多光标
   -- 基本用法:
@@ -105,8 +108,8 @@ return {
         },
         heads = {
           { "<down>", mc.nextCursor },
-          { "<up>", mc.prevCursor },
-          { "Q", mc.deleteCursor },
+          { "<up>",   mc.prevCursor },
+          { "Q",      mc.deleteCursor },
           {
             "q",
             function()
@@ -147,13 +150,13 @@ return {
             "S",
             function() mc.matchSkipCursor(-1) end,
           },
-          { "<F1>", nil, { exit = true } },
-          { "<leader>a", mc.alignCursors, { mode = { "n", "v" } } },
-          { "S", mc.splitCursors, { mode = "v" } },
-          { "I", mc.insertVisual, { mode = "v" } },
-          { "A", mc.appendVisual, { mode = "v" } },
-          { "M", mc.matchCursors, { mode = "v" } },
-          { "<leader>t", function() mc.transposeCursors(1) end, { mode = "v" } },
+          { "<F1>",      nil,                                    { exit = true } },
+          { "<leader>a", mc.alignCursors,                        { mode = { "n", "v" } } },
+          { "S",         mc.splitCursors,                        { mode = "v" } },
+          { "I",         mc.insertVisual,                        { mode = "v" } },
+          { "A",         mc.appendVisual,                        { mode = "v" } },
+          { "M",         mc.matchCursors,                        { mode = "v" } },
+          { "<leader>t", function() mc.transposeCursors(1) end,  { mode = "v" } },
           { "<leader>T", function() mc.transposeCursors(-1) end, { mode = "v" } },
         },
       }
@@ -178,13 +181,6 @@ return {
       vim.keymap.set("v", "<M-S-Space>", function() hydra_:activate() end)
       mc.setup()
     end,
-  },
-  -- 直接添加字符在周围
-  {
-    "NStefan002/visual-surround.nvim",
-    event = "BufRead",
-    enabled = false;
-    opts = true,
   },
   --[[
       add / delete / change 这三个“核心”操作可以分别使用键映射
@@ -296,11 +292,11 @@ return {
       force_mappings = {
         nv = {
           motions = {
-            new_trail_mark = "<M-;>", -- 新建一个标记
-            track_back = "<M-o>", -- 跳转到上一个，并清除
-            peek_move_next_down = "<M-j>", -- 跳转到到下一个
-            peek_move_previous_up = "<M-k>", -- 跳转到上一个
-            move_to_nearest = "<M-n>", -- 跳转到最近
+            new_trail_mark = "<M-;>",         -- 新建一个标记
+            track_back = "<M-o>",             -- 跳转到上一个，并清除
+            peek_move_next_down = "<M-j>",    -- 跳转到到下一个
+            peek_move_previous_up = "<M-k>",  -- 跳转到上一个
+            move_to_nearest = "<M-n>",        -- 跳转到最近
             toggle_trail_mark_list = "<M-m>", -- 显示标记列表
           },
           actions = {

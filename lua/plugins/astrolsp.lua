@@ -12,15 +12,15 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
+      codelens = true,        -- enable/disable codelens refresh on start
+      inlay_hints = false,    -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false, -- enable or disable format on save globally
+        enabled = false,    -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -52,6 +52,15 @@ return {
               enable = true,
               arrayIndex = "Disable",
             },
+            format = {
+              enable = true,
+              -- Put format options here
+              -- NOTE: the value should be String!
+              defaultConfig = {
+                indent_style = "space",
+                indent_size = "2",
+              },
+            },
           },
         },
       },
@@ -68,9 +77,9 @@ return {
         root_dir = function(fname)
           local param = { path = fname, upward = true }
           return vim.fs.dirname(vim.fs.find("package.json", param)[1])
-            or vim.fs.dirname(vim.fs.find("node_modules", param)[1])
-            or vim.fs.dirname(vim.fs.find(".git", param)[1])
-            or vim.fn.getcwd()
+              or vim.fs.dirname(vim.fs.find("node_modules", param)[1])
+              or vim.fs.dirname(vim.fs.find(".git", param)[1])
+              or vim.fn.getcwd()
           -- return util.find_package_json_ancestor(fname)
           --   or util.find_node_modules_ancestor(fname)
           --   or util.find_git_ancestor(fname)
