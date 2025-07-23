@@ -10,7 +10,7 @@ return {
         "TobinPalmer/pastify.nvim",
         cmd = { "Pastify" },
         event = {
-          "BufReadPre *.md", -- markdown
+          "BufReadPre *.md",   -- markdown
           "BufReadPre *.html", -- html
           -- "BufReadPre *.html", -- tex
         },
@@ -62,18 +62,18 @@ return {
     opts = function()
       local options = {
         preview = {
-          quit = "q", -- optional keymapping for quit preview
-          accept = "<tab>", -- optional keymapping for accept preview
+          quit = "q",                             -- optional keymapping for quit preview
+          accept = "<tab>",                       -- optional keymapping for accept preview
         },
-        header_extension = "h", -- optional
-        source_extension = "cpp", -- optional
+        header_extension = "h",                   -- optional
+        source_extension = "cpp",                 -- optional
         custom_define_class_function_commands = { -- optional
           TSCppImplWrite = {
             output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
           },
           --[[
                 <your impl function custom command name> = {
-                    output_handle = function (str, context) 
+                    output_handle = function (str, context)
                         -- string contains the class implementation
                         -- do whatever you want to do with it
                     end
@@ -110,7 +110,7 @@ return {
     opts = {
       has_breadcrumbs = true, -- show path
       has_line_number = true, -- show line
-      bg_color = "#535c68", -- background color"
+      bg_color = "#535c68",   -- background color"
       bg_x_padding = 50,
       bg_y_padding = 20,
       watermark = "",
@@ -121,4 +121,15 @@ return {
     event = "VeryLazy",
     lazy = true,
   },
+  {
+    'mikesmithgh/kitty-scrollback.nvim',
+    lazy = true,
+    cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
+    event = { 'User KittyScrollbackLaunch' },
+    -- version = '*', -- latest stable version, may have breaking changes if major version changed
+    -- version = '^6.0.0', -- pin major version, include fixes and features that do not have breaking changes
+    config = function()
+      require('kitty-scrollback').setup()
+    end,
+  }
 }

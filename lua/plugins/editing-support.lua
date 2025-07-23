@@ -202,6 +202,7 @@ return {
     event = "BufRead",
     config = function()
       require("nvim-surround").setup {
+        move_cursor = false
         -- Configuration here, or leave empty to use defaults
       }
     end,
@@ -249,6 +250,7 @@ return {
   {
     "luozhiya/fittencode.nvim",
     event = "InsertEnter",
+    -- enabled = false,
     opts = {
       use_default_keymaps = false,
       keymaps = {
@@ -284,6 +286,26 @@ return {
       fittencode.setup(opts)
     end,
   },
+
+  -- llm
+  {
+    'huggingface/llm.nvim',
+    enabled = false,
+    opts = {
+      model = "deepseek-r1:1.5b",
+      url = "http://localhost:11434", -- llm-ls uses "/api/generate"
+      backend = 'ollama',
+      -- cf https://github.com/ollama/ollama/blob/main/docs/api.md#parameters
+      request_body = {
+        -- Modelfile options for the model you use
+        options = {
+          temperature = 0.2,
+          top_p = 0.95,
+        }
+      }
+    }
+  },
+
   -- 添加标记 快速跳转
   {
     "LeonHeidelbach/trailblazer.nvim",
