@@ -13,7 +13,7 @@ return {
     -- Configuration table of features provided by AstroLSP
     features = {
       codelens = true,        -- enable/disable codelens refresh on start
-      inlay_hints = true,    -- enable/disable inlay hints on start
+      inlay_hints = true,     -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
@@ -40,6 +40,7 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      'kotlin_lsp'
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -91,17 +92,22 @@ return {
           ["run"] = "onType",
         },
       },
-      kotlin_language_server = {
-        settings = {
-          kotlin = {
-            compiler = {
-              jvm = {
-                target = "17",
-              },
-            },
-          },
-        },
+      kotlin_lsp = {
+        cmd = { "kotlin-lsp", "--stdio" },
+        single_file_support = true,
+        filetypes = { "kotlin" },
+        root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
       },
+      ts_ls = {
+        settings = {
+          javascript = {
+            referencesCodeLens = {
+              enabled = true,
+              showOnAllFunctions = true
+            }
+          }
+        }
+      }
     },
     -- customize how language servers are attached
     handlers = {
@@ -139,10 +145,24 @@ return {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
-        gD = {
-          function() vim.lsp.buf.declaration() end,
-          desc = "Declaration of current symbol",
-          cond = "textDocument/declaration",
+        -- gD = {
+        --   function() vim.lsp.buf.declaration() end,
+        --   desc = "Declaration of current symbol",
+        --   cond = "textDocument/declaration",
+        -- },
+        gd = {
+          function()
+            local params = vim.lsp.util.make_position_params(0, 'utf-8')
+            vim.lsp.buf_request(0, 'textDocument/definition', params, function(_, result, _, _)
+              if not result or vim.tbl_isempty(result) then
+                vim.notify('No definition found', vim.log.levels.INFO)
+              else
+                require('snacks').picker.lsp_definitions()
+              end
+            end)
+          end,
+          desc = "Show the definition of current symbol",
+          cond = "textDocument/definition",
         },
         ["<Leader>uY"] = {
           function() require("astrolsp.toggles").buffer_semantic_tokens() end,
@@ -151,6 +171,11 @@ return {
             return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
           end,
         },
+        grr = {
+          function()
+            require('snacks').picker.lsp_references();
+          end
+        }
       },
     },
     -- A custom `on_attach` function to be run after the default `on_attach` function

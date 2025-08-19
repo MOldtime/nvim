@@ -7,13 +7,20 @@ return {
   "andweeb/presence.nvim",
   {
     "ray-x/lsp_signature.nvim",
+    enabled = false,
     event = "BufRead",
+    opts = {
+
+    },
     config = function() require("lsp_signature").setup() end,
   },
 
   -- customize dashboard options
   {
     "folke/snacks.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
     opts = {
       dashboard = {
         preset = {
@@ -155,7 +162,7 @@ return {
       timeout = 200,
       default_mappings = false,
       mappings = {
-        i = { j = { k = "<Esc>", j = "<Esc>" }, f = { j = "<Esc>" } },
+        i = { j = { k = "<Esc>", j = "<Esc>", f = "<Esc>" }, f = { j = "<Esc>" } },
       },
     },
   },
@@ -188,6 +195,15 @@ return {
           auto_show_delay_ms = 300,
         },
       },
+
+      signature = {
+        enabled = true,
+        window = {
+          show_documentation = true
+        }
+      },
+
+      snippets = { preset = 'luasnip' },
 
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups

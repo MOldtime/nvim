@@ -292,7 +292,7 @@ return {
     'huggingface/llm.nvim',
     enabled = false,
     opts = {
-      model = "deepseek-r1:1.5b",
+      model = "qwen2.5-coder:latest",
       url = "http://localhost:11434", -- llm-ls uses "/api/generate"
       backend = 'ollama',
       -- cf https://github.com/ollama/ollama/blob/main/docs/api.md#parameters

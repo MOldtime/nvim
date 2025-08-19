@@ -1,6 +1,13 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 local maps = require("astrocore").set_mappings
 return {
+  -- theme
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   -- noice
   {
     "folke/noice.nvim",
@@ -26,14 +33,14 @@ return {
         -- },
       },
       presets = {
-        bottom_search = false, -- use a classic bottom cmdline for search
+        bottom_search = false,  -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
       },
       routes = {
-        { filter = { event = "msg_show", min_height = 20 }, view = "messages" }, -- send long messages to split
-        { filter = { event = "msg_show", find = "%d+L,%s%d+B" }, opts = { skip = true } }, -- skip save notifications
-        { filter = { event = "msg_show", find = "^%d+ more lines$" }, opts = { skip = true } }, -- skip paste notifications
-        { filter = { event = "msg_show", find = "^%d+ fewer lines$" }, opts = { skip = true } }, -- skip delete notifications
+        { filter = { event = "msg_show", min_height = 20 },             view = "messages" },      -- send long messages to split
+        { filter = { event = "msg_show", find = "%d+L,%s%d+B" },        opts = { skip = true } }, -- skip save notifications
+        { filter = { event = "msg_show", find = "^%d+ more lines$" },   opts = { skip = true } }, -- skip paste notifications
+        { filter = { event = "msg_show", find = "^%d+ fewer lines$" },  opts = { skip = true } }, -- skip delete notifications
         { filter = { event = "msg_show", find = "^%d+ lines yanked$" }, opts = { skip = true } }, -- skip yank notifications
       },
     },

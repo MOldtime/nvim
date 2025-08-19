@@ -43,13 +43,13 @@ return {
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
-        relativenumber = false, -- sets vim.opt.relativenumber
-        number = true, -- sets vim.opt.number
+        relativenumber = true, -- sets vim.opt.relativenumber
+        number = false, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = false, -- sets vim.opt.wrap
         clipboard = "",
-        expandtab = true,
+        expandtab = false, -- tab space 
         list = true,
         termguicolors = true, -- 开启真彩色
         listchars = {
@@ -143,7 +143,6 @@ return {
       i = {
         ["<M-h>"] = { "<Esc>^i", desc = "移动到行首" },
         ["<M-l>"] = { "<Esc>$a", desc = "移动到行尾" },
-        ["<M-CR>"] = { "<Esc>o", desc = "下一行" },
         -- 方便写中文
         ["<M-j>"] = { "<Esc>" },
         [""] = { "" }, -- 
