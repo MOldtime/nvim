@@ -117,9 +117,10 @@ return {
     },
   },
   {
-    "mistricky/code-link.nvim",
-    event = "VeryLazy",
-    lazy = true,
+    "linrongbin16/gitlinker.nvim",
+    cmd = "GitLink",
+    opts = {},
+    lazy = false
   },
   {
     'mikesmithgh/kitty-scrollback.nvim',
