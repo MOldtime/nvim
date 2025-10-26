@@ -89,7 +89,6 @@ return {
   --    s 跳过下一个，S 跳过上一个
   {
     "jake-stewart/multicursor.nvim",
-    enabled = false,
     event = "BufRead",
     config = function()
       local mc = require("multicursor-nvim")
@@ -279,7 +278,6 @@ return {
   {
     "luozhiya/fittencode.nvim",
     event = "InsertEnter",
-    -- enabled = false,
     opts = {
       use_default_keymaps = false,
       keymaps = {
@@ -296,6 +294,9 @@ return {
         -- For example, `suffixes = {'lua', 'cpp'}`
         suffixes = { "TelescopePrompt", "neo-tree-popup", "rip-substitute" },
       },
+			inline_completion = {
+				auto_triggering_completion = false
+			}
     },
     config = function(_, opts)
       local fittencode = require("fittencode")

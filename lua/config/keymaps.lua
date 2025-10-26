@@ -4,15 +4,17 @@
 -- if true then
 -- 	return {}
 -- end
+
+
 local map = LazyVim.safe_keymap_set
 local utils = require("tools.utils")
 
--- map({ "n", "v", "s", "o" }, "<Leader>`", "~", { desc = "把小写转换为大写" })
--- map({ "n", "v", "s", "o" }, "<Leader>zr", function()
--- 	vim.api.nvim_command("e!")
--- end, { desc = "重新加载文件" })
+map({ "n", "v", "s", "o" }, "<Leader>`", "~", { desc = "把小写转换为大写" })
+map({ "n", "v", "s", "o" }, "<Leader>zr", function()
+vim.api.nvim_command("e!")
+ end, { desc = "重新加载文件" })
 
--- map("!", "<M-p>", "<C-R>+", { desc = "粘贴系统剪切板" })
+map({ "i", "c" }, "<M-p>", "<C-R>+", { desc = "粘贴系统剪切板" })
 
 map("n", "<M-p>", '"+p', { desc = "粘贴系统剪切板" })
 
@@ -25,7 +27,7 @@ map("n", "<leader>ze", function()
 	utils.SetFileEncoding()
 end, { desc = "设置文件编码" })
 
-map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
+map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save File" })
 --
 -- -- navigate buffer tabs with `H` and `L`
 map("n", "L", function()

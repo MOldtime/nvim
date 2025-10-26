@@ -88,4 +88,12 @@ return {
 			require("toggleterm").setup(opts)
 		end,
 	},
+	{
+		"folke/snacks.nvim",
+		opts = {
+			explorer = {
+				
+			}
+		},
+	},
 }

@@ -1,4 +1,3 @@
-local maps = require("astrocore").set_mappings
 return {
   -- log
   {
