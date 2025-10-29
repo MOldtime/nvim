@@ -210,55 +210,6 @@ return {
       mc.setup()
     end,
   },
-  --[[
-      add / delete / change 这三个“核心”操作可以分别使用键映射
-      ys{motion}{char} 、 ds{char} 和 cs{target}{replacement} 完成
-      在以下示例中， * 表示光标位置：
-      Old text                    Command         New text
-      ----------------------------------------------------------------------
-      surr*ound_words             ysiw)           (surround_words)
-      *make strings               ys$"            "make strings"
-      [delete ar*ound me!]        ds]             delete around me!
-      remove <b>HTML t*ags</b>    dst             remove HTML tags
-      'change quot*es'            cs'"            "change quotes"
-      <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
-      delete(functi*on calls)     dsf             function calls
-  --]]
-  {
-    "kylechui/nvim-surround",
-    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-    event = "BufRead",
-    config = function()
-      require("nvim-surround").setup({
-        move_cursor = false,
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
-  },
-  -- 加速jk的移动
-  {
-    -- https://github.com/rainbowhxch/accelerated-jk.nvim
-    "rainbowhxch/accelerated-jk.nvim",
-    enabled = vim.loop.os_uname().sysname == "Windows_NT" and true or false,
-    event = { "User AstroFile" },
-    opts = {
-      acceleration_table = { 5, 14, 19, 23, 26, 28, 30, 32 },
-    },
-    keys = {
-      {
-        "j",
-        "<Plug>(accelerated_jk_j)",
-        mode = { "n" },
-        desc = "向下移动",
-      },
-      {
-        "k",
-        "<Plug>(accelerated_jk_k)",
-        mode = { "n" },
-        desc = "向上移动",
-      },
-    },
-  },
   -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
   {
     "gbprod/cutlass.nvim",
@@ -394,10 +345,10 @@ return {
         up = "<M-K>",
 
         -- Move current line in Normal mode
-        line_right = "<Tab>",
-        line_left = "<S-Tab>",
-        line_down = "<M-J>",
-        line_up = "<M-K>",
+				line_right = "<Tab>",
+				line_left = "<S-Tab>",
+				line_down = "<M-J>",
+				line_up = "<M-K>",
       },
 
       -- Options which control moving behavior

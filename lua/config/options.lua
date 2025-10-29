@@ -30,3 +30,4 @@ for key, value in pairs({
 }) do
 	vim.g[key] = value
 end
+-- vim.lsp.set_log_level("DEBUG")

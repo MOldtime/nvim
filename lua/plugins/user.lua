@@ -67,6 +67,7 @@ return {
 			terminal_mappings = true,
 		},
 		keys = {
+			{ "<Esc>", [[<C-\><C-n>]], mode = "t" },
 			{ "fj", [[<C-\><C-n>]], mode = "t" },
 		},
 		config = function(_, opts)
@@ -87,13 +88,5 @@ return {
 			end
 			require("toggleterm").setup(opts)
 		end,
-	},
-	{
-		"folke/snacks.nvim",
-		opts = {
-			explorer = {
-				
-			}
-		},
 	},
 }
