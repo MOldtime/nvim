@@ -138,4 +138,8 @@ return {
       require("kitty-scrollback").setup()
     end,
   },
+	{
+		"lbrayner/vim-rzip",
+		lazy = true
+	}
 }

@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 require("config.ide.neovide")
-vim.api.nvim_command("lan zh_CN.UTF-8")
+-- vim.api.nvim_command("lan zh_CN.UTF-8")
 for key, value in pairs({
 	relativenumber = true, -- sets vim.opt.relativenumber
 	number = false, -- sets vim.opt.number
