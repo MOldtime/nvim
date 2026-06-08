@@ -20,8 +20,8 @@ return {
     },
     -- stylua: ignore
     keys = {
-			{ "s", mode = { "n", "o", "x" }, false },
-			{ "S", mode = { "n", "o", "x" }, false },
+      { "s",                mode = { "n", "o", "x" }, false },
+      { "S",                mode = { "n", "o", "x" }, false },
       { "<Leader><Leader>", mode = { "n", "o", "x" }, function() require("flash").jump() end,              desc = "Flash" },
       { "r",                mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
       { "R",                mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
@@ -78,8 +78,7 @@ return {
         end,
         desc = "Flash 中文专用"
       },
-    }
-,
+    },
   },
   -- 多光标
   -- 基本用法:
@@ -110,8 +109,8 @@ return {
         },
         heads = {
           { "<down>", mc.nextCursor },
-          { "<up>", mc.prevCursor },
-          { "Q", mc.deleteCursor },
+          { "<up>",   mc.prevCursor },
+          { "Q",      mc.deleteCursor },
           {
             "q",
             function()
@@ -152,12 +151,12 @@ return {
             "<M-S-n>",
             function() mc.matchSkipCursor(-1) end,
           },
-          { "<F1>", nil, { exit = true } },
+          { "<F1>",      nil,             { exit = true } },
           { "<leader>a", mc.alignCursors, { mode = { "n", "v" } } },
-          { "S", mc.splitCursors, { mode = "v" } },
-          { "I", mc.insertVisual, { mode = "v" } },
-          { "A", mc.appendVisual, { mode = "v" } },
-          { "M", mc.matchCursors, { mode = "v" } },
+          { "S",         mc.splitCursors, { mode = "v" } },
+          { "I",         mc.insertVisual, { mode = "v" } },
+          { "A",         mc.appendVisual, { mode = "v" } },
+          { "M",         mc.matchCursors, { mode = "v" } },
           {
             "<leader>t",
             function() mc.transposeCursors(1) end,
@@ -275,11 +274,11 @@ return {
       force_mappings = {
         nv = {
           motions = {
-            new_trail_mark = "<M-;>", -- 新建一个标记
-            track_back = "<M-o>", -- 跳转到上一个，并清除
-            peek_move_next_down = "<M-j>", -- 跳转到到下一个
-            peek_move_previous_up = "<M-k>", -- 跳转到上一个
-            move_to_nearest = "<M-n>", -- 跳转到最近
+            new_trail_mark = "<M-;>",         -- 新建一个标记
+            track_back = "<M-o>",             -- 跳转到上一个，并清除
+            peek_move_next_down = "<M-j>",    -- 跳转到到下一个
+            peek_move_previous_up = "<M-k>",  -- 跳转到上一个
+            move_to_nearest = "<M-n>",        -- 跳转到最近
             toggle_trail_mark_list = "<M-m>", -- 显示标记列表
           },
           actions = {
@@ -317,7 +316,7 @@ return {
       },
     },
   },
-    --[[
+  --[[
       add / delete / change 这三个“核心”操作可以分别使用键映射
       ys{motion}{char} 、 ds{char} 和 cs{target}{replacement} 完成
       在以下示例中， * 表示光标位置：
@@ -337,7 +336,7 @@ return {
     event = "BufRead",
     config = function()
       require("nvim-surround").setup {
-        move_cursor = false
+        move_cursor = false,
         -- Configuration here, or leave empty to use defaults
       }
     end,
