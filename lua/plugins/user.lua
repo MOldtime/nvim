@@ -28,6 +28,10 @@ return {
         },
       },
 
+      snippets = {
+        expand = function(snippet) vim.snippet.expand(snippet) end,
+      },
+
       signature = {
         enabled = true,
         window = {
