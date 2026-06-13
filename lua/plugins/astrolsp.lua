@@ -37,7 +37,13 @@ return {
     -- customize language server configuration passed to `vim.lsp.config`
     -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
     config = {
-      -- ["*"] = { capabilities = {} }, -- modify default LSP client settings such as capabilities
+      gopls = {
+        settings = {
+          gopls = {
+            usePlaceholders = false,
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
