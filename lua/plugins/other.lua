@@ -124,4 +124,26 @@ return {
     "lbrayner/vim-rzip",
     lazy = true,
   },
+  {
+    "nvim-neotest/neotest",
+    keys = {
+      { "<leader>lt", desc = "nottest" },
+      { "<leader>ltl", function() require("neotest").run.run() end, desc = "测试最近的测试" },
+      {
+        "<leader>ltf",
+        function() require("neotest").run.run(vim.fn.expand "%") end,
+
+        desc = "测试当前文件",
+      },
+      { "<leader>ltt", function() require("neotest").run.stop() end, desc = "停止最近的测试" },
+      { "<leader>lta", function() require("neotest").run.attach() end, desc = "附加最近的测试" },
+      { "<leader>lto", function() require("neotest").output_panel.toggle() end, desc = "打开日志" },
+    },
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 }
