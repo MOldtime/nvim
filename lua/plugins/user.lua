@@ -71,7 +71,7 @@ return {
       terminal_mappings = true,
     },
     keys = {
-      { "<Esc>", [[<C-\><C-n>]], mode = "t" },
+      -- { "<Esc>", [[<C-\><C-n>]], mode = "t" }, // Esc容易和本地的冲突
       { "fj", [[<C-\><C-n>]], mode = "t" },
     },
     config = function(_, opts)
