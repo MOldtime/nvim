@@ -39,8 +39,6 @@ return {
         },
       },
 
-      -- snippets = { preset = "luasnip" },
-
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
         -- Useful for when your theme doesn't support blink.cmp
