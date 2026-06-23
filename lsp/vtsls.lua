@@ -11,16 +11,16 @@ return {
   },
   settings = {
     complete_function_calls = true,
-    vtsls = {
+    -- vtsls = {
       enableMoveToFileCodeAction = true,
-      autoUseWorkspaceTsdk = true,
+      -- autoUseWorkspaceTsdk = true,
       experimental = {
         maxInlayHintLength = 30,
         completion = {
           enableServerSideFuzzyMatch = true,
         },
       },
-    },
+    -- },
     typescript = {
       updateImportsOnFileMove = { enabled = "always" },
       suggest = {
