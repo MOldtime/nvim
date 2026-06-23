@@ -9,7 +9,7 @@ return {
   -- 窗口自动配置
   {
     "nvim-focus/focus.nvim",
-    enabled = false,
+    -- enabled = false,
     event = "BufEnter",
     version = "*",
     opts = {
