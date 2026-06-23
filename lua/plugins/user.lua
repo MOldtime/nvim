@@ -91,25 +91,4 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
-  -- {
-  --   "folke/snacks.nvim",
-  --   opts = {
-  --     bigfile = { enabled = false },
-  --     explorer = {
-  --       trash = false, -- default: true, set to false for permanent delete
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {
-  --     on_highlights = function(highlights, colors)
-  --       highlights.DiagnosticUnnecessary = {
-  --         fg = colors.comment,
-  --       }
-  --     end,
-  --   },
-  -- },
 }
