@@ -9,7 +9,7 @@ return {
   -- 窗口自动配置
   {
     "nvim-focus/focus.nvim",
-    -- enabled = false,
+    enabled = false,
     event = "BufEnter",
     version = "*",
     opts = {
@@ -57,8 +57,12 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    -- opts = {
-    --   style = "darker"
-    -- }
+    opts = {
+      on_highlights = function(highlights, colors)
+        highlights.DiagnosticUnnecessary = {
+          fg = colors.comment,
+        }
+      end,
+    },
   },
 }
