@@ -91,4 +91,44 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      picker = {
+        enabled = true,
+        win = {
+          input = {
+            keys = {
+              ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+              ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+              ["\\"] = { "edit_split", mode = { "n" } },
+              ["|"] = { "edit_vsplit", mode = { "n" } },
+            },
+          },
+          list = {
+            keys = {
+              ["\\"] = "edit_split",
+              ["|"] = "edit_vsplit",
+            },
+          },
+          preview = {
+            keys = {
+              ["<Esc>"] = "cancel",
+              ["q"] = "cancel",
+              ["i"] = "focus_input",
+              ["<a-w>"] = "cycle_win",
+              ["\\"] = "edit_split",
+              ["|"] = "edit_vsplit",
+            },
+          },
+        },
+      },
+    },
+  },
 }
