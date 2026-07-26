@@ -5,4 +5,5 @@ return {
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.pack.go" },
+  { import = "astrocommunity.recipes.picker-lsp-mappings" },
 }
