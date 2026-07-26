@@ -1,3 +1,12 @@
+local blinkKeyMap = {
+  preset = "none",
+  ["<M-j>"] = { "select_next" },
+  ["<M-k>"] = { "select_prev" },
+  ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
+  ["<S-Tab>"] = { "snippet_backward", "fallback" },
+  ["<Enter>"] = { "accept", "fallback" },
+  ["<Esc>"] = { "cancel", "fallback" },
+}
 return {
   -- cmp
   {
@@ -7,14 +16,12 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      keymap = {
-        preset = "none",
-        ["<M-j>"] = { "select_next" },
-        ["<M-k>"] = { "select_prev" },
-        ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
-        ["<S-Tab>"] = { "snippet_backward", "fallback" },
-        ["<Enter>"] = { "accept", "fallback" },
-        ["<Esc>"] = { "cancel", "fallback" },
+      keymap = blinkKeyMap,
+
+      cmdline = {
+        enabled = true,
+        keymap = blinkKeyMap,
+        completion = { menu = { auto_show = true } },
       },
 
       completion = {
