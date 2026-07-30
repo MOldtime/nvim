@@ -35,11 +35,10 @@ for key, value in pairs {
   neovide_srgb = true,
 
   neovide_cursor_short_animation_length = 0.2,
-  
-  neovide_padding_top = 10,
+  neovide_padding_top = 5,
   neovide_padding_bottom = 0,
-  neovide_padding_right = 10,
-  neovide_padding_left = 10,
+  neovide_padding_right = 5,
+  neovide_padding_left = 5,
   neovide_window_blurred = true,
   neovide_cursor_smooth_blink = true,
 
