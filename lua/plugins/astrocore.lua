@@ -34,6 +34,8 @@ return {
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
+        scrolloff = 4,
+        sidescrolloff = 8,
         relativenumber = true, -- sets vim.opt.relativenumber
         number = false, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
