@@ -5,7 +5,7 @@ vim.o.guifont = "monospace,"
   -- .. "JetBrainsMonoNL Nerd Font,"
   -- .. "JetBrainsMonoNL Nerd Font Propo,"
   .. (vim.loop.os_uname().sysname == "Windows_NT" and "Noto Sans" or "MiSans")
-  .. ":h14:#e-subpixelantialias:#h-full"
+  .. ":h12:#e-subpixelantialias:#h-full"
 
 for key, value in pairs {
   -- neovide_profiler = true, -- debug
