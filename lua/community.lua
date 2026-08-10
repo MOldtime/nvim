@@ -6,4 +6,7 @@ return {
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
+
+  -- dap
+  { import = "astrocommunity.debugging.nvim-dap-repl-highlights" }
 }
