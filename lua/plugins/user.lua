@@ -90,7 +90,8 @@ return {
       if vim.loop.os_uname().sysname == "Windows_NT" then
         local powershell_options = {
           shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
-          shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+          shellcmdflag =
+          "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
           shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
           shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
           shellquote = "",
@@ -122,12 +123,16 @@ return {
               ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
               ["\\"] = { "edit_split", mode = { "n" } },
               ["|"] = { "edit_vsplit", mode = { "n" } },
+              ["<A-j>"] = { "list_down", mode = { "i", "n" } },
+              ["<A-k>"] = { "list_up", mode = { "i", "n" } },
             },
           },
           list = {
             keys = {
               ["\\"] = "edit_split",
               ["|"] = "edit_vsplit",
+              ["<A-j>"] = { "list_down" },
+              ["<A-k>"] = { "list_up" },
             },
           },
           preview = {
