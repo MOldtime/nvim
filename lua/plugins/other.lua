@@ -9,7 +9,7 @@ return {
         "TobinPalmer/pastify.nvim",
         cmd = { "Pastify" },
         event = {
-          "BufReadPre *.md", -- markdown
+          "BufReadPre *.md",   -- markdown
           "BufReadPre *.html", -- html
           -- "BufReadPre *.html", -- tex
         },
@@ -59,11 +59,11 @@ return {
     opts = function()
       local options = {
         preview = {
-          quit = "q", -- optional keymapping for quit preview
-          accept = "<tab>", -- optional keymapping for accept preview
+          quit = "q",                             -- optional keymapping for quit preview
+          accept = "<tab>",                       -- optional keymapping for accept preview
         },
-        header_extension = "h", -- optional
-        source_extension = "cpp", -- optional
+        header_extension = "h",                   -- optional
+        source_extension = "cpp",                 -- optional
         custom_define_class_function_commands = { -- optional
           TSCppImplWrite = {
             output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
@@ -138,6 +138,7 @@ return {
       { "<leader>ltt", function() require("neotest").run.stop() end, desc = "停止最近的测试" },
       { "<leader>lta", function() require("neotest").run.attach() end, desc = "附加最近的测试" },
       { "<leader>lto", function() require("neotest").output_panel.toggle() end, desc = "打开日志" },
+      { "<leader>ltd", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "调试最近的测试" }
     },
     dependencies = {
       "nvim-neotest/nvim-nio",
