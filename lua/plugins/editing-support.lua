@@ -395,7 +395,7 @@ return {
       timeout = 200,
       default_mappings = false,
       mappings = {
-        i = { j = { k = "<Esc>", j = "<Esc>", f = "<Esc>" }, f = { j = "<Esc>" } },
+        i = { f = { j = "<Esc>" } },
       },
     },
   },
