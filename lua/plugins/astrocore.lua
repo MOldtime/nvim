@@ -52,6 +52,7 @@ return {
         smartindent = true,
         guicursor = "n-v-c-sm:block,r-cr-o:hor20,i-ci-ve:ver20-blinkwait250-blinkoff700-blinkon700",
         jumpoptions = "stack",           -- 改变 ctrl + o 跳转的方式
+        equalalways = false,             -- 新增窗口是不要自动计算
       },
       g = {                              -- vim.g.<key>
         mapleader = " ",                 -- sets vim.g.mapleader
