@@ -14,7 +14,8 @@ return {
         "vtsls",
         "json-lsp",
         "clangd",
-        "gopls"
+        "gopls",
+        "marksman",
       },
     },
   },

@@ -1,32 +1,13 @@
 -- return {}
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    edable = false,
-    cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
-    dependencies = {
-      {
-        "TobinPalmer/pastify.nvim",
-        cmd = { "Pastify" },
-        event = {
-          "BufReadPre *.md",   -- markdown
-          "BufReadPre *.html", -- html
-          -- "BufReadPre *.html", -- tex
-        },
-        key = {
-          {
-            "<leader>zp",
-            function() vim.api.nvim_command "Pastify" end,
-            mode = "n",
-            desc = "粘贴图片文件",
-          },
-        },
-      },
-    },
-    event = "BufReadPre *.md", -- markdown
-    -- build = "cd app && npm install",
-    -- build = function() vim.fn["mkdp#util#install"]() end,
-    init = function() vim.g.mkdp_theme = "dark" end,
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
   },
   {
     "Mythos-404/xmake.nvim",
