@@ -16,6 +16,7 @@ return {
         "clangd",
         "gopls",
         "marksman",
+        "yaml-language-server",
       },
     },
   },
