@@ -90,106 +90,94 @@ return {
   --    s 跳过下一个，S 跳过上一个
   {
     "jake-stewart/multicursor.nvim",
-    event = "BufRead",
+    branch = "1.0",
     config = function()
-      local mc = require "multicursor-nvim"
-      local hydra = require "hydra"
-      local hydra_ = hydra {
-        mode = { "n", "v" },
-        name = "Multicursor",
-        config = {
-          hint = false,
-          color = "pink",
-          on_exit = function()
-            if not mc.cursorsEnabled() then mc.enableCursors() end
-            if mc.hasCursors() then mc.clearCursors() end
-            vim.notify "exit multicursor"
-          end,
-          on_enter = function() vim.notify "enter multicursor" end,
-        },
-        heads = {
-          { "<down>", mc.nextCursor },
-          { "<up>",   mc.prevCursor },
-          { "Q",      mc.deleteCursor },
-          {
-            "q",
-            function()
-              if mc.cursorsEnabled() then
-                mc.disableCursors()
-              else
-                -- mc.enableCursors()
-                mc.addCursor() -- 添加光标
-              end
-            end,
-          },
-          {
-            "<Esc>",
-            function()
-              if not mc.cursorsEnabled() then
-                mc.enableCursors()
-              elseif mc.hasCursors() then
-                mc.clearCursors()
-                -- else
-                -- Hydra:exit() -- bug: self.layer:exit()
-              end
-            end,
-            { mode = "n" },
-          },
-          {
-            "n",
-            function() mc.matchAddCursor(1) end,
-          },
-          {
-            "N",
-            function() mc.matchAddCursor(-1) end,
-          },
-          {
-            "<M-n>",
-            function() mc.matchSkipCursor(1) end,
-          },
-          {
-            "<M-S-n>",
-            function() mc.matchSkipCursor(-1) end,
-          },
-          { "<F1>",      nil,             { exit = true } },
-          { "<leader>a", mc.alignCursors, { mode = { "n", "v" } } },
-          { "S",         mc.splitCursors, { mode = "v" } },
-          { "I",         mc.insertVisual, { mode = "v" } },
-          { "A",         mc.appendVisual, { mode = "v" } },
-          { "M",         mc.matchCursors, { mode = "v" } },
-          {
-            "<leader>t",
-            function() mc.transposeCursors(1) end,
-            { mode = "v" },
-          },
-          {
-            "<leader>T",
-            function() mc.transposeCursors(-1) end,
-            { mode = "v" },
-          },
-        },
-      }
-      -- hydra:_enter()
-      vim.keymap.set({ "n", "v" }, "<C-S-Up>", function()
-        hydra_:activate()
-        mc.addCursor "k"
-      end)
-      vim.keymap.set({ "n", "v" }, "<C-S-Down>", function()
-        hydra_:activate()
-        mc.addCursor "j"
-      end)
-      vim.keymap.set({ "n", "v" }, "<C-n>", function()
-        hydra_:activate()
-        mc.addCursor "*"
-      end)
-      -- vim.keymap.set({ "n", "v" }, "<C-s>", function()
-      -- 	hydra_:activate()
-      -- 	mc.skipCursor("*")
-      -- end)
-      vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
-      vim.keymap.set("v", "<M-S-Space>", function() hydra_:activate() end)
+      local mc = require("multicursor-nvim")
       mc.setup()
-    end,
+
+      local set = vim.keymap.set
+
+      -- Add or skip cursor above/below the main cursor.
+      set({ "n", "x" }, "<C-S-Up>", function() mc.lineAddCursor(-1) end)
+      set({ "n", "x" }, "<C-S-Down>", function() mc.lineAddCursor(1) end)
+
+      -- Add or skip adding a new cursor by matching word/selection
+      set({ "n", "x" }, "<C-n>", function() mc.matchAddCursor(1) end)
+
+      -- Add and remove cursors with control + left click.
+      set("n", "<c-leftmouse>", mc.handleMouse)
+      set("n", "<c-leftdrag>", mc.handleMouseDrag)
+      set("n", "<c-leftrelease>", mc.handleMouseRelease)
+
+      -- Disable and enable cursors.
+      set({ "n", "x" }, "<M-S-Space>", mc.toggleCursor)
+
+      -- Mappings defined in a keymap layer only apply when there are
+      -- multiple cursors. This lets you have overlapping mappings.
+      mc.addKeymapLayer(function(layerSet)
+        layerSet({ "n", "x" }, "n", function()
+          mc.matchAddCursor(1)
+        end)
+        layerSet({ "n", "x" }, "N", function()
+          mc.matchAddCursor(-1)
+        end)
+        layerSet({ "n", "x" }, "<M-n>", function()
+          mc.matchSkipCursor(1)
+        end)
+        layerSet({ "n", "x" }, "<M-S-n>", function()
+          mc.matchSkipCursor(-1)
+        end)
+
+        -- 对齐光标
+        layerSet({ "n", "x", "v" }, "<Up>", mc.alignCursors)
+
+        -- Select a different cursor as the main one.
+        layerSet({ "n", "x" }, "<Up>", mc.prevCursor)
+        layerSet({ "n", "x" }, "<Down>", mc.nextCursor)
+        layerSet({ "x" }, "S", mc.splitCursors)
+
+        layerSet({ "n", "x" }, "Q", function()
+          if not mc.cursorsEnabled() then
+            mc.enableCursors()
+            mc.deleteCursor()
+            mc.disableCursors()
+            return
+          end
+          mc.deleteCursor()
+        end)
+
+        layerSet({ "n", "x" }, "q", function()
+          if mc.cursorsEnabled() then
+            mc.disableCursors()
+          else
+            mc.addCursor() -- 添加光标
+          end
+        end)
+
+        set("n", "<leader>gv", mc.restoreCursors)
+
+        -- Enable and clear cursors using escape.
+        layerSet("n", "<esc>", function()
+          if not mc.cursorsEnabled() then
+            mc.enableCursors()
+          elseif mc.hasCursors() then
+            mc.clearCursors()
+          else
+            mc.disableCursors()
+          end
+        end)
+      end)
+
+      -- Customize how cursors look.
+      local hl = vim.api.nvim_set_hl
+      hl(0, "MultiCursorCursor", { reverse = true })
+      hl(0, "MultiCursorVisual", { link = "Visual" })
+      hl(0, "MultiCursorSign", { link = "SignColumn" })
+      hl(0, "MultiCursorMatchPreview", { link = "Search" })
+      hl(0, "MultiCursorDisabledCursor", { reverse = true })
+      hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
+      hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+    end
   },
   -- Cutlass 会覆盖删除操作，实际上只是删除而不影响当前的复制
   {
