@@ -128,4 +128,15 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
   },
+  {
+    {
+      "CelikE/nvim-go",
+      ft = "go",
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+      },
+      opts = {
+      },
+    }
+  }
 }
