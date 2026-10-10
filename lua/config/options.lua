@@ -41,4 +41,4 @@ for key, value in pairs({
   vim.g[key] = value
 end
 
-require("config.ide.neovide")
+require("config.neovide")

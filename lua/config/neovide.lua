@@ -1,4 +1,6 @@
-if not vim.g.neovide then return end
+if not vim.g.neovide then
+  return
+end
 vim.o.guifont = "monospace,"
   -- "JetBrainsMono Nerd Font,"
   -- .. "JetBrainsMono Nerd Font Propo,"
@@ -7,7 +9,7 @@ vim.o.guifont = "monospace,"
   .. (vim.loop.os_uname().sysname == "Windows_NT" and "Noto Sans" or "MiSans")
   .. ":h12:#e-subpixelantialias:#h-full"
 
-for key, value in pairs {
+for key, value in pairs({
   -- neovide_profiler = true, -- debug
   -- neovide_no_idle = true, -- 没有空闲
 
@@ -20,7 +22,11 @@ for key, value in pairs {
   neovide_cursor_animate_in_insert_mode = true, -- 在插入模式下制作动画
   neovide_cursor_unfocused_outline_width = 0, -- 未聚焦的轮廓宽度
 
-  neovide_scale_factor = 1.0,
+  neovide_increment_scale_factor = vim.g.neovide_increment_scale_factor or 0.1,
+  neovide_min_scale_factor = vim.g.neovide_min_scale_factor or 0.7,
+  neovide_max_scale_factor = vim.g.neovide_max_scale_factor or 2.0,
+  neovide_initial_scale_factor = vim.g.neovide_scale_factor or 1,
+  neovide_scale_factor = vim.g.neovide_scale_factor or 1,
 
   -- neovide_scroll_animation_length = 0.3, -- 滚动动画时长
   neovide_scroll_animation_far_lines = 9999, -- 远距离滚动的行数
@@ -54,9 +60,39 @@ for key, value in pairs {
   neovide_text_gamma = 0.0,
   neovide_text_contrast = 0.5,
   neovide_pixel_geometry = "RGBH",
-} do
+}) do
   vim.g[key] = value
 end
 
 vim.opt.winblend = 50
 vim.opt.pumblend = 50
+
+---@param scale_factor number
+---@return number
+local function clamp_scale_factor(scale_factor)
+  return math.max(math.min(scale_factor, vim.g.neovide_max_scale_factor), vim.g.neovide_min_scale_factor)
+end
+
+---@param scale_factor number
+---@param clamp? boolean
+local function set_scale_factor(scale_factor, clamp)
+  vim.g.neovide_scale_factor = clamp and clamp_scale_factor(scale_factor) or scale_factor
+end
+
+local function reset_scale_factor()
+  vim.g.neovide_scale_factor = vim.g.neovide_initial_scale_factor
+end
+
+---@param increment number
+---@param clamp? boolean
+local function change_scale_factor(increment, clamp)
+  set_scale_factor(vim.g.neovide_scale_factor + increment, clamp)
+end
+
+vim.keymap.set("n", "<C-=>", function()
+  change_scale_factor(vim.g.neovide_increment_scale_factor * vim.v.count1, true)
+end, { desc = "Increase Neovide scale factor" })
+vim.keymap.set("n", "<C-->", function()
+  change_scale_factor(-vim.g.neovide_increment_scale_factor * vim.v.count1, true)
+end, { desc = "Decrease Neovide scale factor" })
+vim.keymap.set("n", "<C-0>", reset_scale_factor, { desc = "Reset Neovide scale factor" })
